@@ -8,6 +8,7 @@
   width: 100%;
 }
 .accordion .section input[type='radio'] {
+  z-index: 1000;
   display: none;
 }
 .accordion .section input[type='radio']:checked + label {
@@ -20,12 +21,23 @@
   height: 100%;
   left: 0;
 }
+
+
 .accordion .section input[type='radio']:checked ~ .content {
   max-height: 300px;
   opacity: 1;
   z-index: 10;
-  overflow-y: auto;
+  
 }
+
+.accordion .section .autoOverFlow:checked ~ .content {
+    max-height: 300px;
+    opacity: 1;
+    z-index: 10;
+    overflow-y: auto;
+  }
+
+
 .accordion .section label {
   position: relative;
   cursor: pointer;
@@ -101,6 +113,8 @@
   padding: 15px;
 }
 
+
+
 ul {
   width: 100%;
   padding: 0;
@@ -122,6 +136,11 @@ ul li:hover i {
   color: #21CCFC;
 }
 
+a{
+  text-decoration: none;
+  color: #FFF;
+}
+
 .logo {
   padding: 30px 10px;
   width: 200px;
@@ -132,4 +151,14 @@ ul li:hover i {
 .logo i {
   font-size: 70px;
   color: #21CCFC;
+}
+
+.activeSubMenu{
+  color : #21CCFC;
+}
+
+
+#lmenu-elm{
+  color: white;
+  z-index: 10000;
 }

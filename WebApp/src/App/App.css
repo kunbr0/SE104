@@ -18,12 +18,14 @@ body {
 }
 
 #lmenu{
-    position: absolute;
+    position: fixed;
     top: 0px;
     left: 0px;
     width: 200px;
     height: 100vh;
-    background-color: cornflowerblue;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: #222;
 }
 
 #main-view{
@@ -31,7 +33,11 @@ body {
     top: 0px;
     left: 200px;
     width: calc(100vw - 200px);
-    
+    height: calc(99vh - 100px);
 }
 
 
+#kunLoader svg path,
+#kunLoader svg rect{
+  fill: cornflowerblue;
+}

@@ -1,8 +1,11 @@
 import React from 'react';
-import SLogin from './../Sites/Login/Login';
-import SHomepage from './../Sites/Homepage/Homepage';
+
 import LMenu from './../Components/LMenu/LMenu';
 import TopBar from './../Components/TopBar/TopBar';
+import Loader from './../MainLoader/Loader';
+
+import routes from './../Routes/Routes';
+
 import './App.css';
 
 import {
@@ -12,29 +15,41 @@ import {
   } from "react-router-dom";
 
 
-function App() {
-  return (
-    <Router>
-      <div>
-        <div id="lmenu"> <LMenu /> </div>
-        <div id="main-view">
-            <TopBar />
+function showRoutes(routes){
+    var result = null;
+    if(routes.length > 0){
+        result = routes.map((route, index) => {
+            return (
+                <Route 
+                    key={index}
+                    path={route.path}
+                    exact={route.exact}
+                    component={route.main}
+                />
+            );
+        })
+    }
+    return result;
+}
 
-            <Switch>
-            <Route exact path="/" component={SHomepage} />
-            <Route path="/about">
-                <SLogin />
-            </Route>
-            <Route path="/dashboard">
-            <div>Hello zxc</div>
-            </Route>
-            </Switch>
+function App() {
+    return (
+        <Router>
+        <div>
+            <Loader />
+            <div id="lmenu"> <LMenu /> </div>
+            <div id="main-view">
+                <TopBar />
+
+                <Switch>
+                    {showRoutes(routes)}
+                </Switch>
+            </div>
+        
+        
         </div>
-       
-       
-      </div>
-    </Router>
-  );
+        </Router>
+    );
 }
 
 export default App;
