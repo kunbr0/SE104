@@ -1,6 +1,6 @@
 import React from 'react';
 import './RowInTable.css';
-
+import TextTranslation from './../../../Components/TextTranslation/TextTranslation';
 const RowInTable = ({studentID, studentName, sex, DOB, address}) => {
     return (
         <div className="row">
@@ -20,7 +20,7 @@ const RowInTable = ({studentID, studentName, sex, DOB, address}) => {
             {address}
             </div>
             <div className="cell w10pc">
-            Edit
+            <TextTranslation textName="ClassInfo-Table-Edit.1"/>
             </div>
 
         </div>

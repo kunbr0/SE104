@@ -1,20 +1,19 @@
-import React , {Component} from 'react';
+import React from 'react';
 import './TopBar.css';
 
+const TopBar = () => {
 
-class TopBar extends Component{
-    render(){
-        return(
-            
-            <div id="topbar-wrapper">
-                <div id="topbar-institutionDetails">
-                Sở giáo dục và đạo tạo TPHCM<br/>
-                Trường THPT Nguyễn Văn A
-                </div>
-                
+    return(
+        
+        <div id="topbar-wrapper">
+            <div id="topbar-institutionDetails">
+            Sở giáo dục và đạo tạo TPHCM<br/>
+            Trường THPT Nguyễn Văn A<br/>
             </div>
-        );
-    }
+            
+        </div>
+    );
+    
 }
 
 export default TopBar;

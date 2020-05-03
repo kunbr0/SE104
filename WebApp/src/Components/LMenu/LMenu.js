@@ -1,10 +1,10 @@
 import React , {Component} from 'react';
 import './LMenu.css';
 import {
-    NavLink, Route
+    NavLink
 } from "react-router-dom";
-import svgThreeDots from './../../SVG/ThreeDots.svg';
-
+import TextTranslation from './../TextTranslation/TextTranslation';
+import BottomMenu from './BottomMenu/BottomMenu';
 
 
 class LMenu extends Component{
@@ -15,6 +15,7 @@ class LMenu extends Component{
             classes : [],
             stateCode : 0,
         };
+        
     }
 
 
@@ -75,6 +76,8 @@ class LMenu extends Component{
     
     render(){
 
+        
+
         this.updateMenu();
         let elmMenuClasses = null;
         if(this.state.stateCode === 99){
@@ -96,19 +99,19 @@ class LMenu extends Component{
                     <NavLink id="lmenu-elm"  to="/">
                     <div className="section">                      
                         <input type="radio" name="accordion-1" id="section-homepage" />
-                        <label htmlFor="section-0"  onClick={()=>this.SelectMenu("homepage")} ><span>Homepage</span></label>                       
+                        <label htmlFor="section-0"  onClick={()=>this.SelectMenu("homepage")} ><TextTranslation textName="LMenu-Homepage.1" /></label>                       
                     </div>
                     </NavLink>
 
                     
                     <div className="section">
                         <input type="radio" name="accordion-1" id="section-personal" />
-                        <label htmlFor="section-1"  onClick={()=>this.SelectMenu("personal")} ><span>Personal</span></label>
+                        <label htmlFor="section-1"  onClick={()=>this.SelectMenu("personal")} ><TextTranslation textName="LMenu-Personal.1" /></label>
                         <div className="content">
                             <ul>
-                            <NavLink activeClassName="activeSubMenu" exact to="/inbox"><li><i className="fa fa-inbox" />Inbox</li></NavLink>
-                            <NavLink activeClassName="activeSubMenu" exact to="/sent"><li><i className="fa fa-share" /><span>Sent</span></li></NavLink>
-                            <NavLink activeClassName="activeSubMenu" exact to="/archive"><li><i className="fa fa-archive" /><span>Archive</span></li></NavLink>
+                            <NavLink activeClassName="activeSubMenu" exact to="/inbox"><li><i className="fa fa-inbox" /><TextTranslation textName="LMenu-Inbox.1" /></li></NavLink>
+                            <NavLink activeClassName="activeSubMenu" exact to="/sent"><li><i className="fa fa-share" /><TextTranslation textName="LMenu-Sent.1" /></li></NavLink>
+                            <NavLink activeClassName="activeSubMenu" exact to="/archive"><li><i className="fa fa-archive" /><TextTranslation textName="LMenu-Archive.1" /></li></NavLink>
                             </ul>
                         </div>
                     </div>
@@ -116,12 +119,12 @@ class LMenu extends Component{
 
                     <div className="section">
                         <input type="radio" name="accordion-1" id="section-usage"/>
-                        <label htmlFor="section-2" onClick={()=>this.SelectMenu("usage")}> <span>Usage</span></label>
+                        <label htmlFor="section-2" onClick={()=>this.SelectMenu("usage")}> <TextTranslation textName="LMenu-Usage.1" /></label>
                         <div className="content">
                             <ul>
-                            <NavLink activeClassName="activeSubMenu" exact to="/system"><li><i className="fa fa-cog" />System</li></NavLink>
-                            <NavLink activeClassName="activeSubMenu" exact to="/users"><li><i className="fa fa-group" />Users</li></NavLink>
-                            <NavLink activeClassName="activeSubMenu" exact to="/visitation"><li><i className="fa fa-sitemap" />Visitation</li></NavLink>
+                            <NavLink activeClassName="activeSubMenu" exact to="/system"><li><i className="fa fa-cog" /><TextTranslation textName="LMenu-System.1" /></li></NavLink>
+                            <NavLink activeClassName="activeSubMenu" exact to="/users"><li><i className="fa fa-group" /><TextTranslation textName="LMenu-Users.1" /></li></NavLink>
+                            <NavLink activeClassName="activeSubMenu" exact to="/visitation"><li><i className="fa fa-sitemap" /><TextTranslation textName="LMenu-Visitation.1" /></li></NavLink>
 
                             </ul>
                         </div>
@@ -129,7 +132,7 @@ class LMenu extends Component{
 
                     <div className="section">
                         <input className="autoOverFlow" type="radio" name="accordion-1" id="section-class"/>
-                        <label htmlFor="section-3" onClick={()=>this.SelectMenu("class")} > <span>Classes</span></label>
+                        <label htmlFor="section-3" onClick={()=>this.SelectMenu("class")} > <TextTranslation textName="LMenu-Classes.1" /></label>
                         <div className="content">
                             <ul>
                                 {elmMenuClasses}
@@ -144,6 +147,8 @@ class LMenu extends Component{
                     <div className="content" />
                     </div>
                     </div>
+
+                <BottomMenu />
             </div>
         );
     }

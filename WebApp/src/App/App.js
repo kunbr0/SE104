@@ -15,6 +15,7 @@ import {
   } from "react-router-dom";
 
 
+
 function showRoutes(routes){
     var result = null;
     if(routes.length > 0){
@@ -32,13 +33,21 @@ function showRoutes(routes){
     return result;
 }
 
+
 function App() {
+
+    
+    
     return (
+        
+        
         <Router>
         <div>
             <Loader />
             <div id="lmenu"> <LMenu /> </div>
             <div id="main-view">
+            
+            
                 <TopBar />
 
                 <Switch>
@@ -49,6 +58,7 @@ function App() {
         
         </div>
         </Router>
+        
     );
 }
 

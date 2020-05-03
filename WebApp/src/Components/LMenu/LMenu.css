@@ -1,8 +1,11 @@
 @import url(https://fonts.googleapis.com/css?family=Quicksand:300,400,700);
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css);
 .accordion {
+  position: relative;
+  display: block;
   color: #FFF;
   width: 100%;
+  z-index: 13;
 }
 .accordion .section {
   width: 100%;
@@ -96,8 +99,10 @@
   background: #222;
   width: 200px;
   position: absolute;
+  height: 100vh;
   top: 0;
   bottom: 0;
+  z-index: 11;
 }
 
 .accordion {

@@ -1,6 +1,7 @@
 import React , {Component} from 'react';
 import RowInTable from './RowInTable/RowInTable';
 import './ClassInfo.css';
+import TextTranslation from './../../Components/TextTranslation/TextTranslation';
 import Loader1 from './../../Components/SVG/Loader_1';
 import Error1 from './../../Components/SVG/Cancel_1';
 import SubjectBiology from './../../Components/SVG/Subject_Biology';
@@ -38,13 +39,13 @@ class ClassInfo extends Component{
     loaderReview(statusCode){
         if(statusCode === 1){
             return <div>
-                <Loader1 /><div id="classinfo-loader-infoLoader">Loading data of {this.state.classCode}</div>
+                <Loader1 /><div id="classinfo-loader-infoLoader"><TextTranslation textName="ClassInfo-LoadingDataOf.1" /> {this.state.classCode}</div>
             </div>
             
         }
         else if(statusCode === -1){
             return <div>
-                <Error1 /><div id="classinfo-loader-errorLoader">Cannot get data of {this.state.classCode}</div>
+                <Error1 /><div id="classinfo-loader-errorLoader"><TextTranslation textName="ClassInfo-CannotGetDataOf.1" /> {this.state.classCode}</div>
             </div>
         }
     }
@@ -120,10 +121,10 @@ class ClassInfo extends Component{
 
                     <div id="classinfo-details">
                         <div id="classinfo-info">
-                            Lớp  : {this.state.classCode} <br/>
-                            GVCN : Nguyen Thi Thanh B<br/>
-                            Sĩ số: 42<br/>
-                            Loại : chuyên Toán
+                            <TextTranslation textName="ClassInfo-TopBar-Class.1"/>  : {this.state.classCode} <br/>
+                            <TextTranslation textName="ClassInfo-TopBar-Teacher.1"/>  : Nguyen Thi Thanh B<br/>
+                            <TextTranslation textName="ClassInfo-TopBar-Number.1"/> : 42<br/>
+                            <TextTranslation textName="ClassInfo-TopBar-Type.1"/>  : chuyên Toán
                         </div>
 
                         <div id="classinfo-subjects">
@@ -131,50 +132,50 @@ class ClassInfo extends Component{
                                 <div className="classinfo-subject-image">
                                     <SubjectMath />
                                 </div>
-                                <div className="classinfo-subject-name">Math</div>
+                                <div className="classinfo-subject-name"><TextTranslation textName="ClassInfo-Subject-Math.1"/></div>
                             </div>
                             <div className="classinfo-subjects-elm">
                                 <div className="classinfo-subject-image">
                                     <SubjectPhysics />
                                 </div>
-                                <div className="classinfo-subject-name">Physics</div>
+                                <div className="classinfo-subject-name"><TextTranslation textName="ClassInfo-Subject-Physics.1"/></div>
                             </div>
                             <div className="classinfo-subjects-elm">
                                 <div className="classinfo-subject-image">
                                     <SubjectChemistry />
                                 </div>
-                                <div className="classinfo-subject-name">Chemistry</div>
+                                <div className="classinfo-subject-name"><TextTranslation textName="ClassInfo-Subject-Chemistry.1"/></div>
                             </div>
                             <div className="classinfo-subjects-elm">
                                 <div className="classinfo-subject-image">
                                     <SubjectBiology />
                                 </div>
-                                <div className="classinfo-subject-name">Biology</div>
+                                <div className="classinfo-subject-name"><TextTranslation textName="ClassInfo-Subject-Biology.1"/></div>
                             </div>
                             <div className="classinfo-subjects-elm">
                                 <div className="classinfo-subject-image">
                                     <SubjectLiterature />
                                 </div>
-                                <div className="classinfo-subject-name">Literature</div>
+                                <div className="classinfo-subject-name"><TextTranslation textName="ClassInfo-Subject-Literature.1"/></div>
                             </div>
                             <div className="classinfo-subjects-elm">
                                 <div className="classinfo-subject-image">
                                     <SubjectEnglish />
                                 </div>
-                                <div className="classinfo-subject-name">English</div>
+                                <div className="classinfo-subject-name"><TextTranslation textName="ClassInfo-Subject-English.1"/></div>
                             </div>
                             
                             <div className="classinfo-subjects-elm">
                                 <div className="classinfo-subject-image">
                                     <SubjectGeography />
                                 </div>
-                                <div className="classinfo-subject-name">Geography</div>
+                                <div className="classinfo-subject-name"><TextTranslation textName="ClassInfo-Subject-Geography.1"/></div>
                             </div>
                             <div className="classinfo-subjects-elm">
                                 <div className="classinfo-subject-image">
                                     <SubjectHistory />
                                 </div>
-                                <div className="classinfo-subject-name">History</div>
+                                <div className="classinfo-subject-name"><TextTranslation textName="ClassInfo-Subject-History.1"/></div>
                             </div>
                             
                         </div>
@@ -186,22 +187,22 @@ class ClassInfo extends Component{
                         
                         <div className="row header">
                             <div className="cell w10pcM13px">
-                            STT
+                            <TextTranslation textName="ClassInfo-Table-No.1"/>
                             </div>
                             <div className="cell w30pc">
-                            Name
+                            <TextTranslation textName="ClassInfo-Table-Name.1"/>
                             </div>
                             <div className="cell w10pc">
-                            Sex
+                            <TextTranslation textName="ClassInfo-Table-Sex.1"/>
                             </div>
                             <div className="cell w20pc">
-                            DoB
+                            <TextTranslation textName="ClassInfo-Table-DOB.1"/>
                             </div>
                             <div className="cell w20pc">
-                            Address
+                            <TextTranslation textName="ClassInfo-Table-Address.1"/>
                             </div>
                             <div className="cell w10pc">
-                            Action
+                            <TextTranslation textName="ClassInfo-Table-Action.1"/>
                             </div>
                             <div className="cell w13px">
                                 .
