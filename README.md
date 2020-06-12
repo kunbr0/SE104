@@ -5,7 +5,7 @@ Website quản lý sinh viên với giao diện đẹp mắt cùng những tính
 [![Version](https://img.shields.io/badge/version-0.0.1-brightgreen)][web_link]
 [![Contributors](https://img.shields.io/badge/contributors-6-blue)][web_link]
 
-![Preview image of PacChat][preview_image_url]
+![Preview][preview_image_url]
 
 ## Đối tượng sử dụng ##
 - Ứng dụng phù hợp cho tất cả mọi người
