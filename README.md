@@ -5,7 +5,7 @@ Website quản lý sinh viên với giao diện đẹp mắt cùng những tính
 [![Version](https://img.shields.io/badge/version-0.0.1-brightgreen)][web_link]
 [![Contributors](https://img.shields.io/badge/contributors-6-blue)][web_link]
 
-![Preview image of PacChat][preview_image_url]
+![Preview image][preview_image_url]
 
 ## Đối tượng sử dụng ##
 - Ứng dụng phù hợp cho tất cả mọi người
@@ -21,9 +21,9 @@ Website quản lý sinh viên với giao diện đẹp mắt cùng những tính
 ## Đội ngũ phát triển ##
 - Nguyễn Lê Bách - 18520480
 - Lê Ngọc Chính - 18520257 - ngocchinhlqd@gmail.com
-- Tân Hữu Toàn - -
-- Nguyễn Chí Thành
-_ Ngân
+- Tân Hữu Toàn - 18520383
+- Nguyễn Chí Thành - 18520360
+- Nguyễn Thị Quỳnh Ngân - 18520318
 - Nguyễn Nhật Long - 18520304 - nhatlongcode@gmail.com
 
 ## Công cụ ##
@@ -38,4 +38,4 @@ _ Ngân
 [//]: # (LINKS)
 [web_link]: https://github.com/uitchinhln/SE104
 
-[preview_image_url]: /UI/preview.png  "Preview image"
+[preview_image_url]: /Documents/review.png  "Preview image"
