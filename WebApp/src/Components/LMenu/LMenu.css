@@ -58,6 +58,7 @@
   -o-user-select: none;
   user-select: none;
 }
+
 .accordion .section label:before {
   content: " ";
   width: 100%;
@@ -166,4 +167,19 @@ a{
 #lmenu-elm{
   color: white;
   z-index: 10000;
+}
+
+
+#lmenu-top-wrapper{
+  position: relative;
+  display: block;
+  top: 0px;
+  height: calc(100vh - 60px);
+  width: 100%;
+  z-index: 15;
+  overflow-y: scroll;
+}
+
+#lmenu-top-wrapper::-webkit-scrollbar{
+  display: none;
 }

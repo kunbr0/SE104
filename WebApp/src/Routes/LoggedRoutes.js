@@ -1,9 +1,9 @@
 import React from 'react';
-import SLogin from './../Sites/Login/Login';
+//import SLogin from './../Sites/Login/Login';
 import SHomepage from './../Sites/Homepage/Homepage';
 import SNotFound from './../Sites/NotFound_404/NotFound_404';
 import ClassInfo from './../Sites/Class/ClassInfo';
-
+import History from './../Sites/History/History';
 const routes = [
     {
         path : '/',
@@ -11,14 +11,14 @@ const routes = [
         main : () => <SHomepage />
     },
     {
-        path : '/class',
+        path : '/class/:classCode',
         exact : false,
-        main : () => <ClassInfo />
+        main : ({match}) => <ClassInfo match={match} />
     },
     {
-        path : '/about',
+        path : '/login',
         exact : false,
-        main : () => <SLogin />
+        main : () => <History />
     },
     {
         path : '',

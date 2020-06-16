@@ -61,6 +61,9 @@
     "ClassInfo-CannotGetDataOf" : {
         "1" : "Không thể tải dữ liệu của"
     },
+    "ClassInfo-Subject-Info" : {
+        "1" : "Thông Tin"
+    },
     "ClassInfo-Subject-Math" : {
         "1" : "Toán"
     },
@@ -107,6 +110,26 @@
     },
     "ClassInfo-Table-Edit" : {
         "1" : "Sửa"
+    },
+
+
+    "ClassInfo-Table-process" : {
+        "1" : "Quá trình"
+    },
+    "ClassInfo-Table-15mins" : {
+        "1" : "15 phút"
+    },
+    "ClassInfo-Table-45mins" : {
+        "1" : "1 tiết"
+    },
+    "ClassInfo-Table-midterm" : {
+        "1" : "Giữa kỳ"
+    },
+    "ClassInfo-Table-endterm" : {
+        "1" : "Cuối kỳ"
+    },"ClassInfo-Table-final" : {
+        "1" : "Tổng kết"
     }
+
 
 }

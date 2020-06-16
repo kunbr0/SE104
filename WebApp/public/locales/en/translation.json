@@ -59,6 +59,9 @@
     "ClassInfo-CannotGetDataOf" : {
         "1" : "Cannot get data of"
     },
+    "ClassInfo-Subject-Info" : {
+        "1" : "Information"
+    },
     "ClassInfo-Subject-Math" : {
         "1" : "Math"
     },
@@ -86,10 +89,12 @@
 
 
     "ClassInfo-Table-No" : {
-        "1" : "No."
+        "1" : "No.",
+        "2" : "No."
     },
     "ClassInfo-Table-Name" : {
-        "1" : "Name"
+        "1" : "Name",
+        "2" : "Name"
     },
     "ClassInfo-Table-Sex" : {
         "1" : "Sex"
@@ -101,9 +106,34 @@
         "1" : "Address"
     },
     "ClassInfo-Table-Action" : {
-        "1" : "Action"
+        "1" : "Action",
+        "2" : "Act"
     },
     "ClassInfo-Table-Edit" : {
         "1" : "Edit"
+    },
+
+
+    "ClassInfo-Table-process" : {
+        "1" : "Process"
+    },
+    "ClassInfo-Table-15mins" : {
+        "1" : "15 mins",
+        "2" : "15'"
+    },
+    "ClassInfo-Table-45mins" : {
+        "1" : "45 mins",
+        "2" : "45'"
+    },
+    "ClassInfo-Table-midterm" : {
+        "1" : "Mid Term",
+        "2" : "Mid"
+    },
+    "ClassInfo-Table-endterm" : {
+        "1" : "End Term",
+        "2" : "End"
+    },"ClassInfo-Table-final" : {
+        "1" : "Final",
+        "2" : "Final"
     }
 }

@@ -1,10 +1,15 @@
 import React from 'react';
 
 import LMenu from './../Components/LMenu/LMenu';
+import MLMenu from './../Components/LMenu/MLMenu';
 import TopBar from './../Components/TopBar/TopBar';
 import Loader from './../MainLoader/Loader';
 
-import routes from './../Routes/Routes';
+import loggedroutes from './../Routes/LoggedRoutes';
+import guestroutes from './../Routes/GuestRoutes';
+
+import LoggedRoutes from './LoggedRoutes/LoggedRoutes';
+import GuestRoutes from './GuestRoutes/GuestRoutes';
 
 import './App.css';
 
@@ -12,26 +17,12 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
+    Redirect
   } from "react-router-dom";
 
 
 
-function showRoutes(routes){
-    var result = null;
-    if(routes.length > 0){
-        result = routes.map((route, index) => {
-            return (
-                <Route 
-                    key={index}
-                    path={route.path}
-                    exact={route.exact}
-                    component={route.main}
-                />
-            );
-        })
-    }
-    return result;
-}
+
 
 
 function App() {
@@ -42,21 +33,14 @@ function App() {
         
         
         <Router>
-        <div>
-            <Loader />
-            <div id="lmenu"> <LMenu /> </div>
-            <div id="main-view">
+            {
+                localStorage.getItem('userData') ? 
+                <LoggedRoutes routes={loggedroutes}/> :
+                <GuestRoutes routes={guestroutes}/>
+                
+            }
             
             
-                <TopBar />
-
-                <Switch>
-                    {showRoutes(routes)}
-                </Switch>
-            </div>
-        
-        
-        </div>
         </Router>
         
     );

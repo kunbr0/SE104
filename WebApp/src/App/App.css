@@ -23,8 +23,6 @@ body {
     left: 0px;
     width: 200px;
     height: 100vh;
-    overflow-y: scroll;
-    overflow-x: hidden;
     background-color: #222;
 }
 
@@ -34,6 +32,10 @@ body {
     left: 200px;
     width: calc(100vw - 200px);
     height: calc(99vh - 100px);
+}
+
+#MLMenu{
+    display: none;
 }
 
 

@@ -1,10 +1,10 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 
-const TextTranslation = ({textName}) => {
+const TextTranslation = ({textName, kClass}) => {
     const {t} = useTranslation(); 
     return(      
-        <span>{t(textName)}</span>
+        <span className={kClass}>{t(textName)}</span>
     );
     
 }
