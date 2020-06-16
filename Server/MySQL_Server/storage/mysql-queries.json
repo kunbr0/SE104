@@ -1,0 +1,4 @@
+{
+    "LIST_CLASSES": "SELECT * FROM sm_class;",
+    "LIST_SUBJECTS": "SELECT * FROM sm_subject;"
+}
