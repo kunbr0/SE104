@@ -11,6 +11,8 @@ import guestroutes from './../Routes/GuestRoutes';
 import LoggedRoutes from './LoggedRoutes/LoggedRoutes';
 import GuestRoutes from './GuestRoutes/GuestRoutes';
 
+//import SCalendar from './../Components/SmallCalendar/SmallCalendar';
+
 import './App.css';
 
 import {
@@ -37,6 +39,8 @@ function App() {
                 localStorage.getItem('userData') ? 
                 <LoggedRoutes routes={loggedroutes}/> :
                 <GuestRoutes routes={guestroutes}/>
+
+                //<SCalendar />
                 
             }
             
