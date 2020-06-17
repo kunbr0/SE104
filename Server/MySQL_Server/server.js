@@ -21,7 +21,9 @@ connection.connect((err) =>
 
 app.get('/', (req, res) => 
 {
-    connection.query(storage.Query_ListStudentsInClass('PMCL'), (err, data, fields) => 
+    connection.query(storage.Query_InsertTeacher('ID223', '11112000', 'bac', 'Nguyen Van B', 'Nam',
+    '1991-3-2', 'TPHCM', 'b@gm.uit.edu.vn'), 
+    (err, data, fields) => 
     {
         if (!err) 
         {

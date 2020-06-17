@@ -2,5 +2,11 @@
     "LIST_ALL_CLASSES": "SELECT * FROM sm_class;",
     "LIST_SUBJECTS": "SELECT * FROM sm_subject;",
     "INSERT_STUDENT": "INSERT INTO sm_student(id_student, name_student, gender, birth, address, email, id_class) VALUES",
-    "LIST_STUDENT_IN_CLASS": "SELECT name_student, gender, birth, address FROM sm_student WHERE id_class="
+    "LIST_STUDENT_IN_CLASS": "SELECT name_student, gender, birth, address FROM sm_student WHERE id_class=",
+    "NUMBER_OF_STUDENTS_IN_CLASS": 
+    {
+        "MAIN_PART": "SELECT COUNT(id_class) AS TotalStudent FROM (SELECT id_class FROM sm_student WHERE sm_student.id_class=",
+        "ALIAS": ") AS Filtered"
+    },
+    "INSERT_TEACHER": "INSERT INTO sm_teacher(id_user, password, username, fullname, gender, birth, address, email) VALUES"
 }
