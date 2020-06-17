@@ -5,14 +5,14 @@ function insertStudent(id_student, name_student, gender, birth, address, email, 
 {
     let query = queryJSON.INSERT_STUDENT + 
                 `(${id_student}, ${name_student}, ${gender}, ${birth}, ${address}, ${email}, '${id_class}');`;
-    console.log(query);
+    // console.log(query);
     return query;
 }
 
 function listStudentsInClass(id_class)
 {
     let query = queryJSON.LIST_STUDENT_IN_CLASS + `'${id_class}';`;
-    console.log(query);
+    // console.log(query);
     return query;
 }
 
