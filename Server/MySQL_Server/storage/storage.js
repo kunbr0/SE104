@@ -5,8 +5,8 @@ const bcrypt        = require('bcrypt');
 function insertStudent(id_student, name_student, gender, birth, address, email, id_class)
 {
     let query = queryJSON.INSERT_STUDENT + 
-                `(${id_student}, ${name_student}, ${gender}, ${birth}, ${address}, ${email}, '${id_class}');`;
-    // console.log(query);
+                `('${id_student}', '${name_student}', '${gender}', '${birth}', '${address}', '${email}', '${id_class}');`;
+    console.log(query);
     return query;
 }
 

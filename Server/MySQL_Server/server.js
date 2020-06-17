@@ -21,8 +21,8 @@ connection.connect((err) =>
 
 app.get('/', (req, res) => 
 {
-    connection.query(storage.Query_InsertTeacher('ID223', '11112000', 'bac', 'Nguyen Van B', 'Nam',
-    '1991-3-2', 'TPHCM', 'b@gm.uit.edu.vn'), 
+    connection.query(storage.Query_InsertStudent('18521234', 'Nguyen Van E', 'Nam', '2000-11-11',
+    'TPHCM', 'nlebachnlb@gmail.com', 'PMCL'), 
     (err, data, fields) => 
     {
         if (!err) 
@@ -32,7 +32,7 @@ app.get('/', (req, res) =>
         }
         else 
         {
-            console.log("Query failed!");
+            console.log("Query failed!" + err);
         }
     });
     // res.send("HEllo");
