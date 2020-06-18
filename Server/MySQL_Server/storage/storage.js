@@ -10,6 +10,21 @@ function insertStudent(id_student, name_student, gender, birth, address, email, 
     return query;
 }
 
+function updateStudent(id_student, name_student, gender, birth, address, email, id_class)
+{
+    let pack = queryJSON.UPDATE_STUDENT;
+    let query = pack.MAIN_PART + 
+                `${pack.NAME}'${name_student}'` + 
+                `${pack.GENDER}'${gender}'` + 
+                `${pack.DOB}'${birth}'` + 
+                `${pack.ADDRESS}'${address}'` + 
+                `${pack.EMAIL}'${email}'` + 
+                `${pack.CLASSID}'${id_class}'` + 
+                `${pack.STUDENT_ID}'${id_student}';`;
+    console.log(query);
+    return query;
+}
+
 function listStudentsInClass(id_class)
 {
     let query = queryJSON.LIST_STUDENT_IN_CLASS + `'${id_class}';`;
@@ -44,5 +59,6 @@ module.exports =
     Query_InsertStudent             : insertStudent,
     Query_ListStudentsInClass       : listStudentsInClass,
     Query_GetNumberOfStudentsInClass: getNumberOfStudentsInClass,
-    Query_InsertTeacher             : insertTeacher
+    Query_InsertTeacher             : insertTeacher,
+    Query_UpdateStudent             : updateStudent
 }

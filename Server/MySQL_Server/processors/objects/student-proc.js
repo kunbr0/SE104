@@ -12,7 +12,19 @@ function insertStudent(dbConnection, req, res, urlData)
     });
 }
 
+function updateStudent(dbConnection, req, res, urlData)
+{
+    dbConnection.query(storage.Query_UpdateStudent(
+        urlData.id, urlData.name, urlData.gender, urlData.dob, urlData.addr, urlData.mail, urlData.classid
+    ), (err, data, fields) => 
+    {
+        if (err) throw err;
+        res.status(statusCodes.OK).json(data);
+    });
+}
+
 module.exports = 
 {
-    InsertStudent: insertStudent
+    InsertStudent: insertStudent,
+    UpdateStudent: updateStudent
 };
