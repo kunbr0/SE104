@@ -25,6 +25,13 @@ function updateStudent(id_student, name_student, gender, birth, address, email, 
     return query;
 }
 
+function getStudent(id_student)
+{
+    let query = queryJSON.STUDENT_DETAIL + `'${id_student}'`;
+    console.log(query);
+    return query;
+}
+
 function listStudentsInClass(id_class)
 {
     let query = queryJSON.LIST_STUDENT_IN_CLASS + `'${id_class}';`;
@@ -43,9 +50,9 @@ function getNumberOfStudentsInClass(id_class)
 
 function insertTeacher(id_user, password, username, fullname, gender, birth, address, email)
 {
-    let saltRounds = 10;
-    let encryptedPassword = bcrypt.hashSync(password, saltRounds);
-    // let encryptedPassword = password;
+    // let saltRounds = 10;
+    // let encryptedPassword = bcrypt.hashSync(password, saltRounds);
+    let encryptedPassword = password;
     let query = queryJSON.INSERT_TEACHER + 
                 `('${id_user}', '${encryptedPassword}', '${username}', '${fullname}', '${gender}', '${birth}', '${address}', '${email}');`;
     console.log(query);
@@ -60,5 +67,6 @@ module.exports =
     Query_ListStudentsInClass       : listStudentsInClass,
     Query_GetNumberOfStudentsInClass: getNumberOfStudentsInClass,
     Query_InsertTeacher             : insertTeacher,
-    Query_UpdateStudent             : updateStudent
+    Query_UpdateStudent             : updateStudent,
+    Query_GetStudent                : getStudent
 }

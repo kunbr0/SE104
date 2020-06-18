@@ -5,7 +5,8 @@ const syntaxes =
     numberOfStudentsInClass: `/number-students`,
 
     insert: `/add`,
-    update: `/update`
+    update: `/update`,
+    detail: `/detail/:id`
 }
 
 module.exports = syntaxes;

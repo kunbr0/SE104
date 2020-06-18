@@ -13,6 +13,7 @@
         "CLASSID": ", id_class = ", 
         "STUDENT_ID": " WHERE id_student = "
     },
+    "STUDENT_DETAIL":"SELECT id_student, name_student, gender, birth, address, email, id_class FROM sm_student WHERE id_student=",
 
     "LIST_STUDENT_IN_CLASS": "SELECT name_student, gender, birth, address FROM sm_student WHERE id_class=",
     "NUMBER_OF_STUDENTS_IN_CLASS": 
