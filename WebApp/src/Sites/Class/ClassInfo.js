@@ -8,8 +8,8 @@ import GeneralClassDetails from './GeneralClassDetails/GeneralClassDetails';
 import SubjectDetails from './SubjectDetails/SubjectDetails';
 
 import {Route} from 'react-router-dom';
-
-
+import AddNewStudent from './../../Components/AddNewStudent/AddNewStudent';
+import StudentScoreTable from '../../Components/StudentScoresTable/StudentScoresTable';
 
 
 
@@ -39,8 +39,8 @@ const ClassInfo = (props) => {
                     <Route path={`${props.match.url}/:subjectName`}  
                         render={({match}) => (
                             
-                            <SubjectDetails classCode={classCode}  subjectName={match.params.subjectName}    />
-                            
+                            //<SubjectDetails classCode={classCode}  subjectName={match.params.subjectName}    />
+                            <StudentScoreTable />
                         )}
                     >
                     
@@ -49,6 +49,8 @@ const ClassInfo = (props) => {
                     <Route path={props.match.url} exact>  
                             <GeneralClassDetails classCode={classCode}   />
                     </Route>
+
+                    <AddNewStudent />
                 </div>
             </div>
         );

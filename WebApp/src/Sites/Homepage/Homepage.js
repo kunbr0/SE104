@@ -1,33 +1,33 @@
-import React , {Component} from 'react';
-
-import SCalendar from './../../Components/SmallCalendar/SmallCalendar';
-
+import React  from 'react';
+import { Space,Card } from 'antd';
 import './Homepage.css';
-import SubjectSection from './SubjectSection/SubjectSection';
 
 
-
-class Homepage extends Component{
-    render(){
-        return(
-
-         <div id="homepage-wrapper">
-             <SCalendar width="90" />
-             <SubjectSection />
-             <SubjectSection />
-             <SubjectSection />
-             <SubjectSection />
-             <SubjectSection />
-             <SubjectSection />
-             <SubjectSection />
-
-             
-            
-
-         </div>  
-
-        )
+const Homepage = () => {
+    
+    const mainSpaceStyle = {
+        width : "500px",
+        
     }
+
+    return(
+
+        <div className="site-card-border-less-wrapper">
+            <Space direction="horizontal" style={mainSpaceStyle}>
+                <Card title="Card" style={{ width: 300 }}>
+                    <p>Card content</p>
+                    <p>Card content</p>
+                </Card>
+                <Card title="Card" style={{ width: 300 }}>
+                    <p>Card content</p>
+                    <p>Card content</p>
+                </Card>
+                
+            </Space>
+        </div>
+
+    )
+
 }
 
 export default Homepage;

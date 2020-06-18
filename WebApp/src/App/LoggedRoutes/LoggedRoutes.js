@@ -5,12 +5,12 @@ import {
     Redirect
 } from "react-router-dom";
 
-  import LMenu from './../../Components/LMenu/LMenu';
-  import MLMenu from './../../Components/LMenu/MLMenu';
-  import TopBar from './../../Components/TopBar/TopBar';
-  import Loader from './../../MainLoader/Loader';
-
-
+//import LMenu from './../../Components/LMenu/LMenu';
+// import MLMenu from './../../Components/LMenu/MLMenu';
+// import TopBar from './../../Components/TopBar/TopBar';
+// import Loader from './../../MainLoader/Loader';
+// import LAMenu from './../../Components/LAMenu/LAMenu';
+import MainLayout from './../MainLayout/MainLayout';
 
 
 const LoggedRoutes = ({routes})=>{
@@ -40,18 +40,7 @@ const LoggedRoutes = ({routes})=>{
     
 
     return (
-        <div>
-            <Loader />
-            <div id="lmenu"> <LMenu /> </div>
-            <MLMenu />
-            <div id="main-view">
-                <TopBar />
-
-                <Switch>
-                    {showRoutes(routes)}
-                </Switch>
-            </div>
-        </div>
+        <MainLayout kRoutes={showRoutes(routes)}/>
     );
 }
 
