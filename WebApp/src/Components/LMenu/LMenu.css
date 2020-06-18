@@ -142,9 +142,14 @@ ul li:hover i {
   color: #21CCFC;
 }
 
+ul li span {
+
+  color : white ;
+}
+
 a{
   text-decoration: none;
-  color: #FFF;
+  color: #FFF !important;
 }
 
 .logo {
@@ -160,9 +165,16 @@ a{
 }
 
 .activeSubMenu{
-  color : #21CCFC;
+  color : #21CCFC !important;
+}
+.activeSubMenu li{
+  background-color: rgb(23,125,220, 0.1);
 }
 
+.activeSubMenu span{
+  color : #1890ff !important;
+  font-weight: 600;
+}
 
 #lmenu-elm{
   color: white;

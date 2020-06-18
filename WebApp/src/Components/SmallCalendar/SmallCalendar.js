@@ -1,7 +1,6 @@
 import React , {useState} from 'react';
 import { Calendar, Alert } from 'antd';
 import moment from 'moment';
-import 'antd/dist/antd.css';
 import './SmallCalendar.css';
 
 const SmallCalendar = ({width = 90}) => {

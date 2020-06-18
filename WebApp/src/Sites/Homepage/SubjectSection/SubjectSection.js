@@ -1,5 +1,5 @@
 import React from 'react';
-import './SubjectSection.css';
+//import './SubjectSection.css';
 import svgDocsBlue from './../../../SVG/DocsBlue.svg';
 import svgInfo from './../../../SVG/Info.svg';
 import svgPerson from './../../../SVG/Person.svg';

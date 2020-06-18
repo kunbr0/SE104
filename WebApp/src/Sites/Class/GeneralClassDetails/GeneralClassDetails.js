@@ -9,6 +9,7 @@ import EditForm from './../EditForm/EditForm';
 
 import { useHttpClient } from '../../../Hooks/http-hook';
 
+
 const GeneralClassDetails = (props) => {
 
 
