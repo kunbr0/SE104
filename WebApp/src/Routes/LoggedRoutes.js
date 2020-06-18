@@ -4,11 +4,18 @@ import SHomepage from './../Sites/Homepage/Homepage';
 // import SNotFound from './../Sites/NotFound_404/NotFound_404';
 //import ClassInfo from './../Sites/Class/ClassInfo';
 // import History from './../Sites/History/History';
+import SSystem from '../Sites/System/System';
+
 const routes = [
     {
         path : '/',
         exact : true,
         main : () => <SHomepage />
+    },
+    {
+        path : '/',
+        exact : false,
+        main : () => <SSystem />
     },
     // {
     //     path : '/class/:classCode',

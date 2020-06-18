@@ -6,7 +6,7 @@ import './Homepage.css';
 const Homepage = () => {
     
     const mainSpaceStyle = {
-        width : "500px",
+        width : "10%",
         
     }
 
@@ -23,7 +23,9 @@ const Homepage = () => {
                     <p>Card content</p>
                 </Card>
                 
+                
             </Space>
+            
         </div>
 
     )
