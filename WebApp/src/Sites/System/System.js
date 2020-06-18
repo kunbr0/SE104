@@ -6,10 +6,10 @@ import {useTranslation} from 'react-i18next';
 
 
 
-const SSystem = () => {
-
+const SSystem = () => 
+{
     const { i18n } = useTranslation();
-const handleChangeLanguage = (lang) => {
+    const handleChangeLanguage = (lang) => {
     i18n.changeLanguage(lang);
 }
 
@@ -36,7 +36,7 @@ const menu = (
           Chinese
         </a>
       </Menu.Item>
-      <Menu.Item danger>blah</Menu.Item>
+      <Menu.Item>blah</Menu.Item>
     </Menu>
   );
 
