@@ -8,7 +8,7 @@ Method use: GET
 ## Modify Actions ##
 - Modify Actions: add new user, add student, etc. 
 - Method use: POST</br>
-Use post method with url: '/v1/objectname/action'</br>
+Use post method with url: `/v1/object-name/action`</br>
 Ex url: `/v1/student/add`</br>
 Send the information in a JSON with specific structure for each action (see below)
 
@@ -28,6 +28,21 @@ JSON:
 }
 ```
 
+#### Update a student ####
+Url: /v1/student/update
+```
+JSON: 
+{ 
+  "id":"sampleid", 
+  "name":"samplename", 
+  "gender":"samplegender", 
+  "dob":"samplebirthday", 
+  "addr":"sampleaddress", 
+  "mail":"sampleemail@gmail.com", 
+  "classid": "sampleclassid" 
+}
+```
+**Note: This action will update information of student who has student_id = "sampleid"**
 ### Teacher Objects ###
 #### Add new teacher (user) ####
 Url: /v1/teacher/add 
