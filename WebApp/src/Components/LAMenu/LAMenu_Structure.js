@@ -6,55 +6,56 @@ import {
     FolderOutlined,
 } from '@ant-design/icons';
 
+import TextTranslation from '../../Components/TextTranslation/TextTranslation';
 
 const LAMenu_Structure =
 [
     {
         "key" : "homepage",
-        "displayName" : "Homepage",
+        "displayName" : <TextTranslation textName="LMenu-Homepage.1"/>,
         "icon" : <HomeOutlined/>,
         "to" : "/"
     },
     {
         "key" : "personal",
-        "displayName" : "Personal",
+        "displayName" : <TextTranslation textName="LMenu-Personal.1"/>,
         "icon" : <UserOutlined/>,
         "children" : [
             {
                 "key" : "inbox",
-                "displayName" : "Inbox",
+                "displayName" : <TextTranslation textName="LMenu-Inbox.1"/>,
                 "to" : "/inbox"
             },
             {
                 "key" : "sent",
-                "displayName" : "Sent",
+                "displayName" : <TextTranslation textName="LMenu-Sent.1"/>,
                 "to" : "/sent"
             },
             {
                 "key" : "archive",
-                "displayName" : "Archive",
+                "displayName" : <TextTranslation textName="LMenu-Homepage.1"/>,
                 "to" : "/archive"
             }
         ]
     },
     {
         "key" : "usage",
-        "displayName" : "Usage",
+        "displayName" : <TextTranslation textName="LMenu-Usage.1"/>,
         "icon" : <ApartmentOutlined/>,
         "children" : [
             {
                 "key" : "system",
-                "displayName" : "System",
+                "displayName" : <TextTranslation textName="LMenu-System.1"/>,
                 "to" : "/system"
             },
             {
                 "key" : "users",
-                "displayName" : "Users",
+                "displayName" : <TextTranslation textName="LMenu-Users.1"/>,
                 "to" : "/users"
             },
             {
                 "key" : "visitation",
-                "displayName" : "Visitation",
+                "displayName" : <TextTranslation textName="LMenu-Visitation.1"/>,
                 "to" : "/visitation"
             },
             
@@ -62,7 +63,7 @@ const LAMenu_Structure =
     },
     {
         "key" : "classes",
-        "displayName" : "Classes",
+        "displayName" : <TextTranslation textName="LMenu-Classes.1"/>,
         "icon" : <FolderOutlined/>,
         "children" : [
             
