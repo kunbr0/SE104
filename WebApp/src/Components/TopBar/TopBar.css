@@ -1,11 +1,6 @@
-
-
-#topbar-wrapper{
-    width: 100%;
-    height: 100px;
-    background-color: lightgoldenrodyellow;
-}
-
-#topbar-institutionDetails{
-    padding: 10px;
+#topbar-avatar{
+    position: absolute;
+    right: 15px;
+    cursor: pointer;
+    height: 50px;
 }
