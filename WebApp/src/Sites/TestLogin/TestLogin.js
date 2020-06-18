@@ -4,8 +4,13 @@ import './TestLogin.css';
 export default function TestLogin() {
 
     const [pwClass, setPwClass] = useState('');
+    
     const onFocus = () => {
         setPwClass("password");
+    }
+
+    const onLostFocus = () => {
+        setPwClass("");
     }
 
     return (
@@ -21,7 +26,7 @@ export default function TestLogin() {
             <div className="form">
                 <div className="control">
                     <label for="email" className="fa fa-envelope"></label>
-                    <input id="email" placeholder="Email" type="email"></input>
+                    <input id="email" placeholder="Email" type="email" onFocus={() => onLostFocus()}></input>
                 </div>
                 <div className="control">
                     <label for="password" className="fa fa-asterisk"></label>
@@ -29,6 +34,7 @@ export default function TestLogin() {
                     placeholder="Password" 
                     type="password" 
                     onFocus={() => onFocus()}></input>
+                    
                 </div>
             </div>
         </div>

@@ -22,7 +22,7 @@ const routes = [
     {
         path : '/users',
         exact : false,
-        main : () => <TestLogin/>
+        main : () => <TestLogin />
     },
     // {
     //     path : '/class/:classCode',
