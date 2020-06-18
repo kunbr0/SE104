@@ -11,15 +11,15 @@ const TopBar = () => {
 
     return(
         
-        <div id="topbar-wrapper">
+        <div id="topbar-wrapper" className="d-flex justify-content-between align-items-center">
             <div id="topbar-institutionDetails">
             Sở giáo dục và đạo tạo TPHCM<br/>
             Trường THPT Nguyễn Văn A<br/>
             </div>
 
-            <div id="topbar-userDetails">
-                <div id="topbar-userDisplayName"></div>
-                <button onClick={logout}>Logout</button>
+            <div id="topbar-userDetails" className="d-flex" style={{margin: "right"}}>
+                <div id="topbar-userDisplayName">Test</div>
+                <button onClick={logout} style={{height: "45px"}}>Logout</button>
             </div>
             
         </div>
