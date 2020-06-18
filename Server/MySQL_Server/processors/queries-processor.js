@@ -1,19 +1,14 @@
-let mysql = require('mysql');
-let storage = require('./../storage/storage');
-let statusCodes= require('./status-codes');
-let url = require('url');
-let express = require('express');
-let syntaxes = require('./query-syntaxes');
+let mysql           = require('mysql');
+let storage         = require('./../storage/storage');
+let statusCodes     = require('./status-codes');
+let url             = require('url');
+let express         = require('express');
 
-function appGet(app, syntax, callback, dbConnection)
-{
-    app.get(syntax, (req, res) => 
-    {
-        let urlData = url.parse(req.url, true).query;
-        console.log(urlData);
-        callback(dbConnection, req, res, urlData);
-    });   
-}
+let syntaxes        = require('./query-syntaxes');
+let methods         = require('./../utils/http-methods');
+
+let studentProc     = require('./objects/student-proc');
+let teacherProc     = require('./objects/teacher-proc');
 
 function processListStudentsInClass(dbConnection, req, res, urlData)
 {
@@ -40,38 +35,26 @@ function processNumberOfStudentsInClass(dbConnection, req, res, urlData)
     });
 }
 
-function processInsertStudent(dbConnection, req, res, urlData)
-{
-    dbConnection.query(storage.Query_InsertStudent(
-        urlData.id, urlData.name, urlData.gender, urlData.dob, urlData.addr, urlData.mail, urlData.classid
-    ), (err, data, fields) => 
-    {
-        if (err) throw err;
-        res.status(statusCodes.OK).json(data);
-    });
-}
-
-function processInsertTeacher(dbConnection, req, res, urlData)
-{
-    dbConnection.query(storage.Query_InsertTeacher(
-        urlData.id, urlData.passwd, urlData.username, urlData.fullname, 
-        urlData.gender, urlData.dob, urlData.addr, urlData.mail
-    ), (err, data, fields) => 
-    {
-        if (err) throw err;
-        res.status(statusCodes.OK).json(data);
-    });
-}
-
 function processQuery(app, dbConnection)
 {
-    appGet(app, syntaxes.listStudentsInClass, processListStudentsInClass, dbConnection);
-    appGet(app, syntaxes.numberOfStudentsInClass, processNumberOfStudentsInClass, dbConnection);
-    appGet(app, syntaxes.insertStudent, processInsertStudent, dbConnection);
-    appGet(app, syntaxes.insertTeacher, processInsertTeacher, dbConnection);
+    methods.AppGet(app, syntaxes.listStudentsInClass, processListStudentsInClass, dbConnection);
+    methods.AppGet(app, syntaxes.numberOfStudentsInClass, processNumberOfStudentsInClass, dbConnection);
+
+}
+
+function processStudentQueries(app, dbConnection)
+{
+    methods.AppPost(app, syntaxes.insertStudent, studentProc.InsertStudent, dbConnection);
+}
+
+function processTeacherQueries(app, dbConnection)
+{
+    methods.AppPost(app, syntaxes.insertTeacher, teacherProc.InsertTeacher, dbConnection);
 }
 
 module.exports = 
 {
-    ProcessQuery: processQuery
+    ProcessQuery: processQuery,
+    ProcessStudentQueries: processStudentQueries,
+    ProcessTeacherQueries: processTeacherQueries
 }

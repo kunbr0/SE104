@@ -1,10 +1,11 @@
-const root = '/query'
+// const root = '/query'
 const syntaxes = 
 {
-    listStudentsInClass: `${root}/list-students`,
-    numberOfStudentsInClass: `${root}/number-students`,
-    insertStudent: `${root}/add-st`,
-    insertTeacher: `${root}/add-user`
+    listStudentsInClass: `/list-students`,
+    numberOfStudentsInClass: `/number-students`,
+
+    insertStudent: `/add`,
+    insertTeacher: `/add`
 }
 
 module.exports = syntaxes;
