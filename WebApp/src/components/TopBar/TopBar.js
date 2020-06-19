@@ -6,27 +6,26 @@ import { UserOutlined } from '@ant-design/icons';
 
 const TopBar = () => {
 
-    const menu = (
-        <Menu>
-          <Menu.Item key="0">
-            <a href="/logout">Profile</a>
-          </Menu.Item>
-          <Menu.Item key="1">
-            <a href="/settings">Settings</a>
-          </Menu.Item>
-          <Menu.Item key="2">
-            <a href="/settings">Activity Log</a>
-          </Menu.Item>
-          <Menu.Divider />
-          <Menu.Item key="3">Logout</Menu.Item>
-        </Menu>
-    );
-      
-
     const logout = () => {
         localStorage.removeItem("userData");
         window.location.reload();
     }
+
+    const menu = (
+      <Menu>
+        <Menu.Item key="0" >
+          <a>Profile</a>
+        </Menu.Item>
+        <Menu.Item key="1">
+          <a href="/settings">Settings</a>
+        </Menu.Item>
+        <Menu.Item key="2">
+          <a href="/settings">Activity Log</a>
+        </Menu.Item>
+        <Menu.Divider />
+        <Menu.Item key="3" onClick={logout}>Logout</Menu.Item>
+      </Menu>
+  );
 
     return(
         
