@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 import { Select } from 'antd';
 
@@ -10,6 +10,7 @@ const SelectWithTyping = (props) => {
 
     function onChange(value) {
         console.log(`selected ${value}`);
+        props.callbackSelection(value);
     }
     
     function onBlur() {
@@ -28,7 +29,7 @@ const SelectWithTyping = (props) => {
         const classes = props.options;
         if(classes.length){
             return classes.map((e)=>{
-                return <Option key={e[props.optionKey]} value={e[props.optionName]}>{e[props.optionName]}</Option>
+                return <Option key={e[props.optionName]} value={e[props.optionName]}>{e[props.optionName]}</Option>
             });
         }
         return null;
@@ -36,8 +37,16 @@ const SelectWithTyping = (props) => {
 
     let optionElms = renderOptions();
 
+   //const [selectedValue, setSelectedValue] = useState();
     
+    // useEffect(()=>{
+    //     if(props.value && props.value !== selectedValue){
+    //         setSelectedValue(props.value);
+    //     } 
+    // },[props.value]);
 
+
+    
     return(
         <Select
             showSearch
@@ -51,6 +60,7 @@ const SelectWithTyping = (props) => {
             filterOption={(input, option) =>
             option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
             }
+            //value={selectedValue}
         >
             {optionElms}
         </Select>

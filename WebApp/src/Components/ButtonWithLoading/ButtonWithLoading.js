@@ -3,19 +3,20 @@ import React, {useState} from 'react';
 import { Button } from 'antd';
 import { PoweroffOutlined } from '@ant-design/icons';
 
-const ButtonWithLoading = () => {
+const ButtonWithLoading = (props) => {
 
-    const [isLoading, setIsLoading] = useState(false);
+    // const [isLoading, setIsLoading] = useState(false);
 
-    const enterLoading = index => {
-        setIsLoading(true);
-        setTimeout(() => {
-            setIsLoading(false);
-        }, 1000);
-    };
+    // const enterLoading = index => {
+    //     props.onClick();
+    //     setIsLoading(true);
+    //     setTimeout(() => {
+    //         setIsLoading(false);
+    //     }, props.maxTimeLoading || 1000);
+    // };
 
     return (
-        <Button type="primary" loading={isLoading} onClick={() => enterLoading()}>
+        <Button type="primary" loading={props.isLoading || false} onClick={props.onClick}>
             Lookup
         </Button>
     );

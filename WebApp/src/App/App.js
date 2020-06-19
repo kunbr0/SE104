@@ -15,7 +15,7 @@ import 'antd/dist/antd.css';
 //import SCalendar from './../Components/SmallCalendar/SmallCalendar';
 //import StudentScoreTable from '../Components/StudentScoresTable/StudentScoresTable';
 
-//import './App.css';
+import './App.css';
 
 import {
     BrowserRouter as Router,
