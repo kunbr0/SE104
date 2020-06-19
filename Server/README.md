@@ -3,20 +3,19 @@ All action syntaxes start with /v1
 
 ## Query Actions ##
 Query Actions: get number of students in a class, get list of students, etc.
-Method use: GET
 
 ## Modify Actions ##
 - Modify Actions: add new user, add student, etc. 
-- Method use: POST</br>
 Use post method with url: `/v1/object-name/action`</br>
 Ex url: `/v1/student/add`</br>
-Send the information in a JSON with specific structure for each action (see below)
+**Send the information in a JSON with specific structure for each action (add it in BODY-CONTENT) (see below)**
 
 ### Student Objects ###
-#### Add new student ####
-Url: /v1/student/add
+#### Modify: Add new student ####
+Url: /v1/student/add</br>
+Method: POST
+JSON: </br>
 ```
-JSON: 
 { 
   "id":"sampleid", 
   "name":"samplename", 
@@ -28,10 +27,11 @@ JSON:
 }
 ```
 
-#### Update a student ####
-Url: /v1/student/update
+#### Modify: Update a student ####
+Url: /v1/student/update</br>
+Method: POST
+JSON: </br>
 ```
-JSON: 
 { 
   "id":"sampleid", 
   "name":"samplename", 
@@ -43,9 +43,16 @@ JSON:
 }
 ```
 **Note: This action will update information of student who has student_id = "sampleid"**
+#### Query: Get student's information ####
+Url: /v1/student/detail/${student_id}</br>
+Method: GET
+#### Modify: Remove a student ####
+Url: /v1/student/remove/${student_id}</br>
+Method: GET
 ### Teacher Objects ###
-#### Add new teacher (user) ####
-Url: /v1/teacher/add 
+#### Modify: Add new teacher (user) ####
+Url: /v1/teacher/add </br>
+Method: POST
 ```
 JSON: 
 { 
