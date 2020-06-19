@@ -81,8 +81,14 @@ export default function TestLogin() {
                 </div>
                 <div className="control">
                     <label for="pass" className="fa fa-lock"></label>
-                    <input style={{width : '100%'}} id="pass" placeholder="Password" type="password" onFocus={() => onFocus()}></input>
-                    
+                    <input
+                        style={{width : '100%'}}
+                        id="pass"
+                        placeholder="Password"
+                        type="password"
+                        onFocus={() => onFocus()}
+                        onBlur={() => onLostFocus()}>
+                    </input>
                 </div>
                 <div>
                     <Button id="login-button" type="primary" onClick={() => onLostFocus(), login}>Login</Button>
