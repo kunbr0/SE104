@@ -1,14 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
-import SelectWithTyping from '../../Components/SelectWithTyping/SelectWithTyping';
-import SubmitWithLoading from '../../Components/ButtonWithLoading/ButtonWithLoading';
+import SelectWithTyping from '../../components/SelectWithTyping/SelectWithTyping';
+import SubmitWithLoading from '../../components/ButtonWithLoading/ButtonWithLoading';
 
-import StudentScoresTable from '../../Components/StudentScoresTable/StudentScoresTable';
+import StudentScoresTable from '../../components/StudentScoresTable/StudentScoresTable';
 
 
 import { Card, Col, Row, message, Space } from 'antd';
 import Subjectslist from './SubjectsList.json';
-import StudentScoreTable from '../../Components/StudentScoresTable/StudentScoresTable';
+import StudentScoreTable from '../../components/StudentScoresTable/StudentScoresTable';
 
 import { useHttpClient } from '../../Hooks/http-hook';
 import {useHistory} from 'react-router-dom';
