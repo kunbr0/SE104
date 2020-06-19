@@ -13,14 +13,18 @@ import './MainLayout.css';
 
 import {NavLink} from 'react-router-dom';
 import LAMenu_Structure from '../../Components/LAMenu/LAMenu_Structure';
-import { removeFileItem, T } from 'antd/lib/upload/utils';
+
+import {updateClassData} from '../../Redux/Actions/updateClassData';
+
+
+import {connect} from 'react-redux';
 
 import TopBar from '../../Components/TopBar/TopBar';
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
-const SiderDemo = ({kRoutes}) => {
+const SiderDemo = (props) => {
   
     
 
@@ -44,6 +48,7 @@ const SiderDemo = ({kRoutes}) => {
                 
                 message.success('Loaded class data');
                 setClasses(classes);
+                props.dispatch(updateClassData(classes));
 
 
                 /*setTimeout(function() {
@@ -103,7 +108,7 @@ const SiderDemo = ({kRoutes}) => {
         setCollapsed(collapsed);
     };
   
-    
+    console.log(props);
 
     return (
         <Layout style={{ minHeight: '100vh' }}>
@@ -124,7 +129,7 @@ const SiderDemo = ({kRoutes}) => {
             </Breadcrumb>
             
             <Switch>
-                {kRoutes}
+                {props.kRoutes}
             </Switch>
             <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
                 Bill is a cat.
@@ -137,4 +142,12 @@ const SiderDemo = ({kRoutes}) => {
   
 }
 
-export default SiderDemo;
+
+
+const mapStateToProps = (state) => {
+    return {
+        classData : state.classData
+    };
+}
+
+export default connect(mapStateToProps)(SiderDemo);
