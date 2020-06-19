@@ -5,7 +5,8 @@ import SHomepage from './../Sites/Homepage/Homepage';
 //import ClassInfo from './../Sites/Class/ClassInfo';
 // import History from './../Sites/History/History';
 import SSystem from '../Sites/System/System';
-import ClassDetails from '../Sites/ClassDetails/ClassDetails';
+import Login from '../Sites/Login/Login';
+import TestLogin from '../Sites/TestLogin/TestLogin'
 
 const routes = [
     {
@@ -19,10 +20,15 @@ const routes = [
         main : () => <SSystem />
     },
     {
-        path : '/class/:classCode',
+        path : '/users',
         exact : false,
-        main : ({match}) => <ClassDetails match={match} />
+        main : () => <TestLogin />
     },
+    // {
+    //     path : '/class/:classCode',
+    //     exact : false,
+    //     main : ({match}) => <ClassInfo match={match} />
+    // },
     // {
     //     path : '/login',
     //     exact : false,

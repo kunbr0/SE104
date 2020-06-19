@@ -4,8 +4,10 @@ const syntaxes =
     listStudentsInClass: `/list-students`,
     numberOfStudentsInClass: `/number-students`,
 
-    insertStudent: `/add`,
-    insertTeacher: `/add`
+    insert: `/add`,
+    update: `/update`,
+    detail: `/detail/:id`,
+    remove: `/remove/:id`
 }
 
 module.exports = syntaxes;

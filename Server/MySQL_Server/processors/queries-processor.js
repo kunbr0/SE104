@@ -39,18 +39,24 @@ function processQuery(app, dbConnection)
 {
     methods.AppGet(app, syntaxes.listStudentsInClass, processListStudentsInClass, dbConnection);
     methods.AppGet(app, syntaxes.numberOfStudentsInClass, processNumberOfStudentsInClass, dbConnection);
-
 }
 
+// *****This function processes student queries*****
 function processStudentQueries(app, dbConnection)
 {
-    methods.AppPost(app, syntaxes.insertStudent, studentProc.InsertStudent, dbConnection);
+    methods.AppPost(app, syntaxes.insert, studentProc.InsertStudent, dbConnection);
+    methods.AppPost(app, syntaxes.update, studentProc.UpdateStudent, dbConnection);
+    methods.AppGet(app, syntaxes.detail, studentProc.GetStudentDetail, dbConnection);
+    methods.AppGet(app, syntaxes.remove, studentProc.RemoveStudent, dbConnection);
 }
+//**************************************************
 
+// *****This function processes teacher (user) queries*****
 function processTeacherQueries(app, dbConnection)
 {
-    methods.AppPost(app, syntaxes.insertTeacher, teacherProc.InsertTeacher, dbConnection);
+    methods.AppPost(app, syntaxes.insert, teacherProc.InsertTeacher, dbConnection);
 }
+//*********************************************************
 
 module.exports = 
 {
