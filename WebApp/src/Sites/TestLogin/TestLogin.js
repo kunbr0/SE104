@@ -2,26 +2,28 @@ import React, { useState } from 'react';
 import {Button} from 'antd'
 import './TestLogin.css';
 import { useHttpClient } from '../../Hooks/http-hook';
+import agent from "../../utilities/agent";
 
 
 export default function TestLogin() {
 
-    const [pwClass, setPwClass] = useState('');
+    const [username, setUsername] = useState();
+    const [password, setPassword] = useState();
 
+    const [pwClass, setPwClass] = useState('');
     const { sendRequest } = useHttpClient();
 
     const login = (e) => {
-        console.log("login");
         if(e) e.preventDefault();
-        let user = document.getElementById("user").value;
-        let pass = document.getElementById("pass").value;
-        sendLoginRequest(user, pass);
+        // sendLoginRequest(username, password);
+        agent.Auth.login(username, password).then(res => {
+            console.log(res);
+        })
     }
 
     const loginSuccessfully = (userData) =>{
 
         userData.then((data)=>{
-            
             localStorage.setItem("userData", data.token);
         });
         
@@ -30,7 +32,7 @@ export default function TestLogin() {
 
     const sendLoginRequest = (user, pass) =>{
         sendRequest(
-            "https://api.kunbr0.com/se104/login/index.php", 
+            "https://api.kunbr0.com/se104/login/index.php",
             "POST",
             JSON.stringify({
                 email : user,
@@ -41,7 +43,7 @@ export default function TestLogin() {
             }
         )
         .then((response) => {
-            if(response.ok){ 
+            if(response.ok){
                 console.log("ss");
                 loginSuccessfully(response.json())
             }else{
@@ -51,7 +53,7 @@ export default function TestLogin() {
         })
         .catch((error) => {
             console.log(error);
-            
+
         });
     }
 
@@ -66,7 +68,7 @@ export default function TestLogin() {
 
     return (
         <div>
-            <div className={`owl ${pwClass}`}>
+            <div className={`owl`}>
                 <div className={`hand ${pwClass}`} ></div>
                 <div className={`hand hand-r ${pwClass}`}></div>
                 <div className={`arms ${pwClass}`}>
@@ -76,24 +78,25 @@ export default function TestLogin() {
             </div>
             <div className="form">
                 <div className="control" >
-                    <label for="user" className="fa fa-envelope"></label>
-                    <input style={{width : '100%'}} id="user" placeholder="Email" type="email" onFocus={() => onLostFocus()}></input>
+                    <label className="fa fa-envelope"></label>
+                    <input style={{width : '100%'}} id="user" placeholder="Email" type="email" onChange={(evt) => setUsername(evt.target.value)}></input>
                 </div>
                 <div className="control">
-                    <label for="pass" className="fa fa-lock"></label>
+                    <label className="fa fa-lock"></label>
                     <input
                         style={{width : '100%'}}
                         id="pass"
                         placeholder="Password"
                         type="password"
                         onFocus={() => onFocus()}
-                        onBlur={() => onLostFocus()}>
+                        onBlur={() => onLostFocus()}
+                        onChange={(evt) => setPassword(evt.target.value)}>
                     </input>
                 </div>
                 <div>
-                    <Button id="login-button" type="primary" onClick={() => onLostFocus(), login}>Login</Button>
+                    <Button id="login-button" type="primary" onClick={() => login()}>Login</Button>
                     <p id="signup-text">Not a member? <a href="#">Sign up Here</a></p>
-                    <p class="login-bottom-text">
+                    <p className="login-bottom-text">
                     
                     <a href="#">Terms & Conditions</a> and 
                     <a href="#"> Privacy Policy</a>
