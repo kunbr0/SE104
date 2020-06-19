@@ -11,35 +11,25 @@
                                   supported by Chrome, Opera and Firefox */
 }
 
+.pcview{
+    display: block;
+}   
 
-body {
-    background: #666;
-    font-family: 'Quicksand', sans-serif;
-}
-
-#lmenu{
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 200px;
-    height: 100vh;
-    background-color: #222;
-}
-
-#main-view{
-    position: absolute;
-    top: 0px;
-    left: 200px;
-    width: calc(100vw - 200px);
-    height: calc(99vh - 100px);
-}
-
-#MLMenu{
+.mbview{
     display: none;
 }
 
 
-#kunLoader svg path,
-#kunLoader svg rect{
-  fill: cornflowerblue;
+
+@media all and (max-width: 600px) {
+    
+    .pcview{
+        display: none !important;
+    }
+
+    .mbview{
+        display: block !important;
+    }
+    
+    
 }

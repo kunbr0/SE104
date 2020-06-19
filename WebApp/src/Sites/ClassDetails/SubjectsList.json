@@ -1,0 +1,9 @@
+[
+    {"sid" : 1, "subjectName" : "Math"},
+    {"sid" : 2, "subjectName" : "Physics"},
+    {"sid" : 3, "subjectName" : "Chemistry"},
+    {"sid" : 4, "subjectName" : "Literature"},
+    {"sid" : 5, "subjectName" : "Biology"},
+    {"sid" : 6, "subjectName" : "History"}
+
+]

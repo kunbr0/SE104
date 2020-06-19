@@ -32,6 +32,13 @@ function getStudent(id_student)
     return query;
 }
 
+function removeStudent(id_student)
+{
+    let query = queryJSON.REMOVE_STUDENT + `'${id_student}';`;
+    console.log(query);
+    return query;
+}
+
 function listStudentsInClass(id_class)
 {
     let query = queryJSON.LIST_STUDENT_IN_CLASS + `'${id_class}';`;
@@ -68,5 +75,6 @@ module.exports =
     Query_GetNumberOfStudentsInClass: getNumberOfStudentsInClass,
     Query_InsertTeacher             : insertTeacher,
     Query_UpdateStudent             : updateStudent,
-    Query_GetStudent                : getStudent
+    Query_GetStudent                : getStudent,
+    Query_RemoveStudent             : removeStudent
 }

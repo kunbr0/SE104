@@ -6,7 +6,8 @@ const syntaxes =
 
     insert: `/add`,
     update: `/update`,
-    detail: `/detail/:id`
+    detail: `/detail/:id`,
+    remove: `/remove/:id`
 }
 
 module.exports = syntaxes;
