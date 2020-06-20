@@ -2,11 +2,9 @@
     "ChangeLanguage" : {
         "1" : "改變語言"
     },
-
     "LMenu-Homepage" : {
         "1" : "主頁"
     },
-    
     "LMenu-Personal" : {
         "1" : "個人"
     },
@@ -15,6 +13,12 @@
     },
     "LMenu-Sent" : {
         "1" : "已發送"
+    },
+    "LMenu-Profile" : {
+        "1" : "轮廓"
+    },
+    "LMenu-Schedule" : {
+        "1" : "时间表"
     },
     "LMenu-Archive" : {
         "1" : "封存"

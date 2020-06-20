@@ -34,7 +34,7 @@ const AddNewStudent = (props) => {
 
     return (
       <>
-        <Button type="primary" onClick={showDrawer} style={props.style} disabled={props.disabled}>
+        <Button type="primary" onClick={showDrawer} style={props.style} disabled={props.disabled} >
           <PlusOutlined /> New student
         </Button>
         <Drawer

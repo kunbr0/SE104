@@ -19,6 +19,12 @@
     "LMenu-Archive" : {
         "1" : "Archive"
     }, 
+    "LMenu-Profile" : {
+        "1" : "Profile"
+    },
+    "LMenu-Schedule" : {
+        "1" : "Schedule"
+    },
 
 
     "LMenu-Usage" : {

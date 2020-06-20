@@ -125,10 +125,12 @@ const ClassDetails = (props) => {
                 </Col>
                 </Row>
                 <SubmitWithLoading isLoading={isFetchingClassDetailsData} onClick={fetchClassDetailsData} maxTimeLoading={1000} />
-                <AddNewStudent disabled={isFetchingClassDetailsData} classData={props.classData.classData} style={{marginLeft : "5px", marginRight : "5px"}}/>
+                <AddNewStudent disabled={isFetchingClassDetailsData} classData={props.classData.classData} style={{marginLeft : "5px", marginRight : "5px", backgroundColor : "#52c41a", borderColor: "#52c41a"}} />
                 <StatisticScore 
                     pClassName={selectedClass} 
-                    pSubject={selectedSubject}/>
+                    pSubject={selectedSubject}
+                    disabled={!selectedClassDetailsData}
+                    />
                 </Panel>
             </Collapse>
             <StudentScoreTable classDetailsData={selectedClassDetailsData} isLoading={isFetchingClassDetailsData} />

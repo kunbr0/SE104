@@ -8,6 +8,7 @@ import {
 
 import TextTranslation from '../TextTranslation/TextTranslation';
 
+
 const LAMenu_Structure =
 [
     {
@@ -23,17 +24,17 @@ const LAMenu_Structure =
         "children" : [
             {
                 "key" : "profile",
-                "displayName" : "Profile",
+                "displayName" : <TextTranslation textName="LMenu-Profile.1"/>,
                 "to" : "/profile"
             },
             {
                 "key" : "schedule",
-                "displayName" : "Schedule",
+                "displayName" : <TextTranslation textName="LMenu-Schedule.1"/>,
                 "to" : "/schedule"
             },
             {
                 "key" : "inbox",
-                "displayName" : <TextTranslation textName="LMenu-Inbox.1"/>,
+                "displayName" : <TextTranslation textName="LMenu-Profile.1"/>,
                 "to" : "/inbox"
             },
             {

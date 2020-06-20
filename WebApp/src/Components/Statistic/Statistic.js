@@ -28,7 +28,7 @@ const Statistic = (props) => {
 
     return (
         <Space>
-            <Button type="primary" onClick={() => onOpenModal(true)}>
+            <Button type="primary" onClick={() => onOpenModal(true)} disabled={props.disabled}>
             Statistics
             </Button>
             <Modal

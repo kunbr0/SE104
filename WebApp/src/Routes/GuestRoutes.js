@@ -9,11 +9,11 @@ const routes = [
         exact : true,
         main : () => <TestLogin/>
     },
-    {
-        path : '',
-        exact : true,
-        main : () => <LoginPage />
-    },
+    // {
+    //     path : '',
+    //     exact : true,
+    //     main : () => <LoginPage />
+    // },
 ];
 
 export default routes;
