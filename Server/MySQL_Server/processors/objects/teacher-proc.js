@@ -13,6 +13,11 @@ function insertTeacher(dbConnection, req, res, urlData)
     });
 }
 
+// function getIDFromUsername(dbConnection, username)
+// {
+//     dbConnection.query()
+// }
+
 module.exports = 
 {
     InsertTeacher: insertTeacher
