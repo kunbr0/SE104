@@ -3,6 +3,7 @@ import {Button} from 'antd'
 import './TestLogin.css';
 import { useHttpClient } from '../../Hooks/http-hook';
 import agent from "../../utilities/agent";
+import ThemeSwitcher from '../../Components/ThemeSwitcher';
 
 
 export default function TestLogin() {
@@ -99,10 +100,13 @@ export default function TestLogin() {
                     <Button id="login-button" type="primary" onClick={() => login()}>Login</Button>
                     <p id="signup-text">Not a member? <a href="#">Sign up Here</a></p>
                     <p className="login-bottom-text">
-                    
-                    <a href="#">Terms & Conditions</a> and 
-                    <a href="#"> Privacy Policy</a>
-                </p>
+
+                        <a href="#">Terms & Conditions</a> and
+                        <a href="#"> Privacy Policy</a>
+                    </p>
+                    <ThemeSwitcher>
+
+                    </ThemeSwitcher>
                 </div>
             </div>
         </div>

@@ -5,14 +5,17 @@ import './i18n';
 import {Provider} from 'react-redux';
 import store from "./Redux/store";
 import ErrorBoundary from "./ErrorBoundary";
+import AppProvider from "./AppProvider";
 
 ReactDOM.render(
     <Provider store={store}>
-        <ErrorBoundary>
-            <Suspense fallback="loading">
-                <App />
-            </Suspense>
-        </ErrorBoundary>
+        <AppProvider>
+            <ErrorBoundary>
+                <Suspense fallback="loading">
+                    <App />
+                </Suspense>
+            </ErrorBoundary>
+        </AppProvider>
     </Provider>
     
 ,
