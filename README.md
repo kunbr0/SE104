@@ -27,7 +27,8 @@ Website quản lý sinh viên với giao diện đẹp mắt cùng những tính
 - Nguyễn Nhật Long - 18520304 - nhatlongcode@gmail.com
 
 ## Công cụ ##
-- 
+- Nodejs (Server-side)
+- Reactjs + Redux (Client-side)
 
 ## Tính năng ##
 1. Giao diện
