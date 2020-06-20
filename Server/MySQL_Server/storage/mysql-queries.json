@@ -26,5 +26,6 @@
     },
 
     "INSERT_TEACHER": "INSERT INTO sm_teacher(id_user, password, username, fullname, gender, birth, address, email) VALUES",
+    "TEACHER_DETAIL": "SELECT username, fullname, gender, birth, address, email FROM sm_teacher WHERE sm_teacher.id_user=",
     "LOGIN_VERIFICATION": "SELECT id_user, password FROM sm_teacher WHERE sm_teacher.username="
 }

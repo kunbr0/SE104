@@ -9,15 +9,13 @@ function doLogin(dbConnection, req, res, urlData)
     dbConnection.query(storage.Query_GetPasswordFrom(username), (err, data, fields) =>
     {
         if (err) res.status(statusCodes.Unauthorized).json({status: err});
-        // res.status(statusCodes.OK).json(data[0]);
-
         if (password.localeCompare(data[0].password) == 0)
         {
             res.status(statusCodes.OK).json({status: "Successful"});
         }
         else 
         {
-            res.status(statusCodes.Unauthorized).json({status: "Unauthorized"});
+            res.status(statusCodes.OK).json({status: "Wrong password"});
         }
     });
 }

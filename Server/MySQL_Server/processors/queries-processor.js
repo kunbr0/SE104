@@ -56,6 +56,7 @@ function processStudentQueries(app, dbConnection)
 function processTeacherQueries(app, dbConnection)
 {
     methods.AppPost(app, syntaxes.insert, teacherProc.InsertTeacher, dbConnection);
+    methods.AppGet(app, syntaxes.detail, teacherProc.GetTeacherDetail, dbConnection);
 }
 //*********************************************************
 
@@ -65,6 +66,7 @@ function processAuthenticationQueries(app, dbConnection)
     methods.AppPost(app, syntaxes.login, authProc.DoLogin, dbConnection);
 }
 //*********************************************************
+
 module.exports = 
 {
     ProcessQuery: processQuery,
