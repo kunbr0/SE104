@@ -9,6 +9,7 @@ let methods         = require('./../utils/http-methods');
 
 let studentProc     = require('./objects/student-proc');
 let teacherProc     = require('./objects/teacher-proc');
+let authProc        = require('./objects/auth-proc');
 
 function processListStudentsInClass(dbConnection, req, res, urlData)
 {
@@ -58,9 +59,16 @@ function processTeacherQueries(app, dbConnection)
 }
 //*********************************************************
 
+// *****This function processes authentication (user) queries*****
+function processAuthenticationQueries(app, dbConnection)
+{
+    methods.AppPost(app, syntaxes.login, authProc.DoLogin, dbConnection);
+}
+//*********************************************************
 module.exports = 
 {
     ProcessQuery: processQuery,
     ProcessStudentQueries: processStudentQueries,
-    ProcessTeacherQueries: processTeacherQueries
+    ProcessTeacherQueries: processTeacherQueries,
+    ProcessAuthenticationQueries: processAuthenticationQueries
 }
