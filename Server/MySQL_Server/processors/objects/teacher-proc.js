@@ -13,12 +13,22 @@ function insertTeacher(dbConnection, req, res, urlData)
     });
 }
 
-// function getIDFromUsername(dbConnection, username)
-// {
-//     dbConnection.query()
-// }
+function updateTeacherProfile(dbConnection, req, res, urlData)
+{
+
+}
+
+function getTeacherInfo(dbConnection, req, res, urlData)
+{
+    dbConnection.query(storage.Query_GetTeacherInfo(req.params.id), (err, data, fields) => 
+    {
+        if (err) throw err;
+        res.status(statusCodes.OK).json(data);
+    });
+}
 
 module.exports = 
 {
-    InsertTeacher: insertTeacher
+    InsertTeacher: insertTeacher,
+    GetTeacherDetail: getTeacherInfo
 }

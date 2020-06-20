@@ -66,6 +66,19 @@ function insertTeacher(id_user, password, username, fullname, gender, birth, add
     return query;
 }
 
+function updateTeacher(id_user, username, fullname, gender, birth, address, email)
+{
+
+}
+
+function getTeacher(id_user)
+{
+    let query = queryJSON.TEACHER_DETAIL + 
+                `'${id_user}'`;
+    console.log(query);
+    return query;
+}
+
 function insertClass(id_class, name_class, grade, session)
 {
     let query = queryJSON.INSERT_CLASS + 
@@ -91,6 +104,7 @@ module.exports =
     Query_ListStudentsInClass       : listStudentsInClass,
     Query_GetNumberOfStudentsInClass: getNumberOfStudentsInClass,
     Query_InsertTeacher             : insertTeacher,
+    Query_GetTeacherInfo            : getTeacher,
     Query_UpdateStudent             : updateStudent,
     Query_GetStudent                : getStudent,
     Query_RemoveStudent             : removeStudent,
