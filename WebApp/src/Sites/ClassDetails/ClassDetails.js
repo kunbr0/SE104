@@ -2,11 +2,13 @@ import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import SelectWithTyping from '../../Components/SelectWithTyping/SelectWithTyping';
 import SubmitWithLoading from '../../Components/ButtonWithLoading/ButtonWithLoading';
-
+import AddNewStudent from '../../Components/AddNewStudent/AddNewStudent';
 import StudentScoresTable from '../../Components/StudentScoresTable/StudentScoresTable';
 
 
-import { Card, Col, Row, message, Space } from 'antd';
+import { Card, Col, Row, message, Space, Collapse } from 'antd';
+import { CaretRightOutlined } from '@ant-design/icons';
+
 import Subjectslist from './SubjectsList.json';
 import StudentScoreTable from '../../Components/StudentScoresTable/StudentScoresTable';
 
@@ -24,6 +26,7 @@ const ClassDetails = (props) => {
 
     const { sendRequest } = useHttpClient();
 
+    const { Panel } = Collapse;
 
     // Fetch data
     const [selectedClassDetailsData, setSelectedClassDetailsData] = useState();
@@ -81,28 +84,50 @@ const ClassDetails = (props) => {
     return (
 
         <div className="site-card-wrapper">
-            <Row gutter={16}>
-            <Col span={8}>
-                <Card size={300} title="Classes" bordered={false}>
-                    <SelectWithTyping value={props.match.params.classCode} callbackSelection={setSelectedClass} options={props.classData.classData} optionName="className" optionKey="classID" placeholder="Select class"/>
-                </Card>
-            </Col>
-            <Col span={8}>
-                <Card title="Subjects" bordered={false}>
-                    <SelectWithTyping callbackSelection={setSelectedSubject} options={Subjectslist} optionName="subjectName" optionKey="sid" placeholder="Select subject"/>
-                </Card>
-            </Col>
-            <Col span={8}>
-                <Card title="Classinfo" bordered={false}>
-                    <Space direction="vertical">
-                        <Space>GVCN : Le Thi Van a</Space>
-                        <Space>GVCN : Le Thi Van a</Space>
-                        
-                    </Space>
-                </Card>
-            </Col>
-            </Row>
-            <SubmitWithLoading isLoading={isFetchingClassDetailsData} onClick={fetchClassDetailsData} maxTimeLoading={1000}/>
+            <Collapse
+                bordered={false}
+                defaultActiveKey={['1']}
+                expandIcon={({ isActive }) => <CaretRightOutlined rotate={isActive ? 90 : 0} />}
+                className="site-collapse-custom-collapse"
+                style={{marginBottom : "10px"}}
+            >
+                <Panel header="Class data selection" key="1" className="site-collapse-custom-panel">
+                <Row gutter={16}>
+                <Col span={8}>
+                    <Card loading={props.classData.classData.length > 0 ? false : true} size={300} title="Classes" bordered={false}>
+                        <SelectWithTyping 
+                            value={props.match.params.classCode} 
+                            callbackSelection={setSelectedClass} 
+                            options={props.classData.classData} 
+                            optionName="className" optionKey="classID" 
+                            placeholder="Select class"
+                            disabled={isFetchingClassDetailsData}/>
+                    </Card>
+                </Col>
+                <Col span={8}>
+                    <Card loading={props.classData.classData.length > 0 ? false : true} title="Subjects" bordered={false}>
+                        <SelectWithTyping 
+                            callbackSelection={setSelectedSubject} 
+                            options={Subjectslist} 
+                            optionName="subjectName" optionKey="sid" 
+                            placeholder="Select subject"
+                            disabled={isFetchingClassDetailsData}/>
+                    </Card>
+                </Col>
+                <Col span={8}>
+                    <Card loading={isFetchingClassDetailsData} title="Classinfo" bordered={false}>
+                        <Space direction="vertical">
+                            <Space>Lecture : Le Thi Van a</Space>
+                            <Space>Enrolled Student  : 46</Space>
+                            
+                        </Space>
+                    </Card>
+                </Col>
+                </Row>
+                <SubmitWithLoading isLoading={isFetchingClassDetailsData} onClick={fetchClassDetailsData} maxTimeLoading={1000} />
+                <AddNewStudent disabled={isFetchingClassDetailsData} classData={props.classData.classData} style={{marginLeft : "5px", marginRight : "5px"}}/>
+                </Panel>
+            </Collapse>
             <StudentScoreTable classDetailsData={selectedClassDetailsData} isLoading={isFetchingClassDetailsData} />
         </div>
     );

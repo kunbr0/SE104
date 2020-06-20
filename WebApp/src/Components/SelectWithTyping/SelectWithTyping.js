@@ -11,6 +11,7 @@ const SelectWithTyping = (props) => {
     function onChange(value) {
         console.log(`selected ${value}`);
         props.callbackSelection(value);
+        //setSelectedValue(value);
     }
     
     function onBlur() {
@@ -37,7 +38,7 @@ const SelectWithTyping = (props) => {
 
     let optionElms = renderOptions();
 
-   //const [selectedValue, setSelectedValue] = useState();
+    // const [selectedValue, setSelectedValue] = useState();
     
     // useEffect(()=>{
     //     if(props.value && props.value !== selectedValue){
@@ -50,7 +51,7 @@ const SelectWithTyping = (props) => {
     return(
         <Select
             showSearch
-            style={{ width: 200 }}
+            style={{ width: props.width || "100%" }}
             placeholder={props.placeholder}
             optionFilterProp="children"
             onChange={onChange}
@@ -60,6 +61,7 @@ const SelectWithTyping = (props) => {
             filterOption={(input, option) =>
             option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
             }
+            disabled={props.disabled || false}
             //value={selectedValue}
         >
             {optionElms}

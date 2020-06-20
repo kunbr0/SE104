@@ -35,7 +35,7 @@ const columns = [
         dataIndex: 'studentName',
         key: 'studentName',
         width: 35,
-        sorter: (a, b) => a.age - b.age,
+        sorter: (a, b) => a.studentID - b.studentID,
     },
     {
     title: 
