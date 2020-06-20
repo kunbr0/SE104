@@ -22,6 +22,16 @@ const LAMenu_Structure =
         "icon" : <UserOutlined/>,
         "children" : [
             {
+                "key" : "profile",
+                "displayName" : "Profile",
+                "to" : "/profile"
+            },
+            {
+                "key" : "schedule",
+                "displayName" : "Schedule",
+                "to" : "/schedule"
+            },
+            {
                 "key" : "inbox",
                 "displayName" : <TextTranslation textName="LMenu-Inbox.1"/>,
                 "to" : "/inbox"
@@ -33,7 +43,7 @@ const LAMenu_Structure =
             },
             {
                 "key" : "archive",
-                "displayName" : <TextTranslation textName="LMenu-Homepage.1"/>,
+                "displayName" : <TextTranslation textName="LMenu-Archive.1"/>,
                 "to" : "/archive"
             }
         ]

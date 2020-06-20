@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import SelectWithTyping from '../../Components/SelectWithTyping/SelectWithTyping';
 import SubmitWithLoading from '../../Components/ButtonWithLoading/ButtonWithLoading';
 import AddNewStudent from '../../Components/AddNewStudent/AddNewStudent';
-
+import StatisticScore from '../../Components/Statistic/Statistic';
 
 
 import { Card, Col, Row, message, Space, Collapse } from 'antd';
@@ -126,6 +126,9 @@ const ClassDetails = (props) => {
                 </Row>
                 <SubmitWithLoading isLoading={isFetchingClassDetailsData} onClick={fetchClassDetailsData} maxTimeLoading={1000} />
                 <AddNewStudent disabled={isFetchingClassDetailsData} classData={props.classData.classData} style={{marginLeft : "5px", marginRight : "5px"}}/>
+                <StatisticScore 
+                    pClassName={selectedClass} 
+                    pSubject={selectedSubject}/>
                 </Panel>
             </Collapse>
             <StudentScoreTable classDetailsData={selectedClassDetailsData} isLoading={isFetchingClassDetailsData} />
