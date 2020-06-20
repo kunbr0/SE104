@@ -25,11 +25,11 @@ const routes = [
         exact : false,
         main : () => <TestLogin />
     },
-    {
-        path : '/class/:classCode',
-        exact : false,
-        main : ({match}) => <ClassDetails match={match} />
-    },
+    // {
+    //     path : '/class/:classCode',
+    //     exact : false,
+    //     main : ({match}) => <ClassDetails match={match} />
+    // },
     // {
     //     path : '/login',
     //     exact : false,

@@ -18,6 +18,8 @@ export default function TestLogin() {
         // sendLoginRequest(username, password);
         agent.Auth.login(username, password).then(res => {
             console.log(res);
+            localStorage.setItem("userData", res.token);
+            window.location.reload();
         })
     }
 
