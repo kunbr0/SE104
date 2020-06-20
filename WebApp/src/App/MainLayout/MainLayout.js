@@ -131,11 +131,9 @@ const SiderDemo = (props) => {
             <Switch>
                 {props.kRoutes}
             </Switch>
-            <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-                Bill is a cat.
-            </div>
+            
             </Content>
-            <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+            <Footer style={{ textAlign: 'center' }}>T9 Team ©2020 </Footer>
         </Layout>
         </Layout>
     );

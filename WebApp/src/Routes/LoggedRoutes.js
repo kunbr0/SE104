@@ -8,6 +8,7 @@ import SSystem from '../Sites/System/System';
 //import Login from '../Sites/Login/Login';
 import TestLogin from '../Sites/TestLogin/TestLogin'
 import ClassDetails from '../Sites/ClassDetails/ClassDetails';
+import Schedule from '../Sites/Schedule/Schedule';
 
 const routes = [
     {
@@ -25,16 +26,16 @@ const routes = [
         exact : false,
         main : () => <TestLogin />
     },
-    // {
-    //     path : '/class/:classCode',
-    //     exact : false,
-    //     main : ({match}) => <ClassDetails match={match} />
-    // },
-    // {
-    //     path : '/login',
-    //     exact : false,
-    //     main : () => <History />
-    // },
+    {
+        path : '/class/:classCode',
+        exact : false,
+        main : ({match}) => <ClassDetails match={match} />
+    },
+    {
+        path : '/schedule',
+        exact : false,
+        main : () => <Schedule />
+    },
     // {
     //     path : '',
     //     exact : true,
