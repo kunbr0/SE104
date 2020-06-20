@@ -12,14 +12,14 @@ import {
 import './MainLayout.css';
 
 import {NavLink} from 'react-router-dom';
-import LAMenu_Structure from '../../Components/LAMenu/LAMenu_Structure';
+import LAMenu_Structure from '../../components/LAMenu/LAMenu_Structure';
 
-import {updateClassData} from '../../Redux/Actions/updateClassData';
+import {updateClassData} from '../../redux/Actions/updateClassData';
 
 
 import {connect} from 'react-redux';
 
-import TopBar from '../../Components/TopBar/TopBar';
+import TopBar from '../../components/TopBar/TopBar';
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
