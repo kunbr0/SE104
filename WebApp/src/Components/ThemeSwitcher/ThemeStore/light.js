@@ -6,6 +6,9 @@ theme.palette = {
     ],
     text: [
         '#000'
+    ],
+    primary: [
+        '#005bff'
     ]
 }
 
