@@ -8,7 +8,7 @@ const initState = {
 export default function (state = initState, action) {
     switch (action.type) {
         case actions.CHANGE_THEME:
-            return {current: themes[action.id]};
+            return {current: action.theme};
         default:
             return state;
     }

@@ -2,9 +2,9 @@ const actions = {
 
     CHANGE_THEME: "CHANGE_THEME",
 
-    changeTheme: (themeId) => ({
+    changeTheme: (theme) => ({
         type: actions.CHANGE_THEME,
-        id: themeId,
+        theme: theme,
     }),
 }
 
