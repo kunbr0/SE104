@@ -118,7 +118,7 @@ let data = [];
 
 
 
-const StudentScoreTable = (props) => {
+const StudentScoresTable = (props) => {
     
     const setClassDetailsData = () => {
         data = []; // clear data
@@ -148,4 +148,4 @@ const StudentScoreTable = (props) => {
     )
 }
 
-export default StudentScoreTable;
+export default StudentScoresTable;

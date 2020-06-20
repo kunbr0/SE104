@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App/App';
 import './i18n';
 import {Provider} from 'react-redux';
-import store from "./redux/store";
+import store from "./Redux/store";
 import ErrorBoundary from "./ErrorBoundary";
 
 ReactDOM.render(
