@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import { Table } from 'antd';
 import TextTranslation from '../TextTranslation/TextTranslation';
-
+import ScoreCoefficient from '../../Sites/ClassDetails/SubjectCoefficient.json';
 const columns = [
   {
     title: 
@@ -117,15 +117,23 @@ let data = [];
 // }
 
 
+const calculateFinalScore = (e) => {
+    let coef = ScoreCoefficient;
+    return e.k15mins*coef.k15mins + e.k45mins*coef.k45mins 
+        + e.kmidterm*coef.kmidterm + e.kmidterm*coef.kmidterm;
+}
 
 const StudentScoresTable = (props) => {
     
     const setClassDetailsData = () => {
         data = []; // clear data
-
+        let i=0;
         if(props.classDetailsData){
             for(let e of props.classDetailsData){
+                e["key"] = i;
+                e["final"] = calculateFinalScore(e);
                 data.push(e);
+                i++;
             }
         }
         
