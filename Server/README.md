@@ -3,6 +3,18 @@ All action syntaxes start with /v1
 
 ## Query Actions ##
 Query Actions: get number of students in a class, get list of students, etc.
+## Authentication Actions ##
+Url: /v1/auth/</br>
+Method: POST
+### Login ###
+Url: /v1/auth/login</br>
+JSON:</br>
+```
+{ 
+  "username": "abc",
+  "password": "11112000"
+}
+```
 
 ## Modify Actions ##
 - Modify Actions: add new user, add student, etc. 
