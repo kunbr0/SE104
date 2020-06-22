@@ -1,14 +1,14 @@
 import React from 'react';
-import TextTranslation from '../../../components/TextTranslation/TextTranslation';
-import SubjectBiology from '../../../components/SVG/Subject_Biology';
-import SubjectGeography from '../../../components/SVG/Subject_Geography';
-import SubjectMath from '../../../components/SVG/Subject_Math';
-import SubjectChemistry from '../../../components/SVG/Subject_Chemistry';
-import SubjectLiterature from '../../../components/SVG/Subject_Literature';
-import SubjectEnglish from '../../../components/SVG/Subject_English';
-import SubjectHistory from '../../../components/SVG/Subject_History';
-import SubjectPhysics from '../../../components/SVG/Subject_Physics';
-import Information from '../../../components/SVG/Information';
+import TextTranslation from '../../../../Components/TextTranslation/TextTranslation';
+import SubjectBiology from '../../../../Components/SVG/Subject_Biology';
+import SubjectGeography from '../../../../Components/SVG/Subject_Geography';
+import SubjectMath from '../../../../Components/SVG/Subject_Math';
+import SubjectChemistry from '../../../../Components/SVG/Subject_Chemistry';
+import SubjectLiterature from '../../../../Components/SVG/Subject_Literature';
+import SubjectEnglish from '../../../../Components/SVG/Subject_English';
+import SubjectHistory from '../../../../Components/SVG/Subject_History';
+import SubjectPhysics from '../../../../Components/SVG/Subject_Physics';
+import Information from '../../../../Components/SVG/Information';
 
 
 import {NavLink} from 'react-router-dom';

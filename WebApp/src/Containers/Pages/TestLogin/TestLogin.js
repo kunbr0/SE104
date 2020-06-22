@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import {Button} from 'antd'
 import './TestLogin.css';
-import { useHttpClient } from '../../Hooks/http-hook';
-import agent from "../../utilities/agent";
-import ThemeSwitcher from '../../Components/ThemeSwitcher';
+import { useHttpClient } from '../../../Hooks/http-hook';
+import agent from "../../../utilities/agent";
+import ThemeSwitcher from '../../../Components/ThemeSwitcher';
 
 
 export default function TestLogin() {

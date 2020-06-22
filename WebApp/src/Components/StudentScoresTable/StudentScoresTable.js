@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import { Table } from 'antd';
 import TextTranslation from '../TextTranslation/TextTranslation';
-import ScoreCoefficient from '../../Sites/ClassDetails/SubjectCoefficient.json';
+import ScoreCoefficient from '../../Containers/Pages/ClassDetails/SubjectCoefficient.json';
 const columns = [
   {
     title: 

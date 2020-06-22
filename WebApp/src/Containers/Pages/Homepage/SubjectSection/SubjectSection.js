@@ -1,9 +1,9 @@
 import React from 'react';
 //import './SubjectSection.css';
-import svgDocsBlue from './../../../SVG/DocsBlue.svg';
-import svgInfo from './../../../SVG/Info.svg';
-import svgPerson from './../../../SVG/Person.svg';
-import svgThreeDots from './../../../SVG/ThreeDots.svg';
+import svgDocsBlue from '../../../../assets/SVG/DocsBlue.svg';
+import svgInfo from '../../../../assets/SVG/Info.svg';
+import svgPerson from '../../../../assets/SVG/Person.svg';
+import svgThreeDots from '../../../../assets/SVG/ThreeDots.svg';
 
 const SubjectSection = () => {
     return (

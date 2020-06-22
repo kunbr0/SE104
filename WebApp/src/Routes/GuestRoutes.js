@@ -1,7 +1,7 @@
 import React from 'react';
 //import SLogin from './../Sites/Login/Login';
-import LoginPage from './../../src/Sites/Login/Login';
-import TestLogin from './../Sites/TestLogin/TestLogin';
+import LoginPage from '../Containers/Pages/Login/Login';
+import TestLogin from '../Containers/Pages/TestLogin/TestLogin';
 
 const routes = [
     {

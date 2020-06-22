@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from 'react';
-import TextTranslation from '../../../components/TextTranslation/TextTranslation';
+import TextTranslation from '../../../../Components/TextTranslation/TextTranslation';
 import RowInTable from '../RowInTable/RowInTable';
 
-import Loader1 from '../../../components/SVG/Loader_1';
-import Error1 from '../../../components/SVG/Cancel_1';
+import Loader1 from '../../../../Components/SVG/Loader_1';
+import Error1 from '../../../../Components/SVG/Cancel_1';
 
-import EditForm from './../EditForm/EditForm';
+import EditForm from '../EditForm/EditForm';
 
-import { useHttpClient } from '../../../Hooks/http-hook';
+import { useHttpClient } from '../../../../../Hooks/http-hook';
 
 
 const GeneralClassDetails = (props) => {
