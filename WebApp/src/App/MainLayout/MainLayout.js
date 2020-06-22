@@ -1,13 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Switch} from 'react-router-dom';
 import { Layout, Menu, Breadcrumb, message } from 'antd';
-import {
-  HomeOutlined,
-  PieChartOutlined,
-  FileOutlined,
-  TeamOutlined,
-  UserOutlined,
-} from '@ant-design/icons';
+
 
 import './MainLayout.css';
 

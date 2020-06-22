@@ -6,7 +6,7 @@ import TestLogin from '../Containers/Pages/TestLogin/TestLogin';
 const routes = [
     {
         path : '/',
-        exact : true,
+        exact : false,
         main : () => <TestLogin/>
     },
     // {

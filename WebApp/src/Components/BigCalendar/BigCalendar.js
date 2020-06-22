@@ -1,13 +1,21 @@
-import React , {useState} from 'react';
-import { Calendar, Alert, Badge } from 'antd';
+import React , {useState, useEffect} from 'react';
+import { Calendar, Alert, Badge, Card } from 'antd';
 import moment from 'moment';
 import 'antd/dist/antd.css';
 import './BigCalendar.css';
 
-const BigCalendar = ({width = 90}) => {
-  
+const BigCalendar = ({width = 95}) => {
+
+    // First loading
+    const [isLoading, setIsLoading] = useState(true);
+    useEffect(()=>{
+        setTimeout(()=>{
+            setIsLoading(false);
+        }, 1000);
+    });
+
     const [value, setValue] = useState();
-    const [selectedValue, setSelectedValue] = useState();
+    const [selectedValue, setSelectedValue] = useState(moment);
   
     const onSelect = value => {
         setValue(value);
@@ -17,20 +25,23 @@ const BigCalendar = ({width = 90}) => {
   
     const onPanelChange = value => 
     {
-      setValue(value);
+        setValue(value);
     };
   
     
   
-      //const { value, selectedValue } = this.state;
-      return (
+    //const { value, selectedValue } = this.state;
+    return (
         <div id="big-calendar-wrapper" style={{width : `${width}%`, margin: 25}}>
-          <Alert
-            message={`You selected date: ${selectedValue && selectedValue.format('YYYY-MM-DD')}`}
-          />
-          <Calendar style={{padding: 25}} dateCellRender={dateCellRender} monthCellRender={monthCellRender} value={value} onSelect={onSelect} onPanelChange={onPanelChange} />
+        <Alert
+        message={`You selected date: ${selectedValue && selectedValue.format('YYYY-MM-DD')}`}
+        />
+        <Card loading={isLoading}>
+            <Calendar fullscreen={true} style={{padding: 25}} dateCellRender={dateCellRender} monthCellRender={monthCellRender} value={value} onSelect={onSelect} onPanelChange={onPanelChange} />
+        </Card>
+            
         </div>
-      );
+    );
   }
   
   function getListData(value) {
@@ -79,7 +90,7 @@ const BigCalendar = ({width = 90}) => {
   
   function getMonthData(value) {
     if (value.month() === 8) {
-      return 2000000;
+      return 1394;
     }
   }
   

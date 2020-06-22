@@ -34,7 +34,7 @@ const LAMenu_Structure =
             },
             {
                 "key" : "inbox",
-                "displayName" : <TextTranslation textName="LMenu-Profile.1"/>,
+                "displayName" : <TextTranslation textName="LMenu-Inbox.1"/>,
                 "to" : "/inbox"
             },
             {
