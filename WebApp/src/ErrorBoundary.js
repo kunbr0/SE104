@@ -1,7 +1,7 @@
 import React from 'react';
 import FadeIn from "react-fade-in";
 import Lottie from "react-lottie";
-import * as maintenanceAnimation from "./assets/lotties/12366-under-construction";
+import * as maintenanceAnimation from "./Assets/lotties/12366-under-construction";
 
 const maintenanceConfig = {
   loop: true,
