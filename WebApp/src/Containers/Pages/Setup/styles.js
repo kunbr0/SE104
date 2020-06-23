@@ -1,17 +1,20 @@
 import styled from "styled-components";
+import bgImage from "../../../Assets/img/form-wizard-bg.jpg"
 
 const SetupPageWrapper = styled.div`
   display: flex;
   justify-content: center;
   padding-top: 10vh;
   height: 100vh;
+  background-image: url("${bgImage}");
+  background-size: cover;
   
   .setup-container {
       width: 675px;
       height: 450px;   
       display: flex;   
       border-radius: 5px;
-      box-shadow: 3px 3px 10px gray;
+      box-shadow: 1px 1px 5px gray;
       background: white;
       
       .left-side {
@@ -21,6 +24,7 @@ const SetupPageWrapper = styled.div`
         padding: 0px 15px;
         display: flex;
         flex-flow: column;
+        position: relative;
         
         .header {
           height: 50px;
@@ -29,6 +33,20 @@ const SetupPageWrapper = styled.div`
         
         .content {
           height: 100%;
+          color: white;
+          z-index: 10;
+          
+          h3 {
+            color: white;
+          }          
+          
+          .particle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+          }
         }
         
         .footer {

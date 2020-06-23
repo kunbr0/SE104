@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from "react";
 import SetupPageWrapper, {StepWrapper} from "./styles";
-import SetupStep1 from '../../../Components/Setup/Step1'
-import SetupStep2 from '../../../Components/Setup/Step2'
+import SetupStep1 from '../../../Components/Setup/Step1';
+import SetupStep2 from '../../../Components/Setup/Step2';
 import {Progress} from "antd";
+import ParticleConfig from "./config";
+import Particles from "react-particles-js";
 
 export default function SetupPage(props) {
     const [progress, setProgress] = useState(0);
@@ -18,6 +20,8 @@ export default function SetupPage(props) {
                     <div className="header">
                     </div>
                     <div className="content">
+
+                        <Particles params={ParticleConfig} className="particle"/>
                     </div>
                     <div className="footer">
                         <span>T9 Team ©2020</span>
