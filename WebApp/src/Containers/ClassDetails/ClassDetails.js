@@ -1,18 +1,18 @@
 import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
-import SelectWithTyping from '../../../Components/SelectWithTyping/SelectWithTyping';
-import SubmitWithLoading from '../../../Components/ButtonWithLoading/ButtonWithLoading';
-import AddNewStudent from '../../../Components/AddNewStudent/AddNewStudent';
-import StatisticScore from '../../../Components/Statistic/Statistic';
+import SelectWithTyping from '../Components/SelectWithTyping/SelectWithTyping';
+import SubmitWithLoading from '../Components/ButtonWithLoading/ButtonWithLoading';
+import AddNewStudent from '../Components/AddNewStudent/AddNewStudent';
+import StatisticScore from '../Components/Statistic/Statistic';
 
 
 import { Card, Col, Row, message, Space, Collapse } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
 
 import Subjectslist from './SubjectsList.json';
-import StudentScoreTable from '../../../Components/StudentScoresTable/StudentScoresTable';
+import StudentScoreTable from '../Components/StudentScoresTable/StudentScoresTable';
 
-import { useHttpClient } from '../../../Hooks/http-hook';
+import { useHttpClient } from '../Hooks/http-hook';
 import {useHistory} from 'react-router-dom';
 
 const ClassDetails = (props) => {

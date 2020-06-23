@@ -1,8 +1,8 @@
 import React from 'react';
 import './EditForm.css';
-//import TextTranslation from './../../../Components/TextTranslation/TextTranslation';
-import SelectSex from '../../../../components/Input-Select/KSelect';
-import SelectDate from '../../../../components/Input-Date/KDate';
+//import TextTranslation from './../../Components/TextTranslation/TextTranslation';
+import SelectSex from '../../../Components/Input-Select/KSelect';
+import SelectDate from '../../../Components/Input-Date/KDate';
 
 const EditForm = ({studentID="", studentName="", sex="", DOB="", address="", closeAction}) => {
 

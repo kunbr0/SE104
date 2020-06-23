@@ -4,12 +4,12 @@ import SHomepage from '../Containers/Pages/Homepage/Homepage';
 // import SNotFound from './../Sites/NotFound_404/NotFound_404';
 //import ClassInfo from './../Sites/Class/ClassInfo';
 // import History from './../Sites/History/History';
-import SSystem from '../Containers/Pages/System/System';
+import SSystem from '../Containers/System/System';
 //import Login from '../Sites/Login/Login';
 import TestLogin from '../Containers/Pages/TestLogin/TestLogin'
-import ClassDetails from '../Containers/Pages/ClassDetails/ClassDetails';
-import Schedule from '../Containers/Pages/Schedule/Schedule';
-import Profile from '../Containers/Pages/Profile/Profile';
+import ClassDetails from '../Containers/ClassDetails/ClassDetails';
+import Schedule from '../Containers/Schedule/Schedule';
+import Profile from '../Containers/Profile/Profile';
 
 
 const routes = [
