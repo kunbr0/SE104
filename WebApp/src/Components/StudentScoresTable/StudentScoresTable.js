@@ -1,7 +1,9 @@
-import React, {useEffect} from 'react';
-import { Table } from 'antd';
+import React, {useEffect, useState} from 'react';
+import { Table, Input } from 'antd';
 import TextTranslation from '../TextTranslation/TextTranslation';
 import ScoreCoefficient from '../../Containers/ClassDetails/SubjectCoefficient.json';
+import './StudentScoresTable.css';
+import { useSSR } from 'react-i18next';
 const columns = [
   {
     title: 
@@ -87,20 +89,10 @@ const columns = [
         key: 'final',
         width: 12,
     },     
-    {
-        title: 
-            <div>
-                <TextTranslation textName="ClassInfo-Table-Action.1" kClass="pcview"/>
-                <TextTranslation textName="ClassInfo-Table-Action.2" kClass="mbview"/>
-            </div>,
-        dataIndex: 'action',
-        key: 'action',
-        width: 10,
-        fixed: 'right',
-    },
+    
 ];
 
-let data = [];
+
 // for (let i = 0; i < 100; i++) {
 //   data.push({
 //     key: i,
@@ -125,16 +117,38 @@ const calculateFinalScore = (e) => {
 
 const StudentScoresTable = (props) => {
     
+    const [tableData, setTableData] = useState([]);
+    const [tableEditable, setTableEditable] = useState(false);
+    useEffect(()=>{
+        setTableEditable(props.tableEditable);
+    });
+
     const setClassDetailsData = () => {
-        data = []; // clear data
+        let data = []; // clear data
         let i=0;
         if(props.classDetailsData){
             for(let e of props.classDetailsData){
                 e["key"] = i;
                 e["final"] = calculateFinalScore(e);
+                /*e["final"] = (
+                <Input
+                    disabled={true}
+                    value={calculateFinalScore(e)}
+                    placeholder="Input a number"
+                    maxLength={25}
+                />);*/
+                console.log(props.tableEditable);
+                Object.keys(e).forEach((key)=>{ e[key] =  
+                    <Input
+                        disabled={!tableEditable}
+                        value={e[key]}
+                        placeholder="Input a number"
+                        maxLength={25}
+                    />});
                 data.push(e);
                 i++;
             }
+            setTableData(data);
         }
         
     }
@@ -147,7 +161,7 @@ const StudentScoresTable = (props) => {
     return (
         <Table loading={props.isLoading || false}
             columns={columns}
-            dataSource={data}
+            dataSource={tableData}
             bordered
             size="middle"
             scroll={{ x: 'calc(500px + 50%)', y: 240 }}

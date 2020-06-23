@@ -6,7 +6,7 @@ import AddNewStudent from '../../Components/AddNewStudent/AddNewStudent';
 import StatisticScore from '../../Components/Statistic/Statistic';
 
 
-import { Card, Col, Row, message, Space, Collapse } from 'antd';
+import { Card, Col, Row, message, Space, Collapse, Button } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
 
 import Subjectslist from './SubjectsList.json';
@@ -32,6 +32,7 @@ const ClassDetails = (props) => {
     const [selectedClassDetailsData, setSelectedClassDetailsData] = useState();
     const [isFetchingClassDetailsData, setIsFetchingClassDetailsData] = useState(false);
 
+    const [tableEditable, setTableEditable] = useState(false);
 
     // Redirect 
     const rHistory = useHistory();
@@ -131,9 +132,12 @@ const ClassDetails = (props) => {
                     pSubject={selectedSubject}
                     disabled={!selectedClassDetailsData}
                     />
+                <Button type="primary" danger={tableEditable} onClick={()=>setTableEditable(!tableEditable)}>
+                    {!tableEditable ? "Edit":"Save"} 
+                </Button>
                 </Panel>
             </Collapse>
-            <StudentScoreTable classDetailsData={selectedClassDetailsData} isLoading={isFetchingClassDetailsData} />
+            <StudentScoreTable tableEditable={tableEditable} classDetailsData={selectedClassDetailsData} isLoading={isFetchingClassDetailsData} />
         </div>
     );
 }
