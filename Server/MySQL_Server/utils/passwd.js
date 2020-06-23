@@ -1,7 +1,6 @@
 let crypto = require('crypto');
 
 function encrypt(password, callback) {
-    console.log(password);
     // Key length is dependent on the algorithm. In this case for aes192, it is
     // 24 bytes (192 bits).
     // Use async `crypto.scrypt()` instead.

@@ -1,10 +1,12 @@
+let path        = require('path');
 let express     = require('express');
 let config      = require('./config');
 let mysql       = require('mysql');
-let passwd      = require('./utils/passwd')
+let passwd      = require('./utils/passwd');
 
 // Query processors
 let processor   = require('./processors/queries-processor');
+let clientProcessor   = require('./processors/client-processor');
 
 const parser    = require('body-parser');
 
@@ -18,6 +20,9 @@ let app         = express();
 // Database connection
 let connection  = mysql.createConnection(config);
 const port      = 8080;
+
+// serve the static files from the react app
+app.use(express.static(path.join(__dirname, 'client')));
 
 app.use('/v1', api_v1);
 api_v1.use(parser.json());
@@ -43,9 +48,13 @@ connection.connect((err) =>
 });
 
 // Listen for queries and process
+clientProcessor.ProcessClient(app);
+
 processor.ProcessQuery(api_v1, connection);
 processor.ProcessStudentQueries(studentApp, connection);
 processor.ProcessTeacherQueries(teacherApp, connection);
 processor.ProcessAuthenticationQueries(authApp, connection);
 
-app.listen(port);
+app.listen(port, () => {
+    console.log(`Listening on port ${port}!`)
+});

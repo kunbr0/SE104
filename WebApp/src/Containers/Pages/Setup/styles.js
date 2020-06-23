@@ -6,12 +6,13 @@ const SetupPageWrapper = styled.div`
   padding-top: 10vh;
   height: 100vh;
   
-  .setup-container {    
+  .setup-container {
       width: 675px;
       height: 450px;   
       display: flex;   
       border-radius: 5px;
       box-shadow: 3px 3px 10px gray;
+      background: white;
       
       .left-side {
         background: #344a72;
