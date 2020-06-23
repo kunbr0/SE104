@@ -43,6 +43,9 @@ const GuestRoutes = ({routes})=>{
         <div>
             <Switch>
                 {showRoutes(routes)}
+                <Route>
+                    <Redirect to={{pathname: '/'}}/>
+                </Route>
             </Switch>
         </div>
     );

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Switch} from 'react-router-dom';
+import {Redirect, Route, Switch} from 'react-router-dom';
 import { Layout, Menu, Breadcrumb, message } from 'antd';
 
 
@@ -124,6 +124,9 @@ const SiderDemo = (props) => {
             
             <Switch>
                 {props.kRoutes}
+                <Route>
+                    <Redirect to={{pathname: '/'}}/>
+                </Route>
             </Switch>
             
             </Content>

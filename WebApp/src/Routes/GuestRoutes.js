@@ -7,7 +7,7 @@ import SetupPage from "../Containers/Pages/Setup";
 const routes = [
     {
         path : '/',
-        exact : false,
+        exact : true,
         main : () => <TestLogin/>
     },
     {
