@@ -1,7 +1,9 @@
-import React, {useEffect} from 'react';
-import { Table } from 'antd';
+import React, {useEffect, useState} from 'react';
+import { Table, InputNumber } from 'antd';
 import TextTranslation from '../TextTranslation/TextTranslation';
 import ScoreCoefficient from '../../Containers/ClassDetails/SubjectCoefficient.json';
+import './StudentScoresTable.css';
+import { useSSR } from 'react-i18next';
 const columns = [
   {
     title: 
@@ -11,7 +13,7 @@ const columns = [
         </div>,
     dataIndex: 'studentID',
     key: 'studentID',
-    width: 10,
+    width: 8,
     fixed: 'left',
     filters: [
       {
@@ -87,20 +89,10 @@ const columns = [
         key: 'final',
         width: 12,
     },     
-    {
-        title: 
-            <div>
-                <TextTranslation textName="ClassInfo-Table-Action.1" kClass="pcview"/>
-                <TextTranslation textName="ClassInfo-Table-Action.2" kClass="mbview"/>
-            </div>,
-        dataIndex: 'action',
-        key: 'action',
-        width: 10,
-        fixed: 'right',
-    },
+    
 ];
 
-let data = [];
+
 // for (let i = 0; i < 100; i++) {
 //   data.push({
 //     key: i,
@@ -118,6 +110,7 @@ let data = [];
 
 
 const calculateFinalScore = (e) => {
+    
     let coef = ScoreCoefficient;
     return e.k15mins*coef.k15mins + e.k45mins*coef.k45mins 
         + e.kmidterm*coef.kmidterm + e.kmidterm*coef.kmidterm;
@@ -125,29 +118,74 @@ const calculateFinalScore = (e) => {
 
 const StudentScoresTable = (props) => {
     
-    const setClassDetailsData = () => {
-        data = []; // clear data
+    const [classDetailsData, setClassDetailsData] = useState([{}]);
+    const [tableData, setTableData] = useState([]);
+    const [tableEditable, setTableEditable] = useState(false);
+    
+    useEffect(()=>{
+        if(props.tableEditable !== tableEditable){
+            setTableEditable(props.tableEditable);
+        }
+    });
+
+    const renderClassDetailsData = () => {
+        setTableData([]);
+        let data = []; // clear data
         let i=0;
-        if(props.classDetailsData){
-            for(let e of props.classDetailsData){
-                e["key"] = i;
+
+        console.log(classDetailsData);
+
+        if(classDetailsData){
+            for(let e of classDetailsData){
+                
+                //e["key"] = i;
                 e["final"] = calculateFinalScore(e);
-                data.push(e);
+                /*e["final"] = (
+                <Input
+                    disabled={true}
+                    value={calculateFinalScore(e)}
+                    placeholder="Input a number"
+                    maxLength={25}
+                />);*/
+
+                let a = {};
+                Object.keys(e).forEach((key)=>{ 
+                    a[key] = (key === 'k15mins' || key === 'k45mins' || key === 'kmidterm' || key === 'kendterm' || key === 'final' ) ? 
+                    <InputNumber
+                            style={{width: "100%"}}
+                            min={1} max={10}
+                            disabled={!tableEditable}
+                            defaultValue={e[key]}
+                             
+                        /> : e[key]
+                    a["key"] = i;
+                });
+                data.push(a);
                 i++;
             }
         }
+        setTableData(data);
         
     }
 
+    
+
+    
     useEffect(()=>{
-        console.log("Set data in table");
-        setClassDetailsData();
+
+        if(props.classDetailsData !== classDetailsData) setClassDetailsData(props.classDetailsData || []);
+       
     },[props.classDetailsData]);
 
+    useEffect(()=>{
+        renderClassDetailsData();
+    },[classDetailsData, tableEditable]);
+
+    
     return (
         <Table loading={props.isLoading || false}
             columns={columns}
-            dataSource={data}
+            dataSource={tableData}
             bordered
             size="middle"
             scroll={{ x: 'calc(500px + 50%)', y: 240 }}

@@ -108,7 +108,11 @@ const SiderDemo = (props) => {
         <Layout style={{ minHeight: '100vh' }}>
         <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
             <div className="logo" />
-            <Menu  theme="dark" defaultSelectedKeys={['homepage']} mode="inline" style={{paddingTop : "64px"}}>
+            <Menu  theme="dark" defaultSelectedKeys={['homepage']} mode="inline" style={
+                {
+                    paddingTop : "64px"
+                }
+            }>
             {resultMenuStructure}
             </Menu>
         </Sider>
