@@ -2,7 +2,7 @@ let path        = require('path');
 let express     = require('express');
 let config      = require('./config');
 let mysql       = require('mysql');
-let passwd      = require('./utils/crypt');
+let crypt      = require('./utils/crypt');
 
 // Query processors
 let processor   = require('./processors/queries-processor');
@@ -39,12 +39,12 @@ authApp.use(parser.json());
 // Connect to database
 connection.connect((err) => 
 {
-    passwd.Encrypt('11112000Bach', (result) => {console.log('Encryption successful with ' + result); });
+    crypt.AES.Encrypt('11112000Bach', "!@#@#@!#",(result) => {console.log('Encryption successful with ' + result); });
+    crypt.AES.Decrypt('2bbd70925fc2ba3560bc36e381e4b8ef', "!@#@#@!#", (result) => console.log('Decryption successful with ' + result));
     if (err) 
         console.log("Error connecting database...\n\n" + err);
     else 
         console.log("Database is connected!\n\n");
-    // passwd.Decrypt('cfce68cccd8699f69de82cb0b9fa34d0', (result) => console.log('Decryption successful with ' + result));
 });
 
 // Listen for queries and process
