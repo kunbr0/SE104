@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Table, Input } from 'antd';
+import { Table, InputNumber } from 'antd';
 import TextTranslation from '../TextTranslation/TextTranslation';
 import ScoreCoefficient from '../../Containers/ClassDetails/SubjectCoefficient.json';
 import './StudentScoresTable.css';
@@ -13,7 +13,7 @@ const columns = [
         </div>,
     dataIndex: 'studentID',
     key: 'studentID',
-    width: 10,
+    width: 8,
     fixed: 'left',
     filters: [
       {
@@ -110,6 +110,7 @@ const columns = [
 
 
 const calculateFinalScore = (e) => {
+    
     let coef = ScoreCoefficient;
     return e.k15mins*coef.k15mins + e.k45mins*coef.k45mins 
         + e.kmidterm*coef.kmidterm + e.kmidterm*coef.kmidterm;
@@ -117,18 +118,27 @@ const calculateFinalScore = (e) => {
 
 const StudentScoresTable = (props) => {
     
+    const [classDetailsData, setClassDetailsData] = useState([{}]);
     const [tableData, setTableData] = useState([]);
     const [tableEditable, setTableEditable] = useState(false);
+    
     useEffect(()=>{
-        setTableEditable(props.tableEditable);
+        if(props.tableEditable !== tableEditable){
+            setTableEditable(props.tableEditable);
+        }
     });
 
-    const setClassDetailsData = () => {
+    const renderClassDetailsData = () => {
+        setTableData([]);
         let data = []; // clear data
         let i=0;
-        if(props.classDetailsData){
-            for(let e of props.classDetailsData){
-                e["key"] = i;
+
+        console.log(classDetailsData);
+
+        if(classDetailsData){
+            for(let e of classDetailsData){
+                
+                //e["key"] = i;
                 e["final"] = calculateFinalScore(e);
                 /*e["final"] = (
                 <Input
@@ -137,27 +147,41 @@ const StudentScoresTable = (props) => {
                     placeholder="Input a number"
                     maxLength={25}
                 />);*/
-                console.log(props.tableEditable);
-                Object.keys(e).forEach((key)=>{ e[key] =  
-                    <Input
-                        disabled={!tableEditable}
-                        value={e[key]}
-                        placeholder="Input a number"
-                        maxLength={25}
-                    />});
-                data.push(e);
+
+                let a = {};
+                Object.keys(e).forEach((key)=>{ 
+                    a[key] = (key === 'k15mins' || key === 'k45mins' || key === 'kmidterm' || key === 'kendterm' || key === 'final' ) ? 
+                    <InputNumber
+                            style={{width: "100%"}}
+                            min={1} max={10}
+                            disabled={!tableEditable}
+                            defaultValue={e[key]}
+                             
+                        /> : e[key]
+                    a["key"] = i;
+                });
+                data.push(a);
                 i++;
             }
-            setTableData(data);
         }
+        setTableData(data);
         
     }
 
+    
+
+    
     useEffect(()=>{
-        console.log("Set data in table");
-        setClassDetailsData();
+
+        if(props.classDetailsData !== classDetailsData) setClassDetailsData(props.classDetailsData || []);
+       
     },[props.classDetailsData]);
 
+    useEffect(()=>{
+        renderClassDetailsData();
+    },[classDetailsData, tableEditable]);
+
+    
     return (
         <Table loading={props.isLoading || false}
             columns={columns}
