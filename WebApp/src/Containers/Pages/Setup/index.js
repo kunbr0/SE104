@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {lazy, useEffect, useState} from "react";
 import SetupPageWrapper, {StepWrapper} from "./styles";
 import SetupStep1 from '../../../Components/Setup/Step1';
 import SetupStep2 from '../../../Components/Setup/Step2';
@@ -6,12 +6,22 @@ import {Progress} from "antd";
 import ParticleConfig from "./config";
 import Particles from "react-particles-js";
 
-export default function SetupPage(props) {
-    const [progress, setProgress] = useState(0);
+const steps = {
+    1: {
+        id: 1,
+        name: "Database",
+        title: "Step 1",
+        component: <SetupStep1/>
+    },
+    2: {
+        id: 2,
+        name: "Account",
+        title: "Step 2",
+        component: <SetupStep2/>
+    }
+}
 
-    useEffect(() => {
-        setProgress(60);
-    },[]);
+export default function SetupPage(props) {
 
     return (
         <SetupPageWrapper>
@@ -20,7 +30,6 @@ export default function SetupPage(props) {
                     <div className="header">
                     </div>
                     <div className="content">
-
                         <Particles params={ParticleConfig} className="particle"/>
                     </div>
                     <div className="footer">
@@ -28,9 +37,9 @@ export default function SetupPage(props) {
                     </div>
                 </div>
                 <div className="right-side">
-                    <h1 className="title">Title</h1>
+                    <h1 className="title">{steps[1].title}</h1>
                     <StepWrapper>
-                        <SetupStep1/>
+                        {steps[1].component}
                     </StepWrapper>
                 </div>
             </div>
