@@ -2,7 +2,7 @@ let path        = require('path');
 let express     = require('express');
 let config      = require('./config');
 let mysql       = require('mysql');
-let passwd      = require('./utils/passwd');
+let passwd      = require('./utils/crypt');
 
 // Query processors
 let processor   = require('./processors/queries-processor');
