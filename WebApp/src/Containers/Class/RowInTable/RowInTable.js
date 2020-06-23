@@ -1,6 +1,6 @@
 import React from 'react';
 import './RowInTable.css';
-import TextTranslation from '../../../Components/TextTranslation/TextTranslation';
+import TextTranslation from '../../../../Components/TextTranslation/TextTranslation';
 const RowInTable = ({studentID, studentName, sex, DOB, address, editAction}) => {
     return (
         <div className="row">

@@ -8,8 +8,8 @@ import GeneralClassDetails from './GeneralClassDetails/GeneralClassDetails';
 import SubjectDetails from './SubjectDetails/SubjectDetails';
 
 import {Route} from 'react-router-dom';
-import AddNewStudent from '../../Components/AddNewStudent/AddNewStudent';
-import StudentScoreTable from '../../Components/StudentScoresTable/StudentScoresTable';
+import AddNewStudent from '../../../Components/AddNewStudent/AddNewStudent';
+import StudentScoreTable from '../../../Components/StudentScoresTable/StudentScoresTable';
 
 
 

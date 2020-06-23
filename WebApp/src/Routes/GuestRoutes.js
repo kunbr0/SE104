@@ -11,7 +11,7 @@ const routes = [
         main : () => <TestLogin/>
     },
     {
-        path : '',
+        path : '/setup',
         exact : true,
         main : () => <SetupPage />
     },
