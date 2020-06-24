@@ -10,6 +10,7 @@ let methods         = require('./../utils/http-methods');
 let studentProc     = require('./objects/student-proc');
 let teacherProc     = require('./objects/teacher-proc');
 let authProc        = require('./objects/auth-proc');
+let setupProc       = require('./objects/setup-proc');
 
 function processListStudentsInClass(dbConnection, req, res, urlData)
 {
@@ -67,10 +68,16 @@ function processAuthenticationQueries(app, dbConnection)
 }
 //*********************************************************
 
+function processSetupQueries(app)
+{
+    methods.AppPostWithoutDB(app, syntaxes.database, setupProc.ReceiveDBSubmission);
+}
+
 module.exports = 
 {
     ProcessQuery: processQuery,
     ProcessStudentQueries: processStudentQueries,
     ProcessTeacherQueries: processTeacherQueries,
-    ProcessAuthenticationQueries: processAuthenticationQueries
+    ProcessAuthenticationQueries: processAuthenticationQueries,
+    ProcessSetupQueries: processSetupQueries
 }

@@ -9,7 +9,10 @@ const syntaxes =
     detail: `/detail/:id`,
     remove: `/remove/:id`,
 
-    login: `/login`
+    login: `/login`,
+
+    // Setup steps
+    database: `/database`
 }
 
 module.exports = syntaxes;

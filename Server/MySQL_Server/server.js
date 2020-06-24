@@ -2,7 +2,7 @@ let path        = require('path');
 let express     = require('express');
 let config      = require('./config');
 let mysql       = require('mysql');
-let crypt      = require('./utils/crypt');
+let crypt       = require('./utils/crypt');
 
 // Query processors
 let processor   = require('./processors/queries-processor');
@@ -15,6 +15,7 @@ let api_v1      = express();
 let studentApp  = express();
 let teacherApp  = express();
 let authApp     = express();
+let setupApp    = express();
 let app         = express();
 
 // Database connection
@@ -36,6 +37,9 @@ teacherApp.use(parser.json());
 api_v1.use('/auth', authApp); 
 authApp.use(parser.json());
 
+api_v1.use('/setup', setupApp); 
+setupApp.use(parser.json());
+
 // Connect to database
 connection.connect((err) => 
 {
@@ -54,6 +58,7 @@ processor.ProcessQuery(api_v1, connection);
 processor.ProcessStudentQueries(studentApp, connection);
 processor.ProcessTeacherQueries(teacherApp, connection);
 processor.ProcessAuthenticationQueries(authApp, connection);
+processor.ProcessSetupQueries(setupApp);
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}!`)

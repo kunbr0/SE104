@@ -20,8 +20,19 @@ function appPost(app, syntax, callback, dbConnection)
     });   
 }
 
+function appPostWithoutDB(app, syntax, callback)
+{
+    app.post(syntax, (req, res) => 
+    {
+        let data = req.body;
+        console.log(data);
+        callback(req, res, data);
+    });   
+}
+
 module.exports = 
 {
     AppGet: appGet,
-    AppPost: appPost
+    AppPost: appPost,
+    AppPostWithoutDB: appPostWithoutDB
 }
