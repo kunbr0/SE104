@@ -3,32 +3,30 @@ import Step1Wrapper from "./style";
 import {Button, Input, Select} from "antd";
 import {useDispatch} from "react-redux";
 import actions from "../../../Redux/Setup/action";
+import MsSQL from './Form/mssql'
+import MySQL from './Form/mysql'
+import Sqlite from './Form/sqlite'
 
 const {Option} = Select;
-let host, port, user, pass, database, prefix;
+const sqls = {
+    MYSQL: MySQL,
+    MSSQL: MsSQL,
+    SQLITE: Sqlite
+}
 
 export default function (props) {
     const dispatch = useDispatch();
     const [sql, setSQL] = useState("MYSQL");
     const [error, setError] = useState(0);
+    const [data, setData] = useState();
+
+    const SqlForm = sqls[sql];
 
     const onSubmit = () => {
-        if (!database || (sql !== 'SQLITE' && !user) || !pass) {
+        if (!data || !data.db_name || !data.password || (data.db_server !== 'SQLITE' && !data.username)) {
             setError(1);
             return;
         }
-
-        const data = {
-            db_server: sql,
-            db_name: database,
-            username: user,
-            password: pass,
-            hostname: host,
-            port: port,
-            tb_prefix: prefix
-        }
-
-        // Send data to server
 
         dispatch(actions.nextStep());
     }
@@ -56,19 +54,7 @@ export default function (props) {
                                 <th>
                                 </th>
                             </tr>
-                            {sqls[sql].map((option, index) => (
-                                <tr key={index}>
-                                    <th className="st-label">
-                                        {option.label}
-                                    </th>
-                                    <th className="st-input">
-                                        {option.input}
-                                    </th>
-                                    <th className="st-description">
-                                        {option.description}
-                                    </th>
-                                </tr>
-                            ))}
+                            <SqlForm onChange={(value) => setData(value)}/>
                         </tbody>
                     </table>
                     <div className="st-controller">
@@ -78,88 +64,4 @@ export default function (props) {
             </div>
         </Step1Wrapper>
     )
-}
-
-const sqls = {
-    MYSQL: [
-        {
-            label: "Database",
-            input: <Input onChange={(evt) => database = evt.target.value}></Input>,
-            description: "The name of the database you want to use with QLHS."
-        },
-        {
-            label: "Username",
-            input: <Input onChange={(evt) => user = evt.target.value}></Input>,
-            description: "Your database username."
-        },
-        {
-            label: "Password",
-            input: <Input onChange={(evt) => pass = evt.target.value}></Input>,
-            description: "Your database password."
-        },
-        {
-            label: "Hostname",
-            input: <Input onChange={(evt) => host = evt.target.value} value="localhost"></Input>,
-            description: "You should be able to get this info from your system administrator, if localhost doesn't work."
-        },
-        {
-            label: "Port",
-            input: <Input onChange={(evt) => port = evt.target.value} value={3306}></Input>,
-            description: "If you want to use custom port for your MySQL server, change this."
-        },
-        {
-            label: "Table prefix",
-            input: <Input onChange={(evt) => prefix = evt.target.value} value="qlhs_"></Input>,
-            description: "If you want to run multiple QLHS installation in a single database, change this."
-        }
-    ],
-    MSSQL: [
-        {
-            label: "Database",
-            input: <Input onChange={(evt) => database = evt.target.value}></Input>,
-            description: "The name of the database you want to use with QLHS."
-        },
-        {
-            label: "Username",
-            input: <Input onChange={(evt) => user = evt.target.value}></Input>,
-            description: "Your database username."
-        },
-        {
-            label: "Password",
-            input: <Input onChange={(evt) => pass = evt.target.value}></Input>,
-            description: "Your database password."
-        },
-        {
-            label: "Hostname",
-            input: <Input onChange={(evt) => host = evt.target.value} value="localhost"></Input>,
-            description: "You should be able to get this info from your system administrator, if localhost doesn't work."
-        },
-        {
-            label: "Port",
-            input: <Input onChange={(evt) => port = evt.target.value} value={1433}></Input>,
-            description: "If you want to use custom port for your SQL Server, change this."
-        },
-        {
-            label: "Table prefix",
-            input: <Input onChange={(evt) => prefix = evt.target.value} value="qlhs_"></Input>,
-            description: "If you want to run multiple QLHS installation in a single database, change this."
-        }
-    ],
-    SQLITE: [
-        {
-            label: "Database",
-            input: <Input onChange={(evt) => database = evt.target.value}></Input>,
-            description: "The name of the database you want to use with QLHS."
-        },
-        {
-            label: "Password",
-            input: <Input onChange={(evt) => pass = evt.target.value}></Input>,
-            description: "Your database password."
-        },
-        {
-            label: "Table prefix",
-            input: <Input onChange={(evt) => prefix = evt.target.value} value="qlhs_"></Input>,
-            description: "If you want to run multiple QLHS installation in a single database, change this."
-        }
-    ]
 }
