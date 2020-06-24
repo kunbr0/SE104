@@ -16,10 +16,10 @@ const Step1Wrapper = styled.div`
     .st-form {
       display: flex;
       flex-flow: column;
-      justify-content: center;
-      align-items: center;
-      align-content: center;
+      justify-content: flex-start;
+      align-items: flex-start;
       height: 100%;
+      margin-top: 5px;
       
       .db-selector {
         width: 170px;
@@ -51,6 +51,7 @@ const Step1Wrapper = styled.div`
     display: flex;
     width: 100%;
     justify-content: flex-end;
+    padding-right: 20px;
   }
 `;
 

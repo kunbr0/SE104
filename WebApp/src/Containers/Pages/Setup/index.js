@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import SetupPageWrapper, {StepWrapper} from "./styles";
 import SetupStep1 from '../../../Components/Setup/Step1';
 import SetupStep2 from '../../../Components/Setup/Step2';
+import SetupStep3 from '../../../Components/Setup/Step3';
 import {Steps} from "antd";
 import ParticleConfig from "./config";
 import Particles from "react-particles-js";
@@ -11,7 +12,6 @@ const { Step } = Steps;
 
 export default function SetupPage(props) {
     const [current, setCurrent] = useState(0);
-
     const CurrentStep = steps[current].component;
 
     useEffect(() => {
@@ -59,15 +59,15 @@ const steps = [
         description: "Database setup"
     },
     {
-        name: "Account",
-        title: "Account Setup",
+        name: "Information",
+        title: "Information needed",
         component: SetupStep2,
-        description: "Admin account setup"
+        description: "Admin information setup"
     },
     {
         name: "Finish",
         title: "Finish",
-        component: SetupStep2,
+        component: SetupStep3,
         description: null
     }
 ];

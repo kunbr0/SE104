@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import Step1Wrapper from "./style";
 import {Button, Select} from "antd";
-import {useDispatch} from "react-redux";
 import MsSQL from './Form/mssql'
 import MySQL from './Form/mysql'
 import Sqlite from './Form/sqlite'
@@ -14,7 +13,6 @@ const sqls = {
 }
 
 export default function (props) {
-    const dispatch = useDispatch();
     const [sql, setSQL] = useState("MYSQL");
     const [error, setError] = useState(0);
     const [data, setData] = useState();
