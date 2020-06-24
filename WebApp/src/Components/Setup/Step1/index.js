@@ -55,7 +55,7 @@ const sqls = {
     MYSQL: [
         {
             label: "Hostname",
-            input: <Input onChange={(evt) => host = evt.target.value}></Input>
+            input: <Input onChange={(evt) => host = evt.target.value} value="localhost"></Input>
         },
         {
             label: "Port",
@@ -81,7 +81,7 @@ const sqls = {
     MSSQL: [
         {
             label: "Hostname",
-            input: <Input onChange={(evt) => host = evt.target.value}></Input>
+            input: <Input onChange={(evt) => host = evt.target.value} value="localhost"></Input>
         },
         {
             label: "Port",
