@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Input} from "antd";
+import {Input, InputNumber} from "antd";
 
 export default function (props) {
     const [db, setDB] = useState();
@@ -52,7 +52,7 @@ export default function (props) {
                     Password
                 </th>
                 <th className="st-input">
-                    <Input onChange={(evt) => setPass(evt.target.value)} value={pass}/>
+                    <Input.Password onChange={(evt) => setPass(evt.target.value)} value={pass}/>
                 </th>
                 <th className="st-description">
                     Your database password.
@@ -74,7 +74,7 @@ export default function (props) {
                     Port
                 </th>
                 <th className="st-input">
-                    <Input onChange={(evt) => setPort(evt.target.value)} value={port}/>
+                    <InputNumber onChange={(value) => setPort(value)} defaultValue={port}/>
                 </th>
                 <th className="st-description">
                     If you want to use custom port for your SQL Server, change this.

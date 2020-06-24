@@ -1,8 +1,7 @@
 import React, {useState} from "react";
 import Step1Wrapper from "./style";
-import {Button, Input, Select} from "antd";
+import {Button, Select} from "antd";
 import {useDispatch} from "react-redux";
-import actions from "../../../Redux/Setup/action";
 import MsSQL from './Form/mssql'
 import MySQL from './Form/mysql'
 import Sqlite from './Form/sqlite'
@@ -28,7 +27,7 @@ export default function (props) {
             return;
         }
 
-        dispatch(actions.nextStep());
+        props.onNext(props.step + 1);
     }
 
     return (

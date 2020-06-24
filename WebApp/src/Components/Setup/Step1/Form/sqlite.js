@@ -35,7 +35,7 @@ export default function (props) {
                     Password
                 </th>
                 <th className="st-input">
-                    <Input onChange={(evt) => setPass(evt.target.value)} value={pass}/>
+                    <Input.Password onChange={(evt) => setPass(evt.target.value)} value={pass}/>
                 </th>
                 <th className="st-description">
                     Your database password.

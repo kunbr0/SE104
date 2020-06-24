@@ -11,7 +11,7 @@ const SetupPageWrapper = styled.div`
   
   .setup-container {
       width: 850px;
-      height: 480px;   
+      height: 460px;   
       display: flex;   
       border-radius: 16px;
       box-shadow: 2px 2px 10px #3d457a;

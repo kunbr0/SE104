@@ -1,5 +1,4 @@
-import React, {useEffect} from "react";
-import {useSelector} from "react-redux";
+import React, {useEffect, useState} from "react";
 import SetupPageWrapper, {StepWrapper} from "./styles";
 import SetupStep1 from '../../../Components/Setup/Step1';
 import SetupStep2 from '../../../Components/Setup/Step2';
@@ -11,8 +10,9 @@ import Helmet from "react-helmet";
 const { Step } = Steps;
 
 export default function SetupPage(props) {
-    let current = useSelector(state => state.setup.current);
-    current = current <= steps.length-1 ? current : steps.length-1
+    const [current, setCurrent] = useState(0);
+
+    const CurrentStep = steps[current].component;
 
     useEffect(() => {
 
@@ -31,7 +31,7 @@ export default function SetupPage(props) {
                     <div className="content">
                         <Steps direction="vertical" current={current}>
                             {steps.map((step, index) => (
-                                <Step key={step.id} title={step.name} description={step.description} />
+                                <Step key={index} title={step.name} description={step.description} />
                             ))}
                         </Steps>
                     </div>
@@ -43,7 +43,7 @@ export default function SetupPage(props) {
                 <div className="right-side">
                     <h1 className="title">{steps[current].title}</h1>
                     <StepWrapper>
-                        {steps[current].component}
+                        <CurrentStep step={current} onNext={(value) => setCurrent(value)}/>
                     </StepWrapper>
                 </div>
             </div>
@@ -53,24 +53,21 @@ export default function SetupPage(props) {
 
 const steps = [
     {
-        id: 1,
         name: "Database",
         title: "Database Setup",
-        component: <SetupStep1/>,
+        component: SetupStep1,
         description: "Database setup"
     },
     {
-        id: 2,
         name: "Account",
         title: "Account Setup",
-        component: <SetupStep2/>,
+        component: SetupStep2,
         description: "Admin account setup"
     },
     {
-        id: 2,
         name: "Finish",
         title: "Finish",
-        component: <SetupStep2/>,
+        component: SetupStep2,
         description: null
     }
 ];
