@@ -23,7 +23,7 @@ let connection  = mysql.createConnection(config);
 const port      = 8080;
 
 // serve the static files from the react app
-app.use(express.static(path.join(__dirname, 'client')));
+app.use(express.static(path.join(__dirname, 'client'), {index: false}));
 
 app.use('/v1', api_v1);
 api_v1.use(parser.json());
