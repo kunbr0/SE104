@@ -26,7 +26,7 @@ export default function SetupPage(props) {
                     <div className="content">
                         <Steps direction="vertical" current={current}>
                             {steps.map((step, index) => (
-                                <Step title={step.name} description={step.description} />
+                                <Step key={step.id} title={step.name} description={step.description} />
                             ))}
                         </Steps>
                     </div>
