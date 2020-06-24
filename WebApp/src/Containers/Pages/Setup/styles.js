@@ -10,8 +10,8 @@ const SetupPageWrapper = styled.div`
   background-size: cover;
   
   .setup-container {
-      width: 675px;
-      height: 450px;   
+      width: 850px;
+      height: 480px;   
       display: flex;   
       border-radius: 16px;
       box-shadow: 2px 2px 10px #3d457a;
@@ -91,6 +91,10 @@ const SetupPageWrapper = styled.div`
           left: 0;
           bottom: 0;
           right: 0;
+          
+          canvas {
+            border-radius: 16px 0 0 16px;
+          }
         }
       }
       

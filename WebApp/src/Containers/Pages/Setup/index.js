@@ -6,6 +6,7 @@ import SetupStep2 from '../../../Components/Setup/Step2';
 import {Steps} from "antd";
 import ParticleConfig from "./config";
 import Particles from "react-particles-js";
+import Helmet from "react-helmet";
 
 const { Step } = Steps;
 
@@ -19,6 +20,10 @@ export default function SetupPage(props) {
 
     return (
         <SetupPageWrapper>
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>{`QLHS - ${steps[current].title}`}</title>
+            </Helmet>
             <div className="setup-container">
                 <div className="left-side">
                     <div className="header">

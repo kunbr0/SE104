@@ -22,17 +22,35 @@ const Step1Wrapper = styled.div`
       height: 100%;
       
       .db-selector {
-        width: 200px;
+        width: 170px;
       }
       
       th {
-        padding: 3px 5px 3px 15px;
+        padding: 3px 0px 3px 15px;
+       
+      }
+      
+      .st-label {
+        min-width: 120px;
+        font-weight: 500;
+      }
+      
+      .st-input {
+        max-width: 200px;
+      }
+       
+      .st-description {
+        font-weight: normal;
+        font-size: 12px;
       }
     }
   }
   
   .st-controller {
     margin-top: 20px;
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
   }
 `;
 
