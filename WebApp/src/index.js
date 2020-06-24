@@ -5,7 +5,7 @@ import {Provider} from 'react-redux';
 import store from "./Redux/store";
 import ErrorBoundary from "./ErrorBoundary";
 import AppProvider from "./AppProvider";
-//import 'antd/dist/antd.css';
+import 'antd/dist/antd.css';
 import './i18n';
 
 ReactDOM.render(

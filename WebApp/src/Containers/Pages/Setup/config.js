@@ -23,7 +23,7 @@ const ParticleConfig = {
             "direction": "top",
             "out_mode": "out"
         },
-        // "color": "#0A4469"
+        "color": "#d1e2ff"
     },
     "interactivity": {
         "events": {
