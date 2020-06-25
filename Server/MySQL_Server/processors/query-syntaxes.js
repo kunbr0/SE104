@@ -12,10 +12,13 @@ const syntaxes =
     login: `/login`,
 
     // Setup steps
-    database: `/database`,
-    admin: `/admin`,
-    check: `/check`,
-    finish: `/finish`
+    setup: {
+        database: `/database`,
+        admin: `/admin`,
+        check: `/check`,
+        finish: `/finish`,
+        status: `/status`
+    }
 }
 
 module.exports = syntaxes;

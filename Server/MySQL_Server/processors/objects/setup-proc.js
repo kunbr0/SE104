@@ -2,6 +2,10 @@ let statusCodes = require('./../status-codes');
 let fs = require('fs');
 let sysUtil = require('./../../utils/system');
 
+function setupStatus(req, res, urlData) {
+    res.status(statusCodes.OK).json({error: 0, data: sysUtil.GetProgress()});
+}
+
 function receiveDBSubmission(req, res, urlData) 
 {
     console.log(urlData);
@@ -55,5 +59,6 @@ module.exports =
     ReceiveDBSubmission: receiveDBSubmission,
     ReceiveAdminSubmission: receiveAdminSubmission,
     CheckAdmin: checkAdmin,
-    Finish: finishSetup
+    Finish: finishSetup,
+    Status: setupStatus
 }

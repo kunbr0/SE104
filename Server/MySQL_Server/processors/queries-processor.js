@@ -71,11 +71,12 @@ function processAuthenticationQueries(app, dbConnection)
 function processSetupQueries(app, subappList)
 {
     console.log("Setup is not completed, setup API triggered at step " + require('./../utils/system').GetProgress());
-    methods.AppPostWithoutDB(app, syntaxes.database, setupProc.ReceiveDBSubmission);
-    methods.AppPostWithoutDB(app, syntaxes.admin, setupProc.ReceiveAdminSubmission);
-    methods.AppPostWithoutDB(app, syntaxes.check, setupProc.CheckAdmin);
+    methods.AppPostWithoutDB(app, syntaxes.setup.database, setupProc.ReceiveDBSubmission);
+    methods.AppPostWithoutDB(app, syntaxes.setup.admin, setupProc.ReceiveAdminSubmission);
+    methods.AppPostWithoutDB(app, syntaxes.setup.check, setupProc.CheckAdmin);
+    methods.AppGetWithoutDB(app, syntaxes.setup.status, setupProc.Status);
 
-    app.get(syntaxes.finish, (req, res) => 
+    app.get(syntaxes.setup.finish, (req, res) =>
     {
         setupProc.Finish(subappList);
     });   

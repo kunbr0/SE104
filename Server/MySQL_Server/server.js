@@ -1,4 +1,5 @@
 let path        = require('path');
+let cors        = require('cors');
 let express     = require('express');
 let config      = require('./config');
 let mysql       = require('mysql');
@@ -21,6 +22,8 @@ let app         = express();
 
 const port      = 8080;
 
+app.use(cors());
+
 // serve the static files from the react app
 app.use(express.static(path.join(__dirname, 'client'), {index: false}));
 
@@ -36,7 +39,7 @@ teacherApp.use(parser.json());
 api_v1.use('/auth', authApp); 
 authApp.use(parser.json());
 
-app.use('/setup', setupApp); 
+app.use('/setup', setupApp);
 setupApp.use(parser.json());
 
 // Listen for queries and process
