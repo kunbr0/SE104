@@ -1,17 +1,17 @@
 import React, {useState} from "react";
 import {Button, Input} from "antd";
-import Step1Wrapper from "../Step1/style";
-import Step2Wrapper from "./style";
+import DatabaseWrapper from "../Database/style";
+import InformatinoWrapper from "./style";
 
 export default function (props) {
     const [error, setError] = useState(0);
-    const [school, setSchool] = useState();
+    const [name, setName] = useState();
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
     const [email, setEmail] = useState();
 
     const onSubmit = () => {
-        if (!school || !username || !password || !email) {
+        if (!name || !username || !password || !email) {
             setError(1);
             return;
         }
@@ -20,8 +20,8 @@ export default function (props) {
     }
 
     return (
-        <Step1Wrapper>
-            <Step2Wrapper className="page-container">
+        <DatabaseWrapper>
+            <InformatinoWrapper className="page-container">
                 <label>
                     Please provide the following information. Don't worry, you can always change these settings later.
                 </label>
@@ -30,13 +30,13 @@ export default function (props) {
                         <tbody>
                             <tr>
                                 <th className="st-label">
-                                    School name
+                                    Your name
                                 </th>
                                 <th className="st-input-info">
-                                    <Input value={school} onChange={(evt) => setSchool(evt.target.value)} />
+                                    <Input value={name} onChange={(evt) => setName(evt.target.value)} />
                                 </th>
                                 <th className="st-description">
-                                    Your school name.
+                                    Your full name.
                                 </th>
                             </tr>
                             <tr>
@@ -78,7 +78,7 @@ export default function (props) {
                         <Button onClick={onSubmit}>Submit</Button>
                     </div>
                 </div>
-            </Step2Wrapper>
-        </Step1Wrapper>
+            </InformatinoWrapper>
+        </DatabaseWrapper>
     )
 }

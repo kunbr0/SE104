@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Step1Wrapper = styled.div`
+const DatabaseWrapper = styled.div`
   height: 100%;
   display: flex;
   flex-flow: column;
@@ -55,4 +55,4 @@ const Step1Wrapper = styled.div`
   }
 `;
 
-export default Step1Wrapper;
+export default DatabaseWrapper;

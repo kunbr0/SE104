@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Step3Wrapper = styled.div`
+const FinishWrapper = styled.div`
   
   .st-input-info {
     width: 250px;
@@ -19,4 +19,4 @@ const Step3Wrapper = styled.div`
   }
 `;
 
-export default Step3Wrapper;
+export default FinishWrapper;

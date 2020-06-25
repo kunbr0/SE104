@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import Step1Wrapper from "./style";
+import DatabaseWrapper from "./style";
 import {Button, Select} from "antd";
 import MsSQL from './Form/mssql'
 import MySQL from './Form/mysql'
@@ -29,7 +29,7 @@ export default function (props) {
     }
 
     return (
-        <Step1Wrapper>
+        <DatabaseWrapper>
             <div className="page-container">
                 <label>
                     Below you should enter your connection details. If you're not sure about these, contact your system admin.
@@ -59,6 +59,6 @@ export default function (props) {
                     </div>
                 </div>
             </div>
-        </Step1Wrapper>
+        </DatabaseWrapper>
     )
 }
