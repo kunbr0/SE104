@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const InformatinoWrapper = styled.div`
+const InformationWrapper = styled.div`
   
   .st-input-info {
     width: 250px;
@@ -11,4 +11,4 @@ const InformatinoWrapper = styled.div`
   }
 `;
 
-export default InformatinoWrapper;
+export default InformationWrapper;

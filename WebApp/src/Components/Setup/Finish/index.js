@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {Button, Input} from "antd";
 import DatabaseWrapper from "../Database/style";
 import FinishWrapper from "./style";
+import FadeIn from "react-fade-in";
 
 export default function (props) {
     const [error, setError] = useState(0);
@@ -14,13 +15,14 @@ export default function (props) {
 
     return (
         <DatabaseWrapper>
-            <FinishWrapper className="page-container">
-                <label>
-                    This is small tool to check your login information. Just enter your username and password to the form then click Check button.
-                </label>
-                <div className="st-form">
-                    <table>
-                        <tbody>
+            <FadeIn>
+                <FinishWrapper className="page-container">
+                    <label>
+                        This is small tool to check your login information. Just enter your username and password to the form then click Check button.
+                    </label>
+                    <div className="st-form">
+                        <table>
+                            <tbody>
                             <tr>
                                 <th className="st-label">
                                     Username
@@ -43,14 +45,15 @@ export default function (props) {
                                     The password which you've entered in the previous step.
                                 </th>
                             </tr>
-                        </tbody>
-                    </table>
-                    <div className="st-controller-finish">
-                        <Button onClick={onSubmit}>Check</Button>
-                        <Button onClick={onSubmit}>Submit</Button>
+                            </tbody>
+                        </table>
+                        <div className="st-controller-finish">
+                            <Button onClick={onSubmit}>Check</Button>
+                            <Button onClick={onSubmit}>Submit</Button>
+                        </div>
                     </div>
-                </div>
-            </FinishWrapper>
+                </FinishWrapper>
+            </FadeIn>
         </DatabaseWrapper>
     )
 }
