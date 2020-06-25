@@ -1,6 +1,6 @@
-# [SE104][web_link] - WEBSITE QUẢN LÝ SINH VIÊN
+# [SE104][web_link] - WEBSITE QUẢN LÝ HỌC SINH
 
-Website quản lý sinh viên với giao diện đẹp mắt cùng những tính năng nổi bật dễ dàng sử dụng trong bất kỳ hệ thống nhà trường nào
+Website quản lý học sinh với giao diện đẹp mắt cùng những tính năng nổi bật dễ dàng sử dụng trong bất kỳ hệ thống nhà trường nào
 
 [![Version](https://img.shields.io/badge/version-0.0.1-brightgreen)][web_link]
 [![Contributors](https://img.shields.io/badge/contributors-6-blue)][web_link]
@@ -19,7 +19,7 @@ Website quản lý sinh viên với giao diện đẹp mắt cùng những tính
 
 
 ## Đội ngũ phát triển ##
-- Nguyễn Lê Bách - 18520480
+- Nguyễn Lê Bách - 18520480 - nlebachnlb.develop@gmail.com
 - Lê Ngọc Chính - 18520257 - ngocchinhlqd@gmail.com
 - Tân Hữu Toàn - 18520383
 - Nguyễn Chí Thành - 18520360
