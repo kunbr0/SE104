@@ -5,8 +5,8 @@ const LoaderWrapper = styled.div`
   height: 460px;   
   display: flex;   
   border-radius: 16px;
-  //box-shadow: 2px 2px 10px #3d457a;
-  //background: #fff;
+  justify-content: center;
+  align-items: center;
 `;
 
 export default LoaderWrapper;

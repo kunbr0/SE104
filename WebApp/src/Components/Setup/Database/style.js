@@ -27,7 +27,7 @@ const DatabaseWrapper = styled.div`
       
       th {
         padding: 3px 0px 3px 15px;
-       
+        text-align: left;
       }
       
       .st-label {
