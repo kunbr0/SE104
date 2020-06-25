@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import {Button, Input} from "antd";
 import DatabaseWrapper from "../Database/style";
-import InformatinoWrapper from "./style";
+import InformationWrapper from "./style";
+import FadeIn from "react-fade-in";
 
 export default function (props) {
     const [error, setError] = useState(0);
@@ -21,13 +22,14 @@ export default function (props) {
 
     return (
         <DatabaseWrapper>
-            <InformatinoWrapper className="page-container">
-                <label>
-                    Please provide the following information. Don't worry, you can always change these settings later.
-                </label>
-                <div className="st-form">
-                    <table>
-                        <tbody>
+            <FadeIn>
+                <InformationWrapper className="page-container">
+                    <label>
+                        Please provide the following information. Don't worry, you can always change these settings later.
+                    </label>
+                    <div className="st-form">
+                        <table>
+                            <tbody>
                             <tr>
                                 <th className="st-label">
                                     Your name
@@ -72,13 +74,14 @@ export default function (props) {
                                     Please check your email address before continuing.
                                 </th>
                             </tr>
-                        </tbody>
-                    </table>
-                    <div className="st-controller">
-                        <Button onClick={onSubmit}>Submit</Button>
+                            </tbody>
+                        </table>
+                        <div className="st-controller">
+                            <Button onClick={onSubmit}>Submit</Button>
+                        </div>
                     </div>
-                </div>
-            </InformatinoWrapper>
+                </InformationWrapper>
+            </FadeIn>
         </DatabaseWrapper>
     )
 }
