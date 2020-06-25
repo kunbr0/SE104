@@ -12,7 +12,10 @@ const syntaxes =
     login: `/login`,
 
     // Setup steps
-    database: `/database`
+    database: `/database`,
+    admin: `/admin`,
+    check: `/check`,
+    finish: `/finish`
 }
 
 module.exports = syntaxes;
