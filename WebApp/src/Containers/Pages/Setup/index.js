@@ -10,6 +10,7 @@ import ParticleConfig from "./config";
 import Particles from "react-particles-js";
 import Helmet from "react-helmet";
 import FadeIn from "react-fade-in";
+import agent from "../../../Utilities/agent";
 
 const { Step } = Steps;
 
@@ -19,12 +20,13 @@ export default function SetupPage(props) {
     const CurrentStep = steps[current].component;
 
     useEffect(() => {
-        setTimeout(() => {
+        agent.Setup.status().then(res => {
+            setCurrent(res.data);
             setLoadProgress(1);
             setTimeout(() => {
                 setLoadProgress(2);
             }, 500);
-        }, 2000)
+        });
     }, [])
 
     return (
