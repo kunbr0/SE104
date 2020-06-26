@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import DatabaseWrapper from "./style";
 import {Button, Select} from "antd";
 import MsSQL from './Form/mssql'
@@ -18,6 +18,10 @@ export default function (props) {
     const [data, setData] = useState();
 
     const SqlForm = sqls[sql];
+
+    useEffect(() => {
+        setData({});
+    }, [sql])
 
     const onSubmit = () => {
         if (!data || !data.db_name || !data.password || (data.db_server !== 'SQLITE' && !data.username)) {
