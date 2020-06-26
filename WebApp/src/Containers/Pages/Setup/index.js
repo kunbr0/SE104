@@ -21,7 +21,7 @@ export default function SetupPage(props) {
 
     useEffect(() => {
         agent.Setup.status().then(res => {
-            if (res && !res.error) {
+            if (res && res.error == 0) {
                 setCurrent(res.data);
                 setLoadProgress(1);
                 setTimeout(() => {
