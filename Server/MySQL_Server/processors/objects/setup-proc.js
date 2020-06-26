@@ -2,7 +2,7 @@ let statusCodes = require('./../status-codes');
 let fs = require('fs');
 let sysUtil = require('./../../utils/system');
 
-function setupStatus(req, res, urlData) {
+function setupStatus(req, res) {
     res.status(statusCodes.OK).json({ error: 0, data: sysUtil.GetProgress() });
 }
 
@@ -10,14 +10,14 @@ function receiveDBSubmission(req, res, urlData) {
     console.log(urlData);
     fs.writeFile(`./admin-setup/${sysUtil.SetupFiles().dbSetup}`, JSON.stringify(urlData), () => { });
     sysUtil.TrackSetupProgress(sysUtil.GetProgress() + 1);
-    setupStatus(req, res, urlData);
+    setupStatus(req, res);
 }
 
 function receiveAdminSubmission(req, res, urlData) {
     console.log(urlData);
     fs.writeFile(`./admin-setup/${sysUtil.SetupFiles().adminInfo}`, JSON.stringify(urlData), () => { });
     sysUtil.TrackSetupProgress(sysUtil.GetProgress() + 1);
-    setupStatus(req, res, urlData);
+    setupStatus(req, res);
 }
 
 function checkAdmin(req, res, urlData) {
@@ -27,7 +27,7 @@ function checkAdmin(req, res, urlData) {
         { "status": admin.username == urlData.username && admin.password == urlData.password ? true : false });
 }
 
-function finishSetup(appList) {
+function finishSetup(req, res, appList) {
     let mysql = require('mysql');
     // Database connection
     // let connection = mysql.createConnection(config);
@@ -40,7 +40,7 @@ function finishSetup(appList) {
 
             // Reset setup progress, force user to reconfig
             sysUtil.TrackSetupProgress(0);
-            setupStatus(req, res, urlData);
+            setupStatus(req, res);
             return;
         }
 
@@ -55,7 +55,7 @@ function finishSetup(appList) {
         processor.ProcessAuthenticationQueries(authApp, connection);
 
         sysUtil.TrackSetupProgress(sysUtil.GetProgress() + 1);
-        setupStatus(req, res, urlData);
+        setupStatus(req, res);
     });
 }
 

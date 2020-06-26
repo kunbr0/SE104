@@ -78,7 +78,7 @@ function processSetupQueries(app, subappList)
 
     app.get(syntaxes.setup.finish, (req, res) =>
     {
-        setupProc.Finish(subappList);
+        setupProc.Finish(req, res, subappList);
     });   
 }
 
