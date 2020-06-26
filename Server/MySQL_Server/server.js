@@ -54,22 +54,25 @@ if (sysUtil.IsFirstTime())
 else 
 {
     // Database connection
-    let connection  = mysql.createConnection(config);
+    let connection  = mysql.createConnection(config.CreateMySQLDBConfig('./admin-setup/dbsetup.json'));
     // Connect to database
     connection.connect((err) => 
     {
         // crypt.AES.Encrypt('11112000Bach', "!@#@#@!#",(result) => {console.log('Encryption successful with ' + result); });
         // crypt.AES.Decrypt('2bbd70925fc2ba3560bc36e381e4b8ef', "!@#@#@!#", (result) => console.log('Decryption successful with ' + result));
         if (err) 
+        {
             console.log("Error connecting database...\n\n" + err);
-        else 
-            console.log("Database is connected!\n\n");
+            return;
+        }
+
+        console.log("Database is connected!\n\n");
+        processor.ProcessQuery(api_v1, connection);
+        processor.ProcessStudentQueries(studentApp, connection);
+        processor.ProcessTeacherQueries(teacherApp, connection);
+        processor.ProcessAuthenticationQueries(authApp, connection);
     });
 
-    processor.ProcessQuery(api_v1, connection);
-    processor.ProcessStudentQueries(studentApp, connection);
-    processor.ProcessTeacherQueries(teacherApp, connection);
-    processor.ProcessAuthenticationQueries(authApp, connection);
 }
 
 app.listen(port, () => {
