@@ -29,7 +29,7 @@ function setupDB(req, res, urlData)
             return;
         }
 
-        console.log("Database is connected! Setting up database...\n\n");
+        console.log("Database is connected! Setting up database...\n\n"); 
         let dbName = urlData.dbname;
         connection.query(storage.Query_SetupDatabase(dbName), (err, data, fields) => {
             if (err) {
@@ -42,7 +42,10 @@ function setupDB(req, res, urlData)
 
             console.log("Database created");
         });
+
+        connection.end();
     });
+    
 }
 
 function receiveDBSubmission(req, res, urlData) {
@@ -50,7 +53,11 @@ function receiveDBSubmission(req, res, urlData) {
     console.log("Receive Database config");
     fs.writeFileSync(`./admin-setup/${sysUtil.SetupFiles().dbSetup}`, JSON.stringify(urlData));
 
-    setupDB(req, res, urlData);
+    try {
+        setupDB(req, res, urlData);
+    } catch (e) {
+        console.log(e);
+    }
 
     // sysUtil.TrackSetupProgress(sysUtil.GetProgress() + 1);
     // setupStatus(req, res);
