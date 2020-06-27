@@ -1,4 +1,6 @@
 {
+    "CREATE_DB": "CREATE DATABASE ",  
+    "USE_DB": "USE ",
     "LIST_ALL_CLASSES": "SELECT * FROM sm_class;",
     "LIST_SUBJECTS": "SELECT * FROM sm_subject;",
 
