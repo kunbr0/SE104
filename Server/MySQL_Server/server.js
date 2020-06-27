@@ -17,7 +17,7 @@ let app         = express();
 
 // Database connection
 let connection  = mysql.createConnection(config);
-const port      = 8080;
+const port      = 8888;
 
 app.use('/v1', api_v1);
 api_v1.use(parser.json());
