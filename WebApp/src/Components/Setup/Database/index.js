@@ -1,9 +1,10 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import DatabaseWrapper from "./style";
 import {Button, Select} from "antd";
 import MsSQL from './Form/mssql'
 import MySQL from './Form/mysql'
 import Sqlite from './Form/sqlite'
+import crypto from 'crypto-js'
 
 const {Option} = Select;
 const sqls = {
@@ -19,6 +20,10 @@ export default function (props) {
 
     const SqlForm = sqls[sql];
 
+    useEffect(() => {
+        setData({});
+    }, [sql])
+
     const onSubmit = () => {
         if (!data || !data.db_name || !data.password || (data.db_server !== 'SQLITE' && !data.username)) {
             setError(1);
@@ -32,7 +37,11 @@ export default function (props) {
         <DatabaseWrapper>
             <div className="page-container">
                 <label>
-                    Below you should enter your connection details. If you're not sure about these, contact your system admin.
+                    Below you should enter your connection details. If you're not sure about these, contact your system admin.<br/>
+                    {crypto.AES.encrypt("aaa", "aaaaa", {
+                        format: crypto.format.Hex,
+                        padding: crypto.pad.AnsiX923
+                    }).toString()}
                 </label>
                 <div className="st-form">
                     <table>
