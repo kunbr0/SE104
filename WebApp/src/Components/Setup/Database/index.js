@@ -4,7 +4,6 @@ import {Button, Select} from "antd";
 import MsSQL from './Form/mssql'
 import MySQL from './Form/mysql'
 import Sqlite from './Form/sqlite'
-import crypto from 'crypto-js'
 
 const {Option} = Select;
 const sqls = {
@@ -37,11 +36,7 @@ export default function (props) {
         <DatabaseWrapper>
             <div className="page-container">
                 <label>
-                    Below you should enter your connection details. If you're not sure about these, contact your system admin.<br/>
-                    {crypto.AES.encrypt("aaa", "aaaaa", {
-                        format: crypto.format.Hex,
-                        padding: crypto.pad.AnsiX923
-                    }).toString()}
+                    Below you should enter your connection details. If you're not sure about these, contact your system admin.
                 </label>
                 <div className="st-form">
                     <table>

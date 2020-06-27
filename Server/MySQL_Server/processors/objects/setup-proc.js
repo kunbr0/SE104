@@ -7,7 +7,7 @@ let syntaxes        = require('./../query-syntaxes');
 let methods         = require('./../../utils/http-methods');
 
 function setupStatus(req, res, err = 0) {
-    res.status(statusCodes.OK).json({ error: err, data: sysUtil.GetProgress() });
+    res.status(statusCodes.OK).json({ error: 0, data: sysUtil.GetProgress() });
 }
 
 function setupDB(req, res, urlData)
