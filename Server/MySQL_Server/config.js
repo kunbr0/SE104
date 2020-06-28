@@ -17,11 +17,33 @@ function createConfigFromJSON(path)
         database: dbConfig.dbname,
         insecureAuth: true
     } 
-    console.log(config);
+    // console.log(config);
     return config;
+}
+
+function createConnectionConfigFromJSON(path)
+{
+    let dbConfig = require(path);
+    let config = 
+    {
+        host    : dbConfig.hostname,
+        user    : dbConfig.username,
+        password: dbConfig.password,
+        insecureAuth: true
+    } 
+    // console.log(config);
+    return config;
+}
+
+function getDatabaseNameFromConfig(path)
+{
+    let dbConfig = require(path);
+    return dbConfig.dbname;
 }
 
 module.exports = 
 {
-    CreateMySQLDBConfig: createConfigFromJSON
+    CreateMySQLDBConfig: createConfigFromJSON,
+    CreateConnectionConfig: createConnectionConfigFromJSON,
+    GetDBName: getDatabaseNameFromConfig
 }

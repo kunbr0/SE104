@@ -1,6 +1,34 @@
 const QUERY_SHEET   = 'mysql-queries.json';
-const queryJSON     = require(`./${QUERY_SHEET}`);
+let queryJSON     = require(`./${QUERY_SHEET}`);
 const bcrypt        = require('bcrypt');
+
+function setupDatabase(dbName)
+{
+    let query = `${queryJSON.CREATE_DB}${dbName};`// \n${queryJSON.USE_DB}${dbName};`;
+    console.log(query);
+    return query;
+}
+
+function useDatabase(dbName)
+{
+    let query = `${queryJSON.USE_DB}${dbName};`;
+    console.log(query);
+    return query;
+}
+
+function setupTables(onCompleted, onError)
+{
+    let fs = require('fs');
+    fs.readFile('./storage/mysql-setup/setup-tables.sql', 'utf8', (err, data) => 
+    {
+        if (err)
+        {
+            onError(err);
+            return;
+        }
+        onCompleted(data);
+    });
+}
 
 function insertStudent(id_student, name_student, gender, birth, address, email, id_class)
 {
@@ -98,6 +126,9 @@ function getPasswordFrom(username)
 
 module.exports = 
 {
+    Query_SetupDatabase             : setupDatabase,
+    Query_UseDatabase               : useDatabase,
+    Query_SetupTables               : setupTables,
     Query_ListAllClasses            : () => queryJSON.LIST_ALL_CLASSES,
     Query_ListSubjects              : () => queryJSON.LIST_SUBJECTS,
     Query_InsertStudent             : insertStudent,

@@ -32,11 +32,11 @@ function appGetWithoutDB(app, syntax, callback)
 
 function appPostWithoutDB(app, syntax, callback)
 {
-    app.post(syntax, (req, res) => 
+    app.post(syntax, async (req, res) => 
     {
         let data = req.body;
         console.log(data);
-        callback(req, res, data);
+        await callback(req, res, data);
     });   
 }
 
