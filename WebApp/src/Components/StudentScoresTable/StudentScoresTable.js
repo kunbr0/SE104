@@ -4,6 +4,9 @@ import TextTranslation from '../TextTranslation/TextTranslation';
 import ScoreCoefficient from '../../Containers/ClassDetails/SubjectCoefficient.json';
 import './StudentScoresTable.css';
 import { useSSR } from 'react-i18next';
+
+
+
 const columns = [
   {
     title: 
@@ -116,6 +119,10 @@ const calculateFinalScore = (e) => {
         + e.kmidterm*coef.kmidterm + e.kmidterm*coef.kmidterm;
 }
 
+// Map of changed row to push
+const listOfChangedRows = {};
+
+
 const StudentScoresTable = (props) => {
     
     const [classDetailsData, setClassDetailsData] = useState([{}]);
@@ -127,6 +134,14 @@ const StudentScoresTable = (props) => {
             setTableEditable(props.tableEditable);
         }
     });
+
+    
+
+    const updateListChangedRow = (kRow) => {
+        listOfChangedRows[kRow.studentID] = kRow;
+        console.log(listOfChangedRows);
+    } 
+
 
     const renderClassDetailsData = () => {
         setTableData([]);
@@ -156,7 +171,7 @@ const StudentScoresTable = (props) => {
                             min={1} max={10}
                             disabled={!tableEditable}
                             defaultValue={e[key]}
-                             
+                            onChange={()=>updateListChangedRow(e)}
                         /> : e[key]
                     a["key"] = i;
                 });
@@ -180,6 +195,8 @@ const StudentScoresTable = (props) => {
     useEffect(()=>{
         renderClassDetailsData();
     },[classDetailsData, tableEditable]);
+
+    
 
     
     return (
