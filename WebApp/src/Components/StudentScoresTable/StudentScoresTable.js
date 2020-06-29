@@ -119,9 +119,9 @@ const calculateFinalScore = (e) => {
         + e.kmidterm*coef.kmidterm + e.kmidterm*coef.kmidterm;
 }
 
+
 // Map of changed row to push
 const listOfChangedRows = {};
-
 
 const StudentScoresTable = (props) => {
     
@@ -135,11 +135,10 @@ const StudentScoresTable = (props) => {
         }
     });
 
-    
 
-    const updateListChangedRow = (kRow) => {
+    const updateListChangedRow = (kRow, key, value) => {
         listOfChangedRows[kRow.studentID] = kRow;
-        console.log(listOfChangedRows);
+        listOfChangedRows[kRow.studentID][key] = value;
     } 
 
 
@@ -170,8 +169,8 @@ const StudentScoresTable = (props) => {
                             style={{width: "100%"}}
                             min={1} max={10}
                             disabled={!tableEditable}
-                            defaultValue={e[key]}
-                            onChange={()=>updateListChangedRow(e)}
+                            defaultValue={e[key] || 0}
+                            onChange={(value)=> updateListChangedRow(e, key, value)}
                         /> : e[key]
                     a["key"] = i;
                 });

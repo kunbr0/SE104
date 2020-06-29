@@ -3,7 +3,7 @@ import _superagent from 'superagent';
 
 const superagent = superagentPromise(_superagent, global.Promise);
 
-const API_ROOT = `${window.location.protocol}//${window.location.hostname}:8080`;
+const API_ROOT = `https://api.kunbr0.com/se104`;
 
 const encode = encodeURIComponent;
 const responseBody = res => res.body;
