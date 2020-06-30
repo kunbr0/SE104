@@ -121,7 +121,7 @@ const calculateFinalScore = (e) => {
 
 
 // Map of changed row to push
-const listOfChangedRows = {};
+
 
 const StudentScoresTable = (props) => {
     
@@ -129,16 +129,30 @@ const StudentScoresTable = (props) => {
     const [tableData, setTableData] = useState([]);
     const [tableEditable, setTableEditable] = useState(false);
     
+    const [listOfChangedRows, setListOfChangedRows] = useState({});
+
     useEffect(()=>{
         if(props.tableEditable !== tableEditable){
+            if(props.tableEditable === false){
+                setListOfChangedRows({});
+            }
             setTableEditable(props.tableEditable);
         }
     });
 
 
     const updateListChangedRow = (kRow, key, value) => {
-        listOfChangedRows[kRow.studentID] = kRow;
-        listOfChangedRows[kRow.studentID][key] = value;
+        setListOfChangedRows(listOfChangedRows =>({
+            ...listOfChangedRows,
+            [kRow.studentID] : (listOfChangedRows[kRow.studentID] !== undefined) ?
+            {
+                ...listOfChangedRows[kRow.studentID],
+                [key] : value
+            }:{
+                ...kRow,
+                [key] : value
+            }
+        }));
     } 
 
 
@@ -197,15 +211,22 @@ const StudentScoresTable = (props) => {
 
     
 
+    console.log(listOfChangedRows);
     
     return (
-        <Table loading={props.isLoading || false}
+        <Table 
+            loading={props.isLoading || false}
             columns={columns}
             dataSource={tableData}
             bordered
             size="middle"
             scroll={{ x: 'calc(500px + 50%)', y: 240 }}
             expandable={true}
+            onRow={(record, rowIndex) => {
+                return {
+                    className : (listOfChangedRows[record.studentID]) ? 'editedRow' : ''
+                };
+            }}
         />
     )
 }
