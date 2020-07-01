@@ -101,9 +101,9 @@ const AddNewStudent = (props) => {
                     <Form.Item
                         name="email"
                         label="Email"
-                        rules={[{ required: true, message: 'Please choose the approver' }]}
+                        rules={[{ required: true, message: 'Please input email' }]}
                         >
-                        <InputEmail />
+                        <InputEmail  />
                         
                     </Form.Item>
                 </Col>

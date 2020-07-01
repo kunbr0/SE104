@@ -7,7 +7,8 @@ import { useSSR } from 'react-i18next';
 
 
 
-const columns = [
+
+const columnsOfSubjectDetails = [
   {
     title: 
         <div>
@@ -96,6 +97,79 @@ const columns = [
 ];
 
 
+const columnsOfStudentDetails = [
+    {
+        title: 
+            <div>
+                <TextTranslation textName="ClassInfo-Table-No.1" kClass="pcview"/>
+                <TextTranslation textName="ClassInfo-Table-No.2" kClass="mbview"/>
+            </div>,
+        dataIndex: 'studentID',
+        key: 'studentID',
+        width: 8,
+        fixed: 'left',
+        filters: [
+            {
+            text: 'Joe',
+            value: 'Joe',
+            },
+            {
+            text: 'John',
+            value: 'John',
+            },
+        ],
+            onFilter: (value, record) => record.name.indexOf(value) === 0,
+    },
+    
+    {
+        title: 
+            <div>
+                <TextTranslation textName="ClassInfo-Table-Name.1" kClass="pcview"/>
+                <TextTranslation textName="ClassInfo-Table-Name.2" kClass="mbview"/>
+            </div>,
+        dataIndex: 'studentName',
+        key: 'studentName',
+        width: 35,
+        sorter: (a, b) => a.studentID - b.studentID,
+    },
+    {
+    title: 
+        <div>
+            <TextTranslation textName="ClassInfo-Table-Sex.1" kClass="pcview"/>
+            <TextTranslation textName="ClassInfo-Table-Sex.2" kClass="mbview"/>
+        </div>,
+    dataIndex: 'Sex',
+    key: 'Sex',
+    width: 12,
+    },
+    {
+    title: 
+        <div>
+            <TextTranslation textName="ClassInfo-Table-DOB.1" kClass="pcview"/>
+            <TextTranslation textName="ClassInfo-Table-DOB.2" kClass="mbview"/>
+        </div>,
+    dataIndex: 'DOB',
+    key: 'DOB',
+    width: 12,
+    },
+    {
+    title: 
+        <div>
+            <TextTranslation textName="ClassInfo-Table-Address.1" kClass="pcview"/>
+            <TextTranslation textName="ClassInfo-Table-Address.2" kClass="mbview"/>
+        </div>,
+    dataIndex: 'Address',
+    key: 'Address',
+    width: 12,
+    }    
+      
+];
+
+const listOfColumnType = {
+    subjectscores : columnsOfSubjectDetails,
+    studentdetails : columnsOfStudentDetails
+}
+
 // for (let i = 0; i < 100; i++) {
 //   data.push({
 //     key: i,
@@ -125,6 +199,7 @@ const calculateFinalScore = (e) => {
 
 const StudentScoresTable = (props) => {
     
+
     const [classDetailsData, setClassDetailsData] = useState([{}]);
     const [tableData, setTableData] = useState([]);
     const [tableEditable, setTableEditable] = useState(false);
@@ -178,13 +253,15 @@ const StudentScoresTable = (props) => {
 
                 let a = {};
                 Object.keys(e).forEach((key)=>{ 
+                    
                     a[key] = (key === 'k15mins' || key === 'k45mins' || key === 'kmidterm' || key === 'kendterm' || key === 'final' ) ? 
                     <InputNumber
                             style={{width: "100%"}}
                             min={1} max={10}
-                            disabled={!tableEditable}
+                            disabled={(key==="final")?true:!tableEditable}
                             defaultValue={e[key] || 0}
                             onChange={(value)=> updateListChangedRow(e, key, value)}
+                            step={0.5}
                         /> : e[key]
                     a["key"] = i;
                 });
@@ -216,7 +293,7 @@ const StudentScoresTable = (props) => {
     return (
         <Table 
             loading={props.isLoading || false}
-            columns={columns}
+            columns={listOfColumnType[props.columnType]}
             dataSource={tableData}
             bordered
             size="middle"

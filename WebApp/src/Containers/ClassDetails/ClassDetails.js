@@ -29,7 +29,7 @@ const ClassDetails = (props) => {
     const { Panel } = Collapse;
 
     // Fetch data
-    const [selectedClassDetailsData, setSelectedClassDetailsData] = useState();
+    const [selectedClassDetailsData, setSelectedClassDetailsData] = useState({});
     const [isFetchingClassDetailsData, setIsFetchingClassDetailsData] = useState(false);
 
     const [tableEditable, setTableEditable] = useState(false);
@@ -61,15 +61,23 @@ const ClassDetails = (props) => {
     const fetchClassDetailsData = () => {
         setIsFetchingClassDetailsData(true);
 
-        sendRequest(`https://api.kunbr0.com/se104/subjects/${selectedClass}/${selectedSubject}.php`)
+        let urlRequest = "";
+        if(selectedSubject === "Student Details"){
+            urlRequest = `https://api.kunbr0.com/se104/class/${selectedClass}.php`
+        }else{
+            urlRequest = `https://api.kunbr0.com/se104/subjects/${selectedClass}/${selectedSubject}.php`;
+        }
+
+        sendRequest(urlRequest)
             .then((response) => {
                 return response.json();
             })
 
             .then(sleeper(500))
 
-            .then((students) => {
-                setSelectedClassDetailsData(students);
+            .then((data) => {
+                console.log(data);
+                setSelectedClassDetailsData(data);
                 setIsFetchingClassDetailsData(false);
                 message.success(`${selectedSubject} data of ${selectedClass} loaded successfully !`);
             })
@@ -137,7 +145,7 @@ const ClassDetails = (props) => {
                 </Button>
                 </Panel>
             </Collapse>
-            <StudentScoreTable tableEditable={tableEditable} classDetailsData={selectedClassDetailsData} isLoading={isFetchingClassDetailsData} />
+            <StudentScoreTable tableEditable={tableEditable} classDetailsData={selectedClassDetailsData.data} columnType={selectedClassDetailsData.type} isLoading={isFetchingClassDetailsData} />
         </div>
     );
 }
