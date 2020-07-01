@@ -63,6 +63,7 @@ const SelectWithTyping = (props) => {
             }
             disabled={props.disabled || false}
             //value={selectedValue}
+            defaultValue={props.defaultValue}
         >
             {optionElms}
         </Select>

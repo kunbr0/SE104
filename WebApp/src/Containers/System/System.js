@@ -3,7 +3,7 @@ import { Menu, Dropdown , message } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import "./System.css"
 import {useTranslation} from 'react-i18next';
-
+import SelectWithTyping from '../../Components/SelectWithTyping/SelectWithTyping';
 
 
 const SSystem = () => 
@@ -14,40 +14,31 @@ const SSystem = () =>
 }
 
 
-const onClick = ({ key }) => {
+const changeLanguage = (key) => {
+    let langCode = ListOfLang[ListOfLang.findIndex(i=>i.name === key)].value;
     //message.info(`Click on item ${key}`);
-    handleChangeLanguage(key);
+    handleChangeLanguage(langCode);
 };
 
-const menu = (
-    <Menu onClick={onClick}>
-      <Menu.Item key="en">
-        <a target="_blank" rel="noopener noreferrer">
-          English
-        </a>
-      </Menu.Item>
-      <Menu.Item key="vi">
-        <a target="_blank" rel="noopener noreferrer">
-          Vietnamese
-        </a>
-      </Menu.Item>
-      <Menu.Item key="cn">
-        <a target="_blank" rel="noopener noreferrer">
-          Chinese
-        </a>
-      </Menu.Item>
-      <Menu.Item>blah</Menu.Item>
-    </Menu>
-  );
+
+const ListOfLang = [
+    {langId  : 1, name: "English", value : "en"},
+    {langId  : 2, name: "Vietnamese", value : "vi"},
+    {langId  : 3, name: "Chinese", value : "cn"}
+]
+
 
 
 
     return (
-        <Dropdown overlay={menu}>
-            <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-            Language <DownOutlined />
-            </a>
-        </Dropdown>
+        
+        <SelectWithTyping 
+        options={ListOfLang} 
+        optionName="name" optionKey="langId" 
+        placeholder="Select language"
+        callbackSelection={changeLanguage} 
+        defaultValue={ListOfLang[ListOfLang.findIndex(i=>i.value === localStorage.getItem("i18nextLng"))].name || ""}
+        />
     );
 }
 
