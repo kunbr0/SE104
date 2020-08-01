@@ -43,10 +43,20 @@ function removeStudent(dbConnection, req, res, urlData)
     });
 }
 
+function getStudentListWithAvg(dbConnection, req, res, urlData)
+{
+    dbConnection.query(storage.Query_GetAvgScore(), [urlData.sem_name], (err, data, fields) => 
+    {
+        if (err) { res.status(statusCodes.NotFound).send(err); return; }
+        res.status(statusCodes.OK).json(data);
+    });
+}
+
 module.exports = 
 {
     InsertStudent: insertStudent,
     UpdateStudent: updateStudent,
     GetStudentDetail: getStudentDetail,
-    RemoveStudent: removeStudent
+    RemoveStudent: removeStudent,
+    GetStudentListWithAvg: getStudentListWithAvg
 };

@@ -50,6 +50,7 @@ function processStudentQueries(app, dbConnection)
 {
     methods.AppPost(app, syntaxes.insert, studentProc.InsertStudent, dbConnection);
     methods.AppPost(app, syntaxes.update, studentProc.UpdateStudent, dbConnection);
+    methods.AppPost(app, syntaxes.get, studentProc.GetStudentListWithAvg, dbConnection);
     methods.AppGet(app, syntaxes.detail, studentProc.GetStudentDetail, dbConnection);
     methods.AppGet(app, syntaxes.remove, studentProc.RemoveStudent, dbConnection);
 }

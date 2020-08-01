@@ -126,6 +126,11 @@ function getSubjectTranscript()
     return queryJSON.SUBJECT_TRANSCRIPT;
 }
 
+function getAvgScore()
+{
+    return queryJSON.AVG_SCORE;
+}
+
 module.exports = 
 {
     Query_SetupDatabase             : setupDatabase,
@@ -143,5 +148,6 @@ module.exports =
     Query_RemoveStudent             : removeStudent,
     Query_InsertClass               : insertClass,
     Query_GetPasswordFrom           : getPasswordFrom,
-    Query_GetSubjectTranscript      : getSubjectTranscript
+    Query_GetSubjectTranscript      : getSubjectTranscript,
+    Query_GetAvgScore               : getAvgScore
 }
