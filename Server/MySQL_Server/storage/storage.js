@@ -122,6 +122,11 @@ function getPasswordFrom(username)
     return query;
 }
 
+function getSubjectTranscript()
+{
+    return queryJSON.SUBJECT_TRANSCRIPT;
+}
+
 module.exports = 
 {
     Query_SetupDatabase             : setupDatabase,
@@ -138,5 +143,6 @@ module.exports =
     Query_GetStudent                : getStudent,
     Query_RemoveStudent             : removeStudent,
     Query_InsertClass               : insertClass,
-    Query_GetPasswordFrom           : getPasswordFrom
+    Query_GetPasswordFrom           : getPasswordFrom,
+    Query_GetSubjectTranscript      : getSubjectTranscript
 }

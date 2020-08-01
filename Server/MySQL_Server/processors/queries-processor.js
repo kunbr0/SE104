@@ -12,6 +12,7 @@ let teacherProc     = require('./objects/teacher-proc');
 let authProc        = require('./objects/auth-proc');
 let setupProc       = require('./objects/setup-proc');
 let classProc       = require('./objects/class-proc');
+let transcriptProc  = require('./objects/transcript-proc');
 
 function processListStudentsInClass(dbConnection, req, res, urlData)
 {
@@ -65,6 +66,17 @@ function processClassQueries(app, dbConnection)
 }
 //**************************************************
 
+// *****This function processes student queries*****
+function processTranscriptQueries(app, dbConnection)
+{
+    methods.AppPost(app, syntaxes.get, transcriptProc.GetTransciptOfSubject, dbConnection);
+    // methods.AppPost(app, syntaxes.update, studentProc.UpdateStudent, dbConnection);
+    // methods.AppGet(app, syntaxes.detail, classProc.GetClassStudent, dbConnection);
+    // methods.AppGet(app, syntaxes.summary, classProc.GetNumberOfStudentsInClass, dbConnection);
+    // methods.AppGet(app, syntaxes.remove, studentProc.RemoveStudent, dbConnection);
+}
+//**************************************************
+
 // *****This function processes teacher (user) queries*****
 function processTeacherQueries(app, dbConnection)
 {
@@ -101,5 +113,6 @@ module.exports =
     ProcessTeacherQueries: processTeacherQueries,
     ProcessAuthenticationQueries: processAuthenticationQueries,
     ProcessSetupQueries: processSetupQueries,
-    ProcessClassQueries: processClassQueries
+    ProcessClassQueries: processClassQueries,
+    ProcessTranscriptQueries: processTranscriptQueries
 }

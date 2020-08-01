@@ -16,6 +16,7 @@ const parser    = require('body-parser');
 let api_v1      = express();
 let studentApp  = express();
 let classApp    = express();
+let trscrApp    = express();
 let teacherApp  = express();
 let authApp     = express();
 let setupApp    = express();
@@ -36,6 +37,9 @@ studentApp.use(parser.json());
 
 api_v1.use('/class', classApp); 
 classApp.use(parser.json());
+
+api_v1.use('/transcript', trscrApp); 
+trscrApp.use(parser.json());
 
 api_v1.use('/teacher', teacherApp); 
 teacherApp.use(parser.json());
@@ -76,6 +80,7 @@ else
         processor.ProcessClassQueries(classApp, connection);
         processor.ProcessTeacherQueries(teacherApp, connection);
         processor.ProcessAuthenticationQueries(authApp, connection);
+        processor.ProcessTranscriptQueries(trscrApp, connection);
     });
 
 }
