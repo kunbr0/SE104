@@ -82,4 +82,7 @@ JSON:
 #### Query: List students in a class ####
 Url: /v1/class/detail/${class_name}</br>Ex: v1/class/detail/10A1</br>
 Method: GET
+#### Query: Get number of students in a class ####
+Url: /v1/class/summary/${class_name}</br>Ex: v1/class/summary/10A1</br>
+Method: GET
 
