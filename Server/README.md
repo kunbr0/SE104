@@ -78,3 +78,8 @@ JSON:
   "mail": "sampleemail@gmail.com" 
 }
 ```
+### Class Objects ###
+#### Query: List students in a class ####
+Url: /v1/class/detail/${class_name}</br>Ex: v1/class/detail/10A1</br>
+Method: GET
+
