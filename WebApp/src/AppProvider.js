@@ -4,6 +4,7 @@ import enUS from 'antd/es/locale/en_US';
 import {ThemeProvider} from "styled-components";
 import {useSelector} from "react-redux";
 
+
 export default function AppProvider({children}) {
 
     const currentTheme = useSelector(state => state.themeSwitcher.current);
