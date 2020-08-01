@@ -83,8 +83,18 @@ Method: GET
 #### Query: Get number of students in a class ####
 Url: /v1/class/summary/${class_name}</br>Ex: v1/class/summary/10A1</br>
 Method: GET
+### FORM 3 - Student List ###
+#### Query: Get student list and average of a semester ####
+Url: /v1/student/get</br>
+Method: POST
+JSON: </br>
+```
+{ 
+  "sem_name": "HỌC KÌ 1",
+}
+```
 ### FORM 4 - Transcripts ###
-#### Modify: Get transcript (mark) of a class in a semester ####
+#### Query: Get transcript (mark) of a class in a semester ####
 Url: /v1/transcript/get</br>
 Method: POST
 JSON: </br>
