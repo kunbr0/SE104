@@ -11,6 +11,8 @@ let studentProc     = require('./objects/student-proc');
 let teacherProc     = require('./objects/teacher-proc');
 let authProc        = require('./objects/auth-proc');
 let setupProc       = require('./objects/setup-proc');
+let classProc       = require('./objects/class-proc');
+let transcriptProc  = require('./objects/transcript-proc');
 
 function processListStudentsInClass(dbConnection, req, res, urlData)
 {
@@ -40,7 +42,7 @@ function processNumberOfStudentsInClass(dbConnection, req, res, urlData)
 function processQuery(app, dbConnection)
 {
     methods.AppGet(app, syntaxes.listStudentsInClass, processListStudentsInClass, dbConnection);
-    methods.AppGet(app, syntaxes.numberOfStudentsInClass, processNumberOfStudentsInClass, dbConnection);
+    // methods.AppGet(app, syntaxes.numberOfStudentsInClass, processNumberOfStudentsInClass, dbConnection);
 }
 
 // *****This function processes student queries*****
@@ -50,6 +52,28 @@ function processStudentQueries(app, dbConnection)
     methods.AppPost(app, syntaxes.update, studentProc.UpdateStudent, dbConnection);
     methods.AppGet(app, syntaxes.detail, studentProc.GetStudentDetail, dbConnection);
     methods.AppGet(app, syntaxes.remove, studentProc.RemoveStudent, dbConnection);
+}
+//**************************************************
+
+// *****This function processes student queries*****
+function processClassQueries(app, dbConnection)
+{
+    // methods.AppPost(app, syntaxes.insert, studentProc.InsertStudent, dbConnection);
+    // methods.AppPost(app, syntaxes.update, studentProc.UpdateStudent, dbConnection);
+    methods.AppGet(app, syntaxes.detail, classProc.GetClassStudent, dbConnection);
+    methods.AppGet(app, syntaxes.summary, classProc.GetNumberOfStudentsInClass, dbConnection);
+    // methods.AppGet(app, syntaxes.remove, studentProc.RemoveStudent, dbConnection);
+}
+//**************************************************
+
+// *****This function processes student queries*****
+function processTranscriptQueries(app, dbConnection)
+{
+    methods.AppPost(app, syntaxes.get, transcriptProc.GetTransciptOfSubject, dbConnection);
+    // methods.AppPost(app, syntaxes.update, studentProc.UpdateStudent, dbConnection);
+    // methods.AppGet(app, syntaxes.detail, classProc.GetClassStudent, dbConnection);
+    // methods.AppGet(app, syntaxes.summary, classProc.GetNumberOfStudentsInClass, dbConnection);
+    // methods.AppGet(app, syntaxes.remove, studentProc.RemoveStudent, dbConnection);
 }
 //**************************************************
 
@@ -88,5 +112,7 @@ module.exports =
     ProcessStudentQueries: processStudentQueries,
     ProcessTeacherQueries: processTeacherQueries,
     ProcessAuthenticationQueries: processAuthenticationQueries,
-    ProcessSetupQueries: processSetupQueries
+    ProcessSetupQueries: processSetupQueries,
+    ProcessClassQueries: processClassQueries,
+    ProcessTranscriptQueries: processTranscriptQueries
 }

@@ -15,14 +15,20 @@ const parser    = require('body-parser');
 // Apps
 let api_v1      = express();
 let studentApp  = express();
+let classApp    = express();
+let trscrApp    = express();
 let teacherApp  = express();
 let authApp     = express();
 let setupApp    = express();
 let app         = express();
 
+<<<<<<< HEAD
 // Database connection
 let connection  = mysql.createConnection(config);
 const port      = 8888;
+=======
+const port      = 8080;
+>>>>>>> cc0293d8689f1290a86f04b610851bda7d8c64a7
 
 app.use(cors());
 
@@ -34,6 +40,12 @@ api_v1.use(parser.json());
 
 api_v1.use('/student', studentApp); 
 studentApp.use(parser.json());
+
+api_v1.use('/class', classApp); 
+classApp.use(parser.json());
+
+api_v1.use('/transcript', trscrApp); 
+trscrApp.use(parser.json());
 
 api_v1.use('/teacher', teacherApp); 
 teacherApp.use(parser.json());
@@ -71,8 +83,14 @@ setupApp.use(parser.json());
         console.log("Database is connected!\n\n");
         processor.ProcessQuery(api_v1, connection);
         processor.ProcessStudentQueries(studentApp, connection);
+        processor.ProcessClassQueries(classApp, connection);
         processor.ProcessTeacherQueries(teacherApp, connection);
+<<<<<<< HEAD
         //processor.ProcessAuthenticationQueries(authApp, connection);
+=======
+        processor.ProcessAuthenticationQueries(authApp, connection);
+        processor.ProcessTranscriptQueries(trscrApp, connection);
+>>>>>>> cc0293d8689f1290a86f04b610851bda7d8c64a7
     });
 
 }

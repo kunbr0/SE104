@@ -67,18 +67,16 @@ function removeStudent(id_student)
     return query;
 }
 
-function listStudentsInClass(id_class)
+function listStudentsInClass()
 {
-    let query = queryJSON.LIST_STUDENT_IN_CLASS + `'${id_class}';`;
+    let query = queryJSON.LIST_STUDENT_IN_CLASS; 
     // console.log(query);
     return query;
 }
 
-function getNumberOfStudentsInClass(id_class)
+function getNumberOfStudentsInClass()
 {
-    let queryPack = queryJSON.NUMBER_OF_STUDENTS_IN_CLASS;
-    // console.log(queryPack);
-    let query = queryPack.MAIN_PART + `'${id_class}'` + queryPack.ALIAS;
+    let query = queryJSON.NUMBER_OF_STUDENTS_IN_CLASS;
     // console.log(query);
     return query;
 }
@@ -124,6 +122,11 @@ function getPasswordFrom(username)
     return query;
 }
 
+function getSubjectTranscript()
+{
+    return queryJSON.SUBJECT_TRANSCRIPT;
+}
+
 module.exports = 
 {
     Query_SetupDatabase             : setupDatabase,
@@ -140,5 +143,6 @@ module.exports =
     Query_GetStudent                : getStudent,
     Query_RemoveStudent             : removeStudent,
     Query_InsertClass               : insertClass,
-    Query_GetPasswordFrom           : getPasswordFrom
+    Query_GetPasswordFrom           : getPasswordFrom,
+    Query_GetSubjectTranscript      : getSubjectTranscript
 }

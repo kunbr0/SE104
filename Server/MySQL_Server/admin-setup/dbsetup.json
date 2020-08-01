@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"dbms":"mysql","hostname":"localhost","port":8888,"username":"bach","password":"Bach01248","dbname":"QLHSDEMO_FINAL","table_prefix":"sm_"}
+=======
+{"dbms":"mysql","hostname":"localhost","port":8080,"username":"bach","password":"Bach01248","dbname":"QLHSDEMO_FINAL","table_prefix":"qlhs_"}
+>>>>>>> cc0293d8689f1290a86f04b610851bda7d8c64a7
