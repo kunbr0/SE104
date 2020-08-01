@@ -22,13 +22,7 @@ let authApp     = express();
 let setupApp    = express();
 let app         = express();
 
-<<<<<<< HEAD
-// Database connection
-let connection  = mysql.createConnection(config);
-const port      = 8888;
-=======
 const port      = 8080;
->>>>>>> cc0293d8689f1290a86f04b610851bda7d8c64a7
 
 app.use(cors());
 
@@ -85,12 +79,8 @@ setupApp.use(parser.json());
         processor.ProcessStudentQueries(studentApp, connection);
         processor.ProcessClassQueries(classApp, connection);
         processor.ProcessTeacherQueries(teacherApp, connection);
-<<<<<<< HEAD
-        //processor.ProcessAuthenticationQueries(authApp, connection);
-=======
         processor.ProcessAuthenticationQueries(authApp, connection);
         processor.ProcessTranscriptQueries(trscrApp, connection);
->>>>>>> cc0293d8689f1290a86f04b610851bda7d8c64a7
     });
 
 }
