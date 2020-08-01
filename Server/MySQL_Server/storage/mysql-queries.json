@@ -4,20 +4,19 @@
     "LIST_ALL_CLASSES": "SELECT * FROM sm_class;",
     "LIST_SUBJECTS": "SELECT * FROM sm_subject;",
 
-    "INSERT_STUDENT": "INSERT INTO sm_student(id_student, name_student, gender, birth, address, email, id_class) VALUES",
+    "INSERT_STUDENT": "INSERT INTO sm_student(id, name, gender, dob, address, email) VALUES",
     "UPDATE_STUDENT":
     {
         "MAIN_PART": "UPDATE sm_student SET ",
-        "NAME": "name_student = ", 
+        "NAME": "name = ", 
         "GENDER": ", gender = ",
-        "DOB": ", birth = ",
+        "DOB": ", dob = ",
         "ADDRESS": ", address = ",
         "EMAIL": ", email = ",
-        "CLASSID": ", id_class = ", 
-        "STUDENT_ID": " WHERE id_student = "
+        "STUDENT_ID": " WHERE id = "
     },
-    "STUDENT_DETAIL":"SELECT id_student, name_student, gender, birth, address, email, id_class FROM sm_student WHERE id_student=",
-    "REMOVE_STUDENT":"DELETE FROM sm_student WHERE id_student = ",
+    "STUDENT_DETAIL":"SELECT * FROM sm_student WHERE id=",
+    "REMOVE_STUDENT":"DELETE FROM sm_student WHERE id= ",
 
     "INSERT_CLASS": "INSERT INTO sm_class(id_class, name_class, grade, session) VALUES(",
     "LIST_STUDENT_IN_CLASS": "SELECT sm_student.name AS Name, sm_student.gender AS Gender, sm_student.dob AS Year, sm_student.address AS Address, sm_class.name AS Class FROM sm_class_list,sm_class,sm_student WHERE sm_class_list.class=sm_class.id AND sm_class_list.student=sm_student.id AND sm_class.name=?;",

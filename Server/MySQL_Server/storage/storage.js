@@ -30,15 +30,15 @@ function setupTables(onCompleted, onError)
     });
 }
 
-function insertStudent(id_student, name_student, gender, birth, address, email, id_class)
+function insertStudent(id_student, name_student, gender, birth, address, email)
 {
     let query = queryJSON.INSERT_STUDENT + 
-                `('${id_student}', '${name_student}', '${gender}', '${birth}', '${address}', '${email}', '${id_class}');`;
+                `('${id_student}', '${name_student}', '${gender}', '${birth}', '${address}', '${email}');`;
     console.log(query);
     return query;
 }
 
-function updateStudent(id_student, name_student, gender, birth, address, email, id_class)
+function updateStudent(id_student, name_student, gender, birth, address, email)
 {
     let pack = queryJSON.UPDATE_STUDENT;
     let query = pack.MAIN_PART + 
@@ -47,7 +47,6 @@ function updateStudent(id_student, name_student, gender, birth, address, email, 
                 `${pack.DOB}'${birth}'` + 
                 `${pack.ADDRESS}'${address}'` + 
                 `${pack.EMAIL}'${email}'` + 
-                `${pack.CLASSID}'${id_class}'` + 
                 `${pack.STUDENT_ID}'${id_student}';`;
     console.log(query);
     return query;
