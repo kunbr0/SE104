@@ -67,9 +67,9 @@ function removeStudent(id_student)
     return query;
 }
 
-function listStudentsInClass(id_class)
+function listStudentsInClass()
 {
-    let query = queryJSON.LIST_STUDENT_IN_CLASS + `'${id_class}';`;
+    let query = queryJSON.LIST_STUDENT_IN_CLASS; 
     // console.log(query);
     return query;
 }

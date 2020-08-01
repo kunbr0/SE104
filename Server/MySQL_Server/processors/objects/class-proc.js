@@ -12,8 +12,18 @@ function insertClass(dbConnection, req, res, urlData)
     // });
 }
 
+function getClassStudent(dbConnection, req, res, urlData)
+{
+    dbConnection.query(storage.Query_ListStudentsInClass(), [req.params.id], (err, data, fields) => 
+    {
+        if (err) throw err;
+        res.status(statusCodes.OK).json(data);
+    }); 
+}
+
 
 module.exports = 
 {
-    InsertClass: insertClass
+    InsertClass: insertClass,
+    GetClassStudent: getClassStudent
 }

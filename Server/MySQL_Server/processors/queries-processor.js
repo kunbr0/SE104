@@ -11,6 +11,7 @@ let studentProc     = require('./objects/student-proc');
 let teacherProc     = require('./objects/teacher-proc');
 let authProc        = require('./objects/auth-proc');
 let setupProc       = require('./objects/setup-proc');
+let classProc       = require('./objects/class-proc');
 
 function processListStudentsInClass(dbConnection, req, res, urlData)
 {
@@ -53,6 +54,16 @@ function processStudentQueries(app, dbConnection)
 }
 //**************************************************
 
+// *****This function processes student queries*****
+function processClassQueries(app, dbConnection)
+{
+    // methods.AppPost(app, syntaxes.insert, studentProc.InsertStudent, dbConnection);
+    // methods.AppPost(app, syntaxes.update, studentProc.UpdateStudent, dbConnection);
+    methods.AppGet(app, syntaxes.detail, classProc.GetClassStudent, dbConnection);
+    // methods.AppGet(app, syntaxes.remove, studentProc.RemoveStudent, dbConnection);
+}
+//**************************************************
+
 // *****This function processes teacher (user) queries*****
 function processTeacherQueries(app, dbConnection)
 {
@@ -88,5 +99,6 @@ module.exports =
     ProcessStudentQueries: processStudentQueries,
     ProcessTeacherQueries: processTeacherQueries,
     ProcessAuthenticationQueries: processAuthenticationQueries,
-    ProcessSetupQueries: processSetupQueries
+    ProcessSetupQueries: processSetupQueries,
+    ProcessClassQueries: processClassQueries
 }
