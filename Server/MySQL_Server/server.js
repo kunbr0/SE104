@@ -20,18 +20,14 @@ let authApp     = express();
 let setupApp    = express();
 let app         = express();
 
-<<<<<<< HEAD
 // Database connection
 let connection  = mysql.createConnection(config);
 const port      = 8888;
-=======
-const port      = 8080;
->>>>>>> 85b4a87ce6855b4b420bd9f8e91425e43fa0a74b
 
 app.use(cors());
 
 // serve the static files from the react app
-app.use(express.static(path.join(__dirname, 'client'), {index: false}));
+//app.use(express.static(path.join(__dirname, 'client'), {index: false}));
 
 app.use('/v1', api_v1);
 api_v1.use(parser.json());
@@ -42,22 +38,22 @@ studentApp.use(parser.json());
 api_v1.use('/teacher', teacherApp); 
 teacherApp.use(parser.json());
 
-api_v1.use('/auth', authApp); 
-authApp.use(parser.json());
+//api_v1.use('/auth', authApp); 
+//authApp.use(parser.json());
 
 app.use('/setup', setupApp);
 setupApp.use(parser.json());
 
 // Listen for queries and process
-clientProcessor.ProcessClient(app);
+//clientProcessor.ProcessClient(app);
 
-let appList = [studentApp, teacherApp, authApp];
+//let appList = [studentApp, teacherApp, authApp];
 
-if (sysUtil.IsFirstTime())
-{
-    processor.ProcessSetupQueries(setupApp, appList);
-}
-else 
+// if (sysUtil.IsFirstTime())
+// {
+//     processor.ProcessSetupQueries(setupApp, appList);
+// }
+// else 
 {
     // Database connection
     let connection  = mysql.createConnection(config.CreateMySQLDBConfig('./admin-setup/dbsetup.json'));
@@ -76,7 +72,7 @@ else
         processor.ProcessQuery(api_v1, connection);
         processor.ProcessStudentQueries(studentApp, connection);
         processor.ProcessTeacherQueries(teacherApp, connection);
-        processor.ProcessAuthenticationQueries(authApp, connection);
+        //processor.ProcessAuthenticationQueries(authApp, connection);
     });
 
 }
