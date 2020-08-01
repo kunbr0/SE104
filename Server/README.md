@@ -34,8 +34,7 @@ JSON: </br>
   "gender":"samplegender", 
   "dob":"samplebirthday", 
   "addr":"sampleaddress", 
-  "mail":"sampleemail@gmail.com", 
-  "classid": "sampleclassid" 
+  "mail":"sampleemail@gmail.com"
 }
 ```
 
@@ -50,8 +49,7 @@ JSON: </br>
   "gender":"samplegender", 
   "dob":"samplebirthday", 
   "addr":"sampleaddress", 
-  "mail":"sampleemail@gmail.com", 
-  "classid": "sampleclassid" 
+  "mail":"sampleemail@gmail.com"
 }
 ```
 **Note: This action will update information of student who has student_id = "sampleid"**
