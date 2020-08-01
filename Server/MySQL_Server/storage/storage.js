@@ -74,11 +74,9 @@ function listStudentsInClass()
     return query;
 }
 
-function getNumberOfStudentsInClass(id_class)
+function getNumberOfStudentsInClass()
 {
-    let queryPack = queryJSON.NUMBER_OF_STUDENTS_IN_CLASS;
-    // console.log(queryPack);
-    let query = queryPack.MAIN_PART + `'${id_class}'` + queryPack.ALIAS;
+    let query = queryJSON.NUMBER_OF_STUDENTS_IN_CLASS;
     // console.log(query);
     return query;
 }

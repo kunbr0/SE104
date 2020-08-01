@@ -7,6 +7,7 @@ const syntaxes =
     insert: `/add`,
     update: `/update`,
     detail: `/detail/:id`,
+    summary: `/summary/:id`,
     remove: `/remove/:id`,
 
     login: `/login`,
