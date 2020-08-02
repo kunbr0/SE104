@@ -86,6 +86,23 @@ Method: GET
 #### Query: Get all existing classes ####
 Url: /v1/class/get</br>
 Method: GET
+#### Modify: Assign a list of students to classes ####
+Url: /v1/class/update </br>
+Method: POST
+```
+JSON: 
+[
+  {
+    "class": 1,
+    "student_id": "18520113"
+  },
+  {
+    "class": 2,
+    "student_id": "18520009"
+  }
+]
+```
+"class" is class_id (int)
 ### FORM 3 - Student List ###
 #### Query: Get student list and average of a semester ####
 Url: /v1/student/get</br>
