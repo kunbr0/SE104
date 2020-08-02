@@ -39,10 +39,24 @@ function getAllClasses(dbConnection, req, res, urlData)
     }); 
 }
 
+function addStudent(dbConnection, req, res, urlData)
+{
+    console.log(urlData[0]);
+
+    urlData.forEach(request => {
+        dbConnection.query(storage.Query_AssignStudentClass(), [request.class, request.student_id], (err, data, fields) =>
+        {
+            if (err) throw err;
+            res.status(statusCodes.OK).json(data);
+        });
+    });
+}
+
 module.exports = 
 {
     InsertClass: insertClass,
     GetClassStudent: getClassStudent,
     GetNumberOfStudentsInClass: getNumberOfStudentsInClass,
-    GetAllClasses: getAllClasses
+    GetAllClasses: getAllClasses,
+    AddStudent: addStudent
 }

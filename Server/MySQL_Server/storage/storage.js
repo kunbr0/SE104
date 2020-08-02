@@ -131,6 +131,11 @@ function getAvgScore()
     return queryJSON.AVG_SCORE;
 }
 
+function assignStudentClass()
+{
+    return queryJSON.ASSIGN_STUDENT_CLASS;
+}
+
 module.exports = 
 {
     Query_SetupDatabase             : setupDatabase,
@@ -149,5 +154,6 @@ module.exports =
     Query_InsertClass               : insertClass,
     Query_GetPasswordFrom           : getPasswordFrom,
     Query_GetSubjectTranscript      : getSubjectTranscript,
-    Query_GetAvgScore               : getAvgScore
+    Query_GetAvgScore               : getAvgScore,
+    Query_AssignStudentClass        : assignStudentClass
 }
