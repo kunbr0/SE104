@@ -63,6 +63,7 @@ function processClassQueries(app, dbConnection)
     // methods.AppPost(app, syntaxes.update, studentProc.UpdateStudent, dbConnection);
     methods.AppGet(app, syntaxes.detail, classProc.GetClassStudent, dbConnection);
     methods.AppGet(app, syntaxes.summary, classProc.GetNumberOfStudentsInClass, dbConnection);
+    methods.AppGet(app, syntaxes.get, classProc.GetAllClasses, dbConnection);
     // methods.AppGet(app, syntaxes.remove, studentProc.RemoveStudent, dbConnection);
 }
 //**************************************************

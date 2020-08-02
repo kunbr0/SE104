@@ -30,9 +30,19 @@ function getNumberOfStudentsInClass(dbConnection, req, res, urlData)
     }); 
 }
 
+function getAllClasses(dbConnection, req, res, urlData)
+{
+    dbConnection.query(storage.Query_ListAllClasses(), (err, data, fields) => 
+    {
+        if (err) throw err;
+        res.status(statusCodes.OK).json(data);
+    }); 
+}
+
 module.exports = 
 {
     InsertClass: insertClass,
     GetClassStudent: getClassStudent,
-    GetNumberOfStudentsInClass: getNumberOfStudentsInClass
+    GetNumberOfStudentsInClass: getNumberOfStudentsInClass,
+    GetAllClasses: getAllClasses
 }

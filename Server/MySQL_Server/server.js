@@ -44,8 +44,8 @@ trscrApp.use(parser.json());
 api_v1.use('/teacher', teacherApp); 
 teacherApp.use(parser.json());
 
-//api_v1.use('/auth', authApp); 
-//authApp.use(parser.json());
+api_v1.use('/auth', authApp); 
+authApp.use(parser.json());
 
 app.use('/setup', setupApp);
 setupApp.use(parser.json());
