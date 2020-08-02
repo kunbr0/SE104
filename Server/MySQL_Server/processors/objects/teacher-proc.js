@@ -5,7 +5,7 @@ function insertTeacher(dbConnection, req, res, urlData)
 {
     dbConnection.query(storage.Query_InsertTeacher(
         urlData.id, urlData.passwd, urlData.username, urlData.fullname, 
-        urlData.gender, urlData.dob, urlData.addr, urlData.mail
+        urlData.gender, urlData.dob, urlData.addr, urlData.mail, urlData.phone
     ), (err, data, fields) => 
     {
         if (err) throw err;

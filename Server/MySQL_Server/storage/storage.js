@@ -80,13 +80,13 @@ function getNumberOfStudentsInClass()
     return query;
 }
 
-function insertTeacher(id_user, password, username, fullname, gender, birth, address, email)
+function insertTeacher(id_user, password, username, fullname, gender, birth, address, email, phone)
 {
     // let saltRounds = 10;
     // let encryptedPassword = bcrypt.hashSync(password, saltRounds);
     let encryptedPassword = password;
     let query = queryJSON.INSERT_TEACHER + 
-                `('${id_user}', '${encryptedPassword}', '${username}', '${fullname}', '${gender}', '${birth}', '${address}', '${email}');`;
+                `('${id_user}', '${encryptedPassword}', '${username}', '${fullname}', '${gender}', '${birth}', '${address}', '${email}', '${phone}');`;
     console.log(query);
     return query;
 }
