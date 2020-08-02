@@ -1,8 +1,8 @@
 const loginStatus = 
 {
-    LoginSuccessfully: 0,
-    InvalidUsername: 1,
-    WrongPassword: 2
+    LoginSuccessfully: 1,
+    InvalidUsername: 0,
+    WrongPassword: -1
 }
 
 module.exports = loginStatus;
