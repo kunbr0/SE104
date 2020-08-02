@@ -1,5 +1,6 @@
 let storage = require('../../storage/storage');
 let statusCodes = require('../status-codes');
+let loginStatus = require('../login-status');
 
 function doLogin(dbConnection, req, res, urlData)
 {
@@ -13,17 +14,17 @@ function doLogin(dbConnection, req, res, urlData)
 
         if (data[0] === undefined)
         {
-            res.status(statusCodes.OK).json({status: "Invalid username"});
+            res.status(statusCodes.OK).json({status: loginStatus.InvalidUsername});
             return;
         }
 
         if (password.localeCompare(data[0].password) == 0)
         {
-            res.status(statusCodes.OK).json({status: "Successful"});
+            res.status(statusCodes.OK).json({status: loginStatus.LoginSuccessfully});
         }
         else 
         {
-            res.status(statusCodes.OK).json({status: "Wrong password"});
+            res.status(statusCodes.OK).json({status: loginStatus.WrongPassword});
         }
     });
 }
