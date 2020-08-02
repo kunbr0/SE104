@@ -16,20 +16,18 @@ export default function TestLogin() {
 
     const login = (e) => {
         if(e) e.preventDefault();
-        // sendLoginRequest(username, password);
+        //sendLoginRequest(username, password);
         agent.Auth.login(username, password).then(res => {
-            console.log(res);
-            localStorage.setItem("userData", res.token);
-            window.location.reload();
+            console.log(res.status);
+            if(res.status === "Successful"){
+                loginSuccessfully("sample_token_from_line23_pageTestLogin");
+            }
         })
     }
 
     const loginSuccessfully = (userData) =>{
 
-        userData.then((data)=>{
-            localStorage.setItem("userData", data.token);
-        });
-        
+        localStorage.setItem("userData", userData);
         window.location.reload();
     }
 
