@@ -1,9 +1,10 @@
 import superagentPromise from 'superagent-promise';
 import _superagent from 'superagent';
+import SConfig from '../config.json';
 
 const superagent = superagentPromise(_superagent, global.Promise);
 
-const API_ROOT = `https://api.kunbr0.com/se104`;
+const API_ROOT = `${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}` ;
 
 const encode = encodeURIComponent;
 const responseBody = res => res.body;
@@ -28,7 +29,7 @@ const requests = { //.withCredentials()
 
 const Auth = {
   login: (username, password) =>
-      requests.post('/login/index.php', {email: username, password: password}),
+      requests.post(`${SConfig.AuthRoutes.Login}`, {username: username, password: password}),
 }
 
 const Setup = {

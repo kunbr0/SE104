@@ -1,6 +1,6 @@
 import React from 'react';
 import './Login.css';
-
+import SConfig from '../../../config.json';
 
 import { useHttpClient } from '../../../Hooks/http-hook';
 
@@ -27,11 +27,12 @@ const Login = () => {
     }
 
     const sendLoginRequest = (user, pass) =>{
+        
         sendRequest(
-            "https://api.kunbr0.com/se104/login/index.php", 
+            `${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.AuthRoutes.Login}`, 
             "POST",
             JSON.stringify({
-                email : user,
+                username : user,
                 password: pass
             }),
             {

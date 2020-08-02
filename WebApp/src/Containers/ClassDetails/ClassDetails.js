@@ -108,7 +108,7 @@ const ClassDetails = (props) => {
                             value={props.match.params.classCode} 
                             callbackSelection={setSelectedClass} 
                             options={props.classData.classData} 
-                            optionName="className" optionKey="classID" 
+                            optionName="name" optionKey="id" 
                             placeholder="Select class"
                             disabled={isFetchingClassDetailsData}/>
                     </Card>

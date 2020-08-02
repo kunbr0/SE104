@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Redirect, Route, Switch} from 'react-router-dom';
 import { Layout, Menu, Breadcrumb, message } from 'antd';
-
+import SConfig from '../../config.json';
 
 import './MainLayout.css';
 
@@ -31,7 +31,7 @@ const SiderDemo = (props) => {
     },[classes]);
 
     useEffect(()=>{
-        fetch('https://api.kunbr0.com/se104/classes.php')
+        fetch(`${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.ClassRoutes.GetAllClass}`)
             .then((response) => {
                 return response.json();
             })
@@ -78,8 +78,8 @@ const SiderDemo = (props) => {
             if(parentMenu.key === 'classes' && classes){
                 classesElm = classes.map((e)=>{
                     return (
-                        <Menu.Item key={e.classID}>
-                            <NavLink to={`/class/${e.className}`}>{e.className}</NavLink>
+                        <Menu.Item key={e.id}>
+                            <NavLink to={`/class/${e.name}`}>{e.name}</NavLink>
                         </Menu.Item>
                     )
                 });
