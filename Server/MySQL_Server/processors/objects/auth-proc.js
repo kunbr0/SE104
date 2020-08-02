@@ -9,6 +9,14 @@ function doLogin(dbConnection, req, res, urlData)
     dbConnection.query(storage.Query_GetPasswordFrom(username), (err, data, fields) =>
     {
         if (err) res.status(statusCodes.Unauthorized).json({status: err});
+        console.log(data[0]);
+
+        if (data[0] === undefined)
+        {
+            res.status(statusCodes.OK).json({status: "Invalid username"});
+            return;
+        }
+
         if (password.localeCompare(data[0].password) == 0)
         {
             res.status(statusCodes.OK).json({status: "Successful"});
