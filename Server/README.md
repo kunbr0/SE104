@@ -83,6 +83,9 @@ Method: GET
 #### Query: Get number of students in a class ####
 Url: /v1/class/summary/${class_name}</br>Ex: v1/class/summary/10A1</br>
 Method: GET
+#### Query: Get all existing classes ####
+Url: /v1/class/get</br>
+Method: GET
 ### FORM 3 - Student List ###
 #### Query: Get student list and average of a semester ####
 Url: /v1/student/get</br>
