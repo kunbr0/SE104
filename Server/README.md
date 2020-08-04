@@ -77,9 +77,20 @@ JSON:
 }
 ```
 ### Class Objects ###
-#### Query: List students in a class ####
-Url: /v1/class/detail/${class_name}</br>Ex: v1/class/detail/10A1</br>
+#### [IMPORTANT] Query: Get Academic Years table (nien khoa)####
+Url: /v1/class/get/year</br>
 Method: GET
+#### Query: List students in a class ####
+Url: /v1/class/get/student</br>Ex: v1/class/get/student/</br>
+Method: POST</br>
+```
+JSON: 
+{
+  "class_name": "10A1",
+  "yearid": 1 
+}
+```
+***(yearid get from Academic Years reference table - this table should be got at initialization step)***
 #### Query: Get number of students in a class ####
 Url: /v1/class/summary/${class_name}</br>Ex: v1/class/summary/10A1</br>
 Method: GET
