@@ -13,6 +13,7 @@ let authProc        = require('./objects/auth-proc');
 let setupProc       = require('./objects/setup-proc');
 let classProc       = require('./objects/class-proc');
 let transcriptProc  = require('./objects/transcript-proc');
+let yearProc        = require('./objects/year-proc');
 
 function processListStudentsInClass(dbConnection, req, res, urlData)
 {
@@ -69,14 +70,17 @@ function processClassQueries(app, dbConnection)
 }
 //**************************************************
 
-// *****This function processes student queries*****
+// *****This function processes transcript queries*****
 function processTranscriptQueries(app, dbConnection)
 {
     methods.AppPost(app, syntaxes.get, transcriptProc.GetTransciptOfSubject, dbConnection);
-    // methods.AppPost(app, syntaxes.update, studentProc.UpdateStudent, dbConnection);
-    // methods.AppGet(app, syntaxes.detail, classProc.GetClassStudent, dbConnection);
-    // methods.AppGet(app, syntaxes.summary, classProc.GetNumberOfStudentsInClass, dbConnection);
-    // methods.AppGet(app, syntaxes.remove, studentProc.RemoveStudent, dbConnection);
+}
+//**************************************************
+
+// *****This function processes academic year queries*****
+function processYearQueries(app, dbConnection)
+{
+    methods.AppPost(app, syntaxes.insert, yearProc.InsertYear, dbConnection);
 }
 //**************************************************
 
@@ -117,5 +121,6 @@ module.exports =
     ProcessAuthenticationQueries: processAuthenticationQueries,
     ProcessSetupQueries: processSetupQueries,
     ProcessClassQueries: processClassQueries,
-    ProcessTranscriptQueries: processTranscriptQueries
+    ProcessTranscriptQueries: processTranscriptQueries,
+    ProcessYearQueries: processYearQueries
 }

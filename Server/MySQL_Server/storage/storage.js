@@ -156,5 +156,6 @@ module.exports =
     Query_GetSubjectTranscript      : getSubjectTranscript,
     Query_GetAvgScore               : getAvgScore,
     Query_AssignStudentClass        : assignStudentClass,
-    Query_GetYears                  : () => queryJSON.YEARS_LIST
+    Query_GetYears                  : () => queryJSON.YEARS_LIST,
+    Query_InsertYear                : () => queryJSON.INSERT_YEAR
 }

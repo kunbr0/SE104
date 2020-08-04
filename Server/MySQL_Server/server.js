@@ -20,6 +20,7 @@ let trscrApp    = express();
 let teacherApp  = express();
 let authApp     = express();
 let setupApp    = express();
+let yearApp     = express();
 let app         = express();
 
 const port      = 8080;
@@ -37,6 +38,9 @@ studentApp.use(parser.json());
 
 api_v1.use('/class', classApp); 
 classApp.use(parser.json());
+
+api_v1.use('/year', yearApp); 
+yearApp.use(parser.json());
 
 api_v1.use('/transcript', trscrApp); 
 trscrApp.use(parser.json());
@@ -81,6 +85,7 @@ setupApp.use(parser.json());
         processor.ProcessTeacherQueries(teacherApp, connection);
         processor.ProcessAuthenticationQueries(authApp, connection);
         processor.ProcessTranscriptQueries(trscrApp, connection);
+        processor.ProcessYearQueries(yearApp, connection);
     });
 
 }
