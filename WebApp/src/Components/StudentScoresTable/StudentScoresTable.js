@@ -38,8 +38,8 @@ const columnsOfSubjectDetails = [
                 <TextTranslation textName="ClassInfo-Table-Name.1" kClass="pcview"/>
                 <TextTranslation textName="ClassInfo-Table-Name.2" kClass="mbview"/>
             </div>,
-        dataIndex: 'studentName',
-        key: 'studentName',
+        dataIndex: 'Name',
+        key: 'Name',
         width: 35,
         sorter: (a, b) => a.studentID - b.studentID,
     },
@@ -49,8 +49,8 @@ const columnsOfSubjectDetails = [
             <TextTranslation textName="ClassInfo-Table-15mins.1" kClass="pcview"/>
             <TextTranslation textName="ClassInfo-Table-15mins.2" kClass="mbview"/>
         </div>,
-    dataIndex: 'k15mins',
-    key: 'k15mins',
+    dataIndex: 'exam_1',
+    key: 'exam_1',
     width: 12,
     },
     {
@@ -59,8 +59,8 @@ const columnsOfSubjectDetails = [
             <TextTranslation textName="ClassInfo-Table-45mins.1" kClass="pcview"/>
             <TextTranslation textName="ClassInfo-Table-45mins.2" kClass="mbview"/>
         </div>,
-    dataIndex: 'k45mins',
-    key: 'k45mins',
+    dataIndex: 'exam_2',
+    key: 'exam_2',
     width: 12,
     },
     {
@@ -127,8 +127,8 @@ const columnsOfStudentDetails = [
                 <TextTranslation textName="ClassInfo-Table-Name.1" kClass="pcview"/>
                 <TextTranslation textName="ClassInfo-Table-Name.2" kClass="mbview"/>
             </div>,
-        dataIndex: 'studentName',
-        key: 'studentName',
+        dataIndex: 'Name',
+        key: 'Name',
         width: 35,
         sorter: (a, b) => a.studentID - b.studentID,
     },
@@ -138,8 +138,8 @@ const columnsOfStudentDetails = [
             <TextTranslation textName="ClassInfo-Table-Sex.1" kClass="pcview"/>
             <TextTranslation textName="ClassInfo-Table-Sex.2" kClass="mbview"/>
         </div>,
-    dataIndex: 'Sex',
-    key: 'Sex',
+    dataIndex: 'Gender',
+    key: 'Gender',
     width: 12,
     },
     {

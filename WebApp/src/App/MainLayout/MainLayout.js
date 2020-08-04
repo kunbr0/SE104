@@ -5,10 +5,12 @@ import SConfig from '../../config.json';
 
 import './MainLayout.css';
 
+import {updateClassData} from '../../Redux/index';
+
 import {NavLink} from 'react-router-dom';
 import LAMenu_Structure from '../../Components/LAMenu/LAMenu_Structure';
 
-import {updateClassData} from '../../Redux/Actions/updateClassData';
+
 
 
 import {connect} from 'react-redux';
@@ -20,7 +22,7 @@ const { SubMenu } = Menu;
 
 const SiderDemo = (props) => {
   
-    
+    console.log(props);
 
     const [resultMenuStructure, setResultMenuStructure] = useState([]);
 
@@ -42,7 +44,7 @@ const SiderDemo = (props) => {
                 
                 message.success('Loaded class data');
                 setClasses(classes);
-                props.dispatch(updateClassData(classes));
+                props.updateClassData(classes);
 
 
                 /*setTimeout(function() {
@@ -143,10 +145,16 @@ const SiderDemo = (props) => {
 
 
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
     return {
         classData : state.classData
     };
 }
 
-export default connect(mapStateToProps)(SiderDemo);
+const mapDispatchToProps = dispatch => {
+    return {
+        updateClassData : (payload) => dispatch(updateClassData(payload))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SiderDemo);

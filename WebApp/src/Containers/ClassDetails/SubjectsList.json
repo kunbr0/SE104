@@ -1,10 +1,10 @@
 [
     {"sid" : 0, "subjectName" : "Student Details"},
-    {"sid" : 1, "subjectName" : "Math"},
-    {"sid" : 2, "subjectName" : "Physics"},
-    {"sid" : 3, "subjectName" : "Chemistry"},
-    {"sid" : 4, "subjectName" : "Literature"},
-    {"sid" : 5, "subjectName" : "Biology"},
-    {"sid" : 6, "subjectName" : "History"}
+    {"sid" : 1, "subjectName" : "Math", "subjectValue" : "Toán"},
+    {"sid" : 2, "subjectName" : "Physics", "subjectValue" : "Lý"},
+    {"sid" : 3, "subjectName" : "Chemistry", "subjectValue" : "Hóa"},
+    {"sid" : 4, "subjectName" : "Literature", "subjectValue" : "Văn"},
+    {"sid" : 5, "subjectName" : "Biology", "subjectValue" : "Sinh"},
+    {"sid" : 6, "subjectName" : "History", "subjectValue" : "Lịch Sử"}
 
 ]

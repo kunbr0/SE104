@@ -5,6 +5,8 @@
         "Login" : "/v1/auth/login"
     },
     "ClassRoutes" : {
-        "GetAllClass" : "/v1/class/get"
+        "GetAllClass" : "/v1/class/get",
+        "GetListStudentInClass" : "/v1/class/get/student",
+        "GetTranscripts" : "/v1/transcript/get"
     }
 }

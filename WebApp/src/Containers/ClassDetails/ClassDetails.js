@@ -5,11 +5,13 @@ import SubmitWithLoading from '../../Components/ButtonWithLoading/ButtonWithLoad
 import AddNewStudent from '../../Components/AddNewStudent/AddNewStudent';
 import StatisticScore from '../../Components/Statistic/Statistic';
 
+import SConfig from '../../config.json';
 
 import { Card, Col, Row, message, Space, Collapse, Button } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
 
 import Subjectslist from './SubjectsList.json';
+import SemesterList from './SemesterList.json';
 import StudentScoreTable from '../../Components/StudentScoresTable/StudentScoresTable';
 
 import { useHttpClient } from '../../Hooks/http-hook';
@@ -22,6 +24,7 @@ const ClassDetails = (props) => {
 
     const [selectedClass, setSelectedClass] = useState();
     
+    const [semester, setSemester] = useState();
     const [selectedSubject, setSelectedSubject] = useState();
 
     const { sendRequest } = useHttpClient();
@@ -44,7 +47,7 @@ const ClassDetails = (props) => {
     }
 
 
-    console.log(selectedClass);
+    console.log(props);
     console.log(selectedSubject);
 
     const sleeper = (ms) => {
@@ -63,12 +66,13 @@ const ClassDetails = (props) => {
 
         let urlRequest = "";
         if(selectedSubject === "Student Details"){
-            urlRequest = `https://api.kunbr0.com/se104/class/${selectedClass}.php`
-        }else{
-            urlRequest = `https://api.kunbr0.com/se104/subjects/${selectedClass}/${selectedSubject}.php`;
-        }
-
-        sendRequest(urlRequest)
+            urlRequest = `${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.ClassRoutes.GetListStudentInClass}`;
+            sendRequest(urlRequest, "POST", {
+                class_name : selectedClass,
+                yearid : 1
+            },{
+                'Content-Type': 'application/json'
+            })
             .then((response) => {
                 return response.json();
             })
@@ -76,8 +80,11 @@ const ClassDetails = (props) => {
             .then(sleeper(500))
 
             .then((data) => {
-                console.log(data);
-                setSelectedClassDetailsData(data);
+                
+                setSelectedClassDetailsData({
+                    type: "studentdetails",
+                    data 
+                });
                 setIsFetchingClassDetailsData(false);
                 message.success(`${selectedSubject} data of ${selectedClass} loaded successfully !`);
             })
@@ -88,6 +95,41 @@ const ClassDetails = (props) => {
                 setSelectedClassDetailsData([])
                 setIsFetchingClassDetailsData(false);
             });
+        }else{
+            urlRequest = `${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.ClassRoutes.GetTranscripts}`;
+            sendRequest(urlRequest, "POST", {
+                class_name : selectedClass,
+                sem_name: semester,
+                subj_name : selectedSubject,
+                yearid : 1
+            },{
+                'Content-Type': 'application/json'
+            })
+            .then((response) => {
+                return response.json();
+            })
+
+            .then(sleeper(500))
+
+            .then((data) => {
+                
+                setSelectedClassDetailsData({
+                    type: "subjectscores",
+                    data 
+                });
+                setIsFetchingClassDetailsData(false);
+                message.success(`${selectedSubject} data of ${selectedClass} loaded successfully !`);
+            })
+            
+            .catch((error) => {
+                console.log(error);
+                message.error(`Cannot get ${selectedSubject} data of ${selectedClass} !`);
+                setSelectedClassDetailsData([])
+                setIsFetchingClassDetailsData(false);
+            });
+        }
+
+        
     }
 
     return (
@@ -108,6 +150,7 @@ const ClassDetails = (props) => {
                             value={props.match.params.classCode} 
                             callbackSelection={setSelectedClass} 
                             options={props.classData.classData} 
+                            optionValue="name"
                             optionName="name" optionKey="id" 
                             placeholder="Select class"
                             disabled={isFetchingClassDetailsData}/>
@@ -116,21 +159,33 @@ const ClassDetails = (props) => {
                 <Col span={8}>
                     <Card loading={props.classData.classData.length > 0 ? false : true} title="Subjects" bordered={false}>
                         <SelectWithTyping 
-                            callbackSelection={setSelectedSubject} 
-                            options={Subjectslist} 
-                            optionName="subjectName" optionKey="sid" 
-                            placeholder="Select subject"
-                            disabled={isFetchingClassDetailsData}/>
+                                callbackSelection={setSemester} 
+                                options={SemesterList} 
+                                optionValue="semesterName"
+                                optionName="semesterName" optionKey="seid" 
+                                placeholder="Select semester"
+                                disabled={isFetchingClassDetailsData}/>
+                        
                     </Card>
                 </Col>
                 <Col span={8}>
                     <Card loading={isFetchingClassDetailsData} title="Classinfo" bordered={false}>
-                        <Space direction="vertical">
-                            <Space>Lecture : Le Thi Van a</Space>
-                            <Space>Enrolled Student  : 46</Space>
-                            
-                        </Space>
+                        <SelectWithTyping 
+                                callbackSelection={setSelectedSubject} 
+                                options={Subjectslist} 
+                                optionValue="subjectValue"
+                                optionName="subjectName" optionKey="sid" 
+                                placeholder="Select subject"
+                                disabled={isFetchingClassDetailsData}/>
+                        
                     </Card>
+                </Col>
+                <Col>
+                    <Space direction="vertical">
+                        <Space>Lecture : Le Thi Van a</Space>
+                        <Space>Enrolled Student  : 46</Space>
+                        
+                    </Space>
                 </Col>
                 </Row>
                 <SubmitWithLoading isLoading={isFetchingClassDetailsData} onClick={fetchClassDetailsData} maxTimeLoading={1000} />
@@ -155,7 +210,8 @@ const ClassDetails = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        classData : state.classData
+        classData : state.classData,
+        year : state.year
     };
 }
 

@@ -30,7 +30,7 @@ const SelectWithTyping = (props) => {
         const classes = props.options;
         if(classes.length){
             return classes.map((e)=>{
-                return <Option key={e[props.optionName]} value={e[props.optionName]}>{e[props.optionName]}</Option>
+                return <Option key={e[props.optionName]} value={e[props.optionValue]}>{e[props.optionName]}</Option>
             });
         }
         return null;
