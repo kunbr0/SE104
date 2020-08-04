@@ -103,10 +103,17 @@ JSON:
 ```
 ***(yearid get from Academic Years reference table - this table should be got at initialization step)***
 #### Query: Get number of students in a class ####
-Url: /v1/class/summary/${class_name}</br>Ex: v1/class/summary/10A1</br>
-Method: GET
-#### Query: Get all existing classes ####
-Url: /v1/class/get</br>
+Url: /v1/class/get/summary</br>
+Method: POST
+```
+JSON: 
+{
+  "class_name": "10A1",
+  "yearid": 1
+}
+```
+#### Query: Get all existing classes of an Academic Year ####
+Url: /v1/class/get/${yearid}</br>
 Method: GET
 #### Modify: Assign a list of students to classes ####
 Url: /v1/class/update </br>
