@@ -52,11 +52,21 @@ function addStudent(dbConnection, req, res, urlData)
     });
 }
 
+function getAcademicYears(dbConnection, req, res, urlData)
+{
+    dbConnection.query(storage.Query_GetYears(), (err, data, fields) => 
+    {
+        if (err) throw err;
+        res.status(statusCodes.OK).json(data);
+    }); 
+}
+
 module.exports = 
 {
     InsertClass: insertClass,
     GetClassStudent: getClassStudent,
     GetNumberOfStudentsInClass: getNumberOfStudentsInClass,
     GetAllClasses: getAllClasses,
-    AddStudent: addStudent
+    AddStudent: addStudent,
+    GetAcademicYears: getAcademicYears
 }
