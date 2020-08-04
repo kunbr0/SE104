@@ -77,6 +77,17 @@ JSON:
 }
 ```
 ### Class Objects ###
+#### Modify: Add a new Academic Year ####
+Url: /v1/year/add</br>
+Method: POST</br>
+```
+JSON: 
+{
+  "start_date": "2022/01/01",
+  "finish_date": "2024/12/31"
+}
+```
+*Note: pick the insertId field in the returned respond to identify the new academic year's id record*
 #### [IMPORTANT] Query: Get Academic Years table (nien khoa)####
 Url: /v1/class/get/year</br>
 Method: GET
