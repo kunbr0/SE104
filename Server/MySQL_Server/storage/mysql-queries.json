@@ -1,7 +1,7 @@
 {
     "CREATE_DB": "CREATE DATABASE ",  
     "USE_DB": "USE ",
-    "LIST_ALL_CLASSES": "SELECT * FROM sm_class;",
+    "LIST_ALL_CLASSES": "SELECT * FROM sm_class WHERE _year=?;",
     "LIST_SUBJECTS": "SELECT * FROM sm_subject;",
 
     "INSERT_STUDENT": "INSERT INTO sm_student(id, name, gender, dob, address, email) VALUES",

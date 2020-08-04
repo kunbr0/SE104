@@ -65,7 +65,7 @@ function processClassQueries(app, dbConnection)
     methods.AppPost(app, syntaxes.get + '/student', classProc.GetClassStudent, dbConnection);
 
     methods.AppPost(app, syntaxes.get + '/summary', classProc.GetNumberOfStudentsInClass, dbConnection);
-    methods.AppGet(app, syntaxes.get, classProc.GetAllClasses, dbConnection);
+    methods.AppGet(app, syntaxes.get + '/:yearid', classProc.GetAllClasses, dbConnection);
     methods.AppGet(app, syntaxes.get + '/year', classProc.GetAcademicYears, dbConnection);
 }
 //**************************************************
