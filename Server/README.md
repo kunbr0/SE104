@@ -122,6 +122,7 @@ JSON: </br>
 ```
 { 
   "sem_name": "HỌC KÌ 1",
+  "yearid": 1
 }
 ```
 ### FORM 4 - Transcripts ###
@@ -133,7 +134,8 @@ JSON: </br>
 { 
   "class_name": "10A2",
   "sem_name": "HỌC KÌ 1",
-  "subj_name": "Toán"
+  "subj_name": "Toán",
+  "yearid": 1
 }
 ```
 
