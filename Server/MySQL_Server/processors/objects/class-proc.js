@@ -14,7 +14,7 @@ function insertClass(dbConnection, req, res, urlData)
 
 function getClassStudent(dbConnection, req, res, urlData)
 {
-    dbConnection.query(storage.Query_ListStudentsInClass(), [req.params.id], (err, data, fields) => 
+    dbConnection.query(storage.Query_ListStudentsInClass(), [urlData.class_name, urlData.yearid], (err, data, fields) => 
     {
         if (err) throw err;
         res.status(statusCodes.OK).json(data);

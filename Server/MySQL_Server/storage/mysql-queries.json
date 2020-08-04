@@ -20,7 +20,7 @@
     "ASSIGN_STUDENT_CLASS": "INSERT INTO sm_class_list( class, student )VALUES ( ?,?);",
 
     "INSERT_CLASS": "INSERT INTO sm_class(id_class, name_class, grade, session) VALUES(",
-    "LIST_STUDENT_IN_CLASS": "SELECT sm_student.name AS Name, sm_student.gender AS dobder, sm_student.dob AS Year, sm_student.address AS Address, sm_class.name AS Class FROM sm_class_list,sm_class,sm_student WHERE sm_class_list.class=sm_class.id AND sm_class_list.student=sm_student.id AND sm_class.name=?;",
+    "LIST_STUDENT_IN_CLASS": "SELECT sm_student.name AS Name, sm_student.gender AS dobder, sm_student.dob AS Year, sm_student.address AS Address, sm_class.name AS Class FROM sm_class_list,sm_class,sm_student WHERE sm_class_list.class=sm_class.id AND sm_class_list.student=sm_student.id AND sm_class.name=? AND sm_class._year=?;",
     "NUMBER_OF_STUDENTS_IN_CLASS": "SELECT COUNT(sm_student.id) AS Total FROM sm_class_list,sm_class,sm_student WHERE sm_class_list.class=sm_class.id AND sm_class_list.student=sm_student.id AND sm_class.name=?;",
 
     "INSERT_TEACHER": "INSERT INTO sm_teacher(id, password, username, name, gender, dob, address, email, phone) VALUES",
@@ -30,5 +30,6 @@
 
     "SUBJECT_TRANSCRIPT": "SELECT sm_class.name AS Class, sm_subject.name AS Subject, sm_semester.name AS Semester, sm_student.name AS Name, sm_transcript.exam_1 , sm_transcript.exam_2 , sm_transcript.exam_1*0.2 + sm_transcript.exam_2*0.8 AS Average FROM sm_student, sm_transcript, sm_semester, sm_subject, sm_class, sm_class_list WHERE sm_student.id=sm_transcript.student_code AND sm_semester.id=sm_transcript.semester AND sm_subject.id=sm_transcript._subject AND sm_student.id=sm_class_list.student AND sm_class.id=sm_class_list.class AND sm_class.name=? AND sm_semester.name=? AND sm_subject.name=?;",
 
-    "AVG_SCORE": "SELECT sm_student.id, SUM(sm_transcript.exam_1*0.2 +sm_transcript.exam_2*0.8)/9 AS TBHK FROM  sm_student, sm_transcript, sm_semester, sm_subject, sm_class, sm_class_list WHERE sm_student.id=sm_transcript.student_code AND sm_semester.id=sm_transcript.semester AND sm_subject.id=sm_transcript._subject AND sm_student.id=sm_class_list.student AND sm_class.id=sm_class_list.class AND sm_semester.name=? GROUP BY sm_student.id;"
+    "AVG_SCORE": "SELECT sm_student.id, SUM(sm_transcript.exam_1*0.2 +sm_transcript.exam_2*0.8)/9 AS TBHK FROM  sm_student, sm_transcript, sm_semester, sm_subject, sm_class, sm_class_list WHERE sm_student.id=sm_transcript.student_code AND sm_semester.id=sm_transcript.semester AND sm_subject.id=sm_transcript._subject AND sm_student.id=sm_class_list.student AND sm_class.id=sm_class_list.class AND sm_semester.name=? GROUP BY sm_student.id;",
+    "YEARS_LIST": "SELECT * from sm_year"
 }

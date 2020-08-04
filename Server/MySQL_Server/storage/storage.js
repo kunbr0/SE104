@@ -155,5 +155,6 @@ module.exports =
     Query_GetPasswordFrom           : getPasswordFrom,
     Query_GetSubjectTranscript      : getSubjectTranscript,
     Query_GetAvgScore               : getAvgScore,
-    Query_AssignStudentClass        : assignStudentClass
+    Query_AssignStudentClass        : assignStudentClass,
+    Query_GetYears                  : () => queryJSON.YEARS_LIST
 }
