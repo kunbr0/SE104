@@ -23,7 +23,7 @@ function getClassStudent(dbConnection, req, res, urlData)
 
 function getNumberOfStudentsInClass(dbConnection, req, res, urlData)
 {
-    dbConnection.query(storage.Query_GetNumberOfStudentsInClass(), [req.params.id], (err, data, fields) => 
+    dbConnection.query(storage.Query_GetNumberOfStudentsInClass(), [urlData.class_name, urlData.yearid], (err, data, fields) => 
     {
         if (err) throw err;
         res.status(statusCodes.OK).json(data);
