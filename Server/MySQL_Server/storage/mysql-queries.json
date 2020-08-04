@@ -20,7 +20,7 @@
     "ASSIGN_STUDENT_CLASS": "INSERT INTO sm_class_list( class, student )VALUES ( ?,?);",
 
     "INSERT_CLASS": "INSERT INTO sm_class(id_class, name_class, grade, session) VALUES(",
-    "LIST_STUDENT_IN_CLASS": "SELECT sm_student.name AS Name, sm_student.gender AS dobder, sm_student.dob AS Year, sm_student.address AS Address, sm_class.name AS Class FROM sm_class_list,sm_class,sm_student WHERE sm_class_list.class=sm_class.id AND sm_class_list.student=sm_student.id AND sm_class.name=? AND sm_class._year=?;",
+    "LIST_STUDENT_IN_CLASS": "SELECT sm_student.id AS ID, sm_student.name AS Name, sm_student.gender AS Gender, sm_student.dob AS Year, sm_student.address AS Address, sm_class.name AS Class FROM sm_class_list,sm_class,sm_student WHERE sm_class_list.class=sm_class.id AND sm_class_list.student=sm_student.id AND sm_class.name=? AND sm_class._year=?;",
     "NUMBER_OF_STUDENTS_IN_CLASS": "SELECT COUNT(sm_student.id) AS Total FROM sm_class_list,sm_class,sm_student WHERE sm_class_list.class=sm_class.id AND sm_class_list.student=sm_student.id AND sm_class.name=?;",
 
     "INSERT_TEACHER": "INSERT INTO sm_teacher(id, password, username, name, gender, dob, address, email, phone) VALUES",
