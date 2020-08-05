@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import { Modal, Button, Space, Descriptions, Badge, Progress, Row, Col } from 'antd';
-
+import { Modal, Button, Space, Descriptions, Badge, Progress, Row, Col, Card } from 'antd';
+import './Statistic.css'
 const Statistic = (props) => {
 
     const [statisticData, setStatisticData] = useState({});
@@ -38,8 +38,8 @@ const Statistic = (props) => {
             onOk={() => setModalVisible(false)}
             onCancel={() => setModalVisible(false)}
             >
-            
-            <Descriptions layout="vertical" bordered>
+            <Card className="statistic-card-wrapper">
+                <Descriptions layout="vertical" bordered>
                 <Descriptions.Item label="Class">{statisticData.pClassName}</Descriptions.Item>
                 <Descriptions.Item label="Subject">{statisticData.pSubject}</Descriptions.Item>
                 <Descriptions.Item label="Semester">HK2 - 2020</Descriptions.Item>
@@ -77,7 +77,7 @@ const Statistic = (props) => {
                     
                 </Descriptions.Item>
                 </Descriptions>
-
+            </Card>
             </Modal>
         </Space>
     )

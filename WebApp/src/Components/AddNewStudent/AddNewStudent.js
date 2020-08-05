@@ -22,9 +22,10 @@ const AddNewStudent = (props) => {
 
     const renderOptions = () => {
         const classes = props.classData;
+        console.log(props.classData);
         if(classes.length){
-            return classes.map((e)=>{
-                return <Option key={e[props.optionName]} value={e[props.optionName]}>{e[props.optionName]}</Option>
+            return classes.map((e,i)=>{
+                return <Option key={`${e[props.optionName]}${e[props.optionKey]}`} value={e[props.optionName]}>{e[props.optionName]}</Option>
             });
         }
         return null;
@@ -115,8 +116,8 @@ const AddNewStudent = (props) => {
                     >
                         <SelectWithTyping 
                             options={props.classData} 
-                            optionName="className" 
-                            optionKey="classID" 
+                            optionName="name" 
+                            optionKey="id" 
                             placeholder="Please choose the class"
                             callbackSelection={()=>{}}
                         />

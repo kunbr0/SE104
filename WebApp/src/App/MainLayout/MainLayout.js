@@ -8,7 +8,7 @@ import './MainLayout.css';
 import {updateClassData} from '../../Redux/index';
 
 import {NavLink} from 'react-router-dom';
-import LAMenu_Structure from '../../Components/LAMenu/LAMenu_Structure';
+import MenuStructure from './MenuStructure';
 
 
 
@@ -29,7 +29,7 @@ const MainLayout = (props) => {
     const [classes, setClasses] = useState([]);
 
     useEffect(()=>{
-        setResultMenuStructure(renderLAMenuStructure(LAMenu_Structure, false));
+        setResultMenuStructure(renderLAMenuStructure(MenuStructure, false));
     },[classes]);
 
 
@@ -44,7 +44,7 @@ const MainLayout = (props) => {
                 console.log(classes);
                 
                 message.success('Loaded class data');
-                setClasses(classes);
+                //setClasses(classes);
                 props.updateClassData(classes);
 
 

@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import SelectWithTyping from '../../Components/SelectWithTyping/SelectWithTyping';
 import SubmitWithLoading from '../../Components/ButtonWithLoading/ButtonWithLoading';
-import AddNewStudent from '../../Components/AddNewStudent/AddNewStudent';
+
 import StatisticScore from '../../Components/Statistic/Statistic';
 
 import SConfig from '../../config.json';
@@ -64,7 +64,9 @@ const ClassDetails = (props) => {
 
     const fetchClassDetailsData = () => {
         setIsFetchingClassDetailsData(true);
-
+        setSelectedClassDetailsData({
+            
+        });
         let urlRequest = "";
         if(selectedSubject === "Student Details"){
             urlRequest = `${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.ClassRoutes.GetListStudentInClass}`;
@@ -133,6 +135,9 @@ const ClassDetails = (props) => {
         
     }
 
+    
+    
+
     return (
 
         <div className="site-card-wrapper">
@@ -173,7 +178,12 @@ const ClassDetails = (props) => {
                     <Card loading={props.classData.classData.length > 0 ? false : true} title="Classinfo" bordered={false}>
                         <SelectWithTyping 
                                 callbackSelection={setSelectedSubject} 
-                                options={Subjectslist} 
+                                options={
+                                    [
+                                        {"sid" : 0, "subjectName" : "Student Details"},
+                                        ...Subjectslist
+                                    ]
+                                } 
                                 optionValue="subjectValue"
                                 optionName="subjectName" optionKey="sid" 
                                 placeholder="Select subject"
@@ -184,7 +194,7 @@ const ClassDetails = (props) => {
                
                 </Row>
                 <SubmitWithLoading isLoading={isFetchingClassDetailsData} onClick={fetchClassDetailsData} maxTimeLoading={1000} />
-                <AddNewStudent disabled={isFetchingClassDetailsData} classData={props.classData.classData} style={{marginLeft : "5px", marginRight : "5px", backgroundColor : "#52c41a", borderColor: "#52c41a"}} />
+                
                 <StatisticScore 
                     pClassName={selectedClass} 
                     pSubject={selectedSubject}

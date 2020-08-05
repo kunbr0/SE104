@@ -19,7 +19,7 @@ export default function TestLogin() {
         //sendLoginRequest(username, password);
         agent.Auth.login(username, password).then(res => {
             console.log(res.status);
-            if(res.status === "Successful"){
+            if(res.status === 1){
                 loginSuccessfully("sample_token_from_line23_pageTestLogin");
             }
         })
