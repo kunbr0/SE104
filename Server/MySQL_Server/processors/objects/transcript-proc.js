@@ -71,9 +71,31 @@ function showSubjectReport(dbConnection, req, res, urlData)
     });
 }
 
+function showSemesterReport(dbConnection, req, res, urlData)
+{
+    let result = {
+        Pass: null, 
+        NoStudent: null
+    }
+
+    dbConnection.query(storage.Query_SemesterReport(), [urlData.sem_name, urlData.yearid], (err, data, fields) => 
+    {
+        if (err) { res.send(err); return; }
+        result.Pass = data;
+        dbConnection.query(storage.Query_NoStudents(), [urlData.yearid], (err, data, fields) =>
+        {
+            if (err) { res.send(err); return; }
+            result.NoStudent = data;
+            console.log(result);
+            res.status(statusCodes.OK).json(result);
+        });
+    });
+}
+
 module.exports = 
 {
     GetTransciptOfSubject: getTranscriptOfSubject,
     AdjustTranscript: adjustTranscript,
-    ShowSubjectReport: showSubjectReport
+    ShowSubjectReport: showSubjectReport,
+    ShowSemesterReport: showSemesterReport
 };

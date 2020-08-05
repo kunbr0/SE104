@@ -160,5 +160,6 @@ module.exports =
     Query_InsertYear                : () => queryJSON.INSERT_YEAR,
     Query_UpdateTranscript          : () => queryJSON.UPDATE_TRANSCRIPT,
     Query_SubjectReport             : () => queryJSON.SUBJECT_PASS_REPORT,
-    Query_NoStudents                : () => queryJSON.NO_STUDENT
+    Query_NoStudents                : () => queryJSON.NO_STUDENT,
+    Query_SemesterReport            : () => queryJSON.SEMESTER_REPORT
 }
