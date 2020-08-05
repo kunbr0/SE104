@@ -50,8 +50,18 @@ function adjustTranscript(dbConnection, req, res, urlData)
         });
 }
 
+function showSubjectReport(dbConnection, req, res, urlData)
+{
+    dbConnection.query(storage.Query_SubjectReport(), [urlData.sem_name, urlData.subj_name, urlData.yearid], (err, data, fields) => 
+    {
+        if (err) { res.send(err); return; }
+        //dbConnection.
+    });
+}
+
 module.exports = 
 {
     GetTransciptOfSubject: getTranscriptOfSubject,
-    AdjustTranscript: adjustTranscript
+    AdjustTranscript: adjustTranscript,
+    ShowSubjectReport: showSubjectReport
 };

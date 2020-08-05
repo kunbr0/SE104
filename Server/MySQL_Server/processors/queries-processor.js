@@ -75,6 +75,8 @@ function processTranscriptQueries(app, dbConnection)
 {
     methods.AppPost(app, syntaxes.get, transcriptProc.GetTransciptOfSubject, dbConnection);
     methods.AppPost(app, syntaxes.update, transcriptProc.AdjustTranscript, dbConnection);
+
+    methods.AppPost(app, syntaxes.show + '/report/subject', transcriptProc.ShowSubjectReport, dbConnection);
 }
 //**************************************************
 

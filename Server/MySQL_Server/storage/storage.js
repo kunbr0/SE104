@@ -158,5 +158,7 @@ module.exports =
     Query_AssignStudentClass        : assignStudentClass,
     Query_GetYears                  : () => queryJSON.YEARS_LIST,
     Query_InsertYear                : () => queryJSON.INSERT_YEAR,
-    Query_UpdateTranscript          : () => queryJSON.UPDATE_TRANSCRIPT
+    Query_UpdateTranscript          : () => queryJSON.UPDATE_TRANSCRIPT,
+    Query_SubjectReport             : () => queryJSON.SUBJECT_PASS_REPORT,
+    Query_NoStudents                : () => queryJSON.NO_STUDENT
 }
