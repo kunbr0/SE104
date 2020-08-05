@@ -12,7 +12,8 @@ import { CaretRightOutlined } from '@ant-design/icons';
 
 import Subjectslist from './SubjectsList.json';
 import SemesterList from './SemesterList.json';
-import StudentScoreTable from '../../Components/StudentScoresTable/StudentScoresTable';
+import ScoreDetails from './ScoreDetails/ScoreDetails';
+import StudentDetails from './StudentDetails/StudentDetails'
 
 import { useHttpClient } from '../../Hooks/http-hook';
 import {useHistory} from 'react-router-dom';
@@ -169,7 +170,7 @@ const ClassDetails = (props) => {
                     </Card>
                 </Col>
                 <Col span={8}>
-                    <Card loading={isFetchingClassDetailsData} title="Classinfo" bordered={false}>
+                    <Card loading={props.classData.classData.length > 0 ? false : true} title="Classinfo" bordered={false}>
                         <SelectWithTyping 
                                 callbackSelection={setSelectedSubject} 
                                 options={Subjectslist} 
@@ -180,13 +181,7 @@ const ClassDetails = (props) => {
                         
                     </Card>
                 </Col>
-                <Col>
-                    <Space direction="vertical">
-                        <Space>Lecture : Le Thi Van a</Space>
-                        <Space>Enrolled Student  : 46</Space>
-                        
-                    </Space>
-                </Col>
+               
                 </Row>
                 <SubmitWithLoading isLoading={isFetchingClassDetailsData} onClick={fetchClassDetailsData} maxTimeLoading={1000} />
                 <AddNewStudent disabled={isFetchingClassDetailsData} classData={props.classData.classData} style={{marginLeft : "5px", marginRight : "5px", backgroundColor : "#52c41a", borderColor: "#52c41a"}} />
@@ -200,7 +195,13 @@ const ClassDetails = (props) => {
                 </Button>
                 </Panel>
             </Collapse>
-            <StudentScoreTable tableEditable={tableEditable} classDetailsData={selectedClassDetailsData.data} columnType={selectedClassDetailsData.type} isLoading={isFetchingClassDetailsData} />
+            
+            {
+                selectedClassDetailsData.type === "studentdetails" ?
+                <StudentDetails tableEditable={tableEditable} selectedClass={selectedClass} classDetailsData={selectedClassDetailsData.data}  isLoading={isFetchingClassDetailsData} /> :
+                <ScoreDetails tableEditable={tableEditable} classDetailsData={selectedClassDetailsData.data}  isLoading={isFetchingClassDetailsData} />
+            }
+            
         </div>
     );
 }
@@ -211,7 +212,7 @@ const ClassDetails = (props) => {
 const mapStateToProps = (state) => {
     return {
         classData : state.classData,
-        year : state.year
+        yearid : state.yearid
     };
 }
 

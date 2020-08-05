@@ -20,7 +20,7 @@ import TopBar from '../../Components/TopBar/TopBar';
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
-const SiderDemo = (props) => {
+const MainLayout = (props) => {
   
     console.log(props);
 
@@ -32,8 +32,9 @@ const SiderDemo = (props) => {
         setResultMenuStructure(renderLAMenuStructure(LAMenu_Structure, false));
     },[classes]);
 
+
     useEffect(()=>{
-        fetch(`${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.ClassRoutes.GetAllClass}`)
+        fetch(`${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.ClassRoutes.GetAllClass}/${props.yearData.yearid}`)
             .then((response) => {
                 return response.json();
             })
@@ -56,7 +57,7 @@ const SiderDemo = (props) => {
 
             });
             
-        }, []);
+        }, [props.yearData]);
 
 
     const renderLAMenuStructure = (kStruct, isSubMenu, parentMenu) =>{
@@ -146,8 +147,10 @@ const SiderDemo = (props) => {
 
 
 const mapStateToProps = state => {
+
     return {
-        classData : state.classData
+        classData : state.classData,
+        yearData: state.yearData
     };
 }
 
@@ -157,4 +160,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SiderDemo);
+export default connect(mapStateToProps, mapDispatchToProps)(MainLayout);
