@@ -156,4 +156,27 @@ JSON: </br>
   "yearid": 1
 }
 ```
+#### Modify: Update transcript (mark) of list of students in a semester ####
+Url: /v1/transcript/update</br>
+Method: POST
+```
+JSON:
+[
+  {
+    "student_id": "18520001",
+    "sem_name": "HỌC KÌ 1",
+    "subj_name": "Lý",
+    "exam_1": 7,
+    "exam_2": 8
+  },
+  {
+    "student_id": "18520001",
+    "sem_name": "HỌC KÌ 1",
+    "subj_name": "Hoá",
+    "exam_1": 8,
+    "exam_2": 7
+  }
+]
+```
+This returns back the request JSON on success of query
 
