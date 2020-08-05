@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import { Table, InputNumber } from 'antd';
-import TextTranslation from '../TextTranslation/TextTranslation';
-import ScoreCoefficient from '../../Containers/ClassDetails/SubjectCoefficient.json';
-import './StudentScoresTable.css';
+import TextTranslation from '../../../Components/TextTranslation/TextTranslation';
+import ScoreCoefficient from '../SubjectCoefficient.json';
+import './ScoreDetails.css';
 import { useSSR } from 'react-i18next';
 
 
@@ -15,8 +15,8 @@ const columnsOfSubjectDetails = [
             <TextTranslation textName="ClassInfo-Table-No.1" kClass="pcview"/>
             <TextTranslation textName="ClassInfo-Table-No.2" kClass="mbview"/>
         </div>,
-    dataIndex: 'studentID',
-    key: 'studentID',
+    dataIndex: 'key',
+    key: 'key',
     width: 8,
     fixed: 'left',
     filters: [
@@ -64,26 +64,6 @@ const columnsOfSubjectDetails = [
     width: 12,
     },
     {
-    title: 
-        <div>
-            <TextTranslation textName="ClassInfo-Table-midterm.1" kClass="pcview"/>
-            <TextTranslation textName="ClassInfo-Table-midterm.2" kClass="mbview"/>
-        </div>,
-    dataIndex: 'kmidterm',
-    key: 'kmidterm',
-    width: 12,
-    },
-    {
-        title: 
-            <div>
-                <TextTranslation textName="ClassInfo-Table-endterm.1" kClass="pcview"/>
-                <TextTranslation textName="ClassInfo-Table-endterm.2" kClass="mbview"/>
-            </div>,
-        dataIndex: 'kendterm',
-        key: 'kendterm',
-        width: 12,
-    }, 
-    {
         title: 
             <div>
                 <TextTranslation textName="ClassInfo-Table-final.1" kClass="pcview"/>
@@ -97,78 +77,8 @@ const columnsOfSubjectDetails = [
 ];
 
 
-const columnsOfStudentDetails = [
-    {
-        title: 
-            <div>
-                <TextTranslation textName="ClassInfo-Table-No.1" kClass="pcview"/>
-                <TextTranslation textName="ClassInfo-Table-No.2" kClass="mbview"/>
-            </div>,
-        dataIndex: 'studentID',
-        key: 'studentID',
-        width: 8,
-        fixed: 'left',
-        filters: [
-            {
-            text: 'Joe',
-            value: 'Joe',
-            },
-            {
-            text: 'John',
-            value: 'John',
-            },
-        ],
-            onFilter: (value, record) => record.name.indexOf(value) === 0,
-    },
-    
-    {
-        title: 
-            <div>
-                <TextTranslation textName="ClassInfo-Table-Name.1" kClass="pcview"/>
-                <TextTranslation textName="ClassInfo-Table-Name.2" kClass="mbview"/>
-            </div>,
-        dataIndex: 'Name',
-        key: 'Name',
-        width: 35,
-        sorter: (a, b) => a.studentID - b.studentID,
-    },
-    {
-    title: 
-        <div>
-            <TextTranslation textName="ClassInfo-Table-Sex.1" kClass="pcview"/>
-            <TextTranslation textName="ClassInfo-Table-Sex.2" kClass="mbview"/>
-        </div>,
-    dataIndex: 'Gender',
-    key: 'Gender',
-    width: 12,
-    },
-    {
-    title: 
-        <div>
-            <TextTranslation textName="ClassInfo-Table-DOB.1" kClass="pcview"/>
-            <TextTranslation textName="ClassInfo-Table-DOB.2" kClass="mbview"/>
-        </div>,
-    dataIndex: 'DOB',
-    key: 'DOB',
-    width: 12,
-    },
-    {
-    title: 
-        <div>
-            <TextTranslation textName="ClassInfo-Table-Address.1" kClass="pcview"/>
-            <TextTranslation textName="ClassInfo-Table-Address.2" kClass="mbview"/>
-        </div>,
-    dataIndex: 'Address',
-    key: 'Address',
-    width: 12,
-    }    
-      
-];
 
-const listOfColumnType = {
-    subjectscores : columnsOfSubjectDetails,
-    studentdetails : columnsOfStudentDetails
-}
+
 
 // for (let i = 0; i < 100; i++) {
 //   data.push({
@@ -189,8 +99,7 @@ const listOfColumnType = {
 const calculateFinalScore = (e) => {
     
     let coef = ScoreCoefficient;
-    return e.k15mins*coef.k15mins + e.k45mins*coef.k45mins 
-        + e.kmidterm*coef.kmidterm + e.kmidterm*coef.kmidterm;
+    return e.exam_1*1*coef.exam_1 + e.exam_2*1*coef.exam_2;
 }
 
 
@@ -234,7 +143,7 @@ const StudentScoresTable = (props) => {
     const renderClassDetailsData = () => {
         setTableData([]);
         let data = []; // clear data
-        let i=0;
+        let i=1;
 
         console.log(classDetailsData);
 
@@ -254,7 +163,7 @@ const StudentScoresTable = (props) => {
                 let a = {};
                 Object.keys(e).forEach((key)=>{ 
                     
-                    a[key] = (key === 'k15mins' || key === 'k45mins' || key === 'kmidterm' || key === 'kendterm' || key === 'final' ) ? 
+                    a[key] = (key === 'exam_1' || key === 'exam_2' || key === 'final' ) ? 
                     <InputNumber
                             style={{width: "100%"}}
                             min={1} max={10}
@@ -293,11 +202,11 @@ const StudentScoresTable = (props) => {
     return (
         <Table 
             loading={props.isLoading || false}
-            columns={listOfColumnType[props.columnType]}
+            columns={columnsOfSubjectDetails}
             dataSource={tableData}
             bordered
             size="middle"
-            scroll={{ x: 'calc(500px + 50%)', y: 240 }}
+            scroll={{ x: 'calc(300px + 50%)', y: 240 }}
             expandable={true}
             onRow={(record, rowIndex) => {
                 return {
