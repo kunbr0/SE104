@@ -180,3 +180,29 @@ JSON:
 ```
 This returns back the request JSON on success of query
 
+### FORM 5 - Report ###
+#### Query: Get subject report (5.1) ####
+Url: /v1/transcript/show/report/subject</br>
+Method: POST </br>
+```
+JSON:
+{ 
+  "sem_name": "HỌC KÌ 1",
+  "subj_name": "Toán",
+  "yearid": 1
+}
+```
+This returns 2 tables as below
+```
+{
+  Pass: [
+    RowDataPacket { id: 1, name: '10A1', SoLuongDat: 2 },
+    RowDataPacket { id: 2, name: '10A2', SoLuongDat: 1 }
+  ],
+  NoStudent: [
+    RowDataPacket { id: 1, name: '10A1', SiSo: 3 },
+    RowDataPacket { id: 2, name: '10A2', SiSo: 4 }
+  ]
+}
+```
+Pass percentages can be implicated from Pass and NoStudent: (Pass/NoStudent)*100
