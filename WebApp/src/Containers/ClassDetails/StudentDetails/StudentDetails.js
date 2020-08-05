@@ -10,9 +10,6 @@ import './StudentDetails.css';
 
 
 
-
-
-
 const columnsOfStudentDetails = [
     {
         title: 
@@ -144,7 +141,7 @@ const StudentScoresTable = (props) => {
 
 
     const renderClassDetailsData = () => {
-        setTableData([]);
+
         let data = []; // clear data
         let i=1;
 
@@ -155,7 +152,7 @@ const StudentScoresTable = (props) => {
                 
                 //e["key"] = i;
                 e["final"] = calculateFinalScore(e);
-
+                e["Gender"] = e["Gender"] === 1 ? "Male" : "Female";
                 // convert Date to beautiful string :v
                 let kDate = new Date(e["DOB"]);
                 e["DOB"] = kDate.getDate() + "/" + (kDate.getMonth()+1) + "/" +  kDate.getFullYear()
@@ -181,6 +178,18 @@ const StudentScoresTable = (props) => {
                         /> : e[key]
                     a["key"] = i;
                 });
+                data.push(a);
+                data.push(a);
+                data.push(a);
+                data.push(a);
+                data.push(a);
+                data.push(a);
+                data.push(a);
+                data.push(a);
+                data.push(a);
+                data.push(a);
+                data.push(a);
+                data.push(a);
                 data.push(a);
                 i++;
             }
@@ -236,6 +245,8 @@ const StudentScoresTable = (props) => {
                 };
             }}
         />
+
+        
         </>
     )
 }

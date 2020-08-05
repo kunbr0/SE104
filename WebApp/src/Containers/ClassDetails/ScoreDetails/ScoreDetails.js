@@ -141,11 +141,11 @@ const StudentScoresTable = (props) => {
 
 
     const renderClassDetailsData = () => {
+
         setTableData([]);
         let data = []; // clear data
         let i=1;
-
-        console.log(classDetailsData);
+        
 
         if(classDetailsData){
             for(let e of classDetailsData){
@@ -179,7 +179,7 @@ const StudentScoresTable = (props) => {
             }
         }
         setTableData(data);
-        
+        console.log(data);
     }
 
     
@@ -193,7 +193,7 @@ const StudentScoresTable = (props) => {
 
     useEffect(()=>{
         renderClassDetailsData();
-    },[classDetailsData, tableEditable]);
+    },[classDetailsData, tableEditable, props.classDetailsData]);
 
     
 

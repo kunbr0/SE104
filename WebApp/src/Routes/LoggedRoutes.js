@@ -10,7 +10,8 @@ import TestLogin from '../Containers/Pages/TestLogin/TestLogin'
 import ClassDetails from '../Containers/ClassDetails/ClassDetails';
 import Schedule from '../Containers/Schedule/Schedule';
 import Profile from '../Containers/Profile/Profile';
-
+import Analysis from '../Containers/Analysis/Analysis';
+import Students from '../Containers/Students/Students';
 
 const routes = [
     {
@@ -28,10 +29,25 @@ const routes = [
         exact : false,
         main : () => <TestLogin />
     },
+    // {
+    //     path : '/class/:classCode',
+    //     exact : false,
+    //     main : ({match}) => <ClassDetails match={match} />
+    // },
     {
-        path : '/class/:classCode',
+        path : '/class/',
         exact : false,
         main : ({match}) => <ClassDetails match={match} />
+    },
+    {
+        path : '/analysis/',
+        exact : false,
+        main : ({match}) => <Analysis match={match} />
+    },
+    {
+        path : '/students/',
+        exact : false,
+        main : ({match}) => <Students match={match} />
     },
     {
         path : '/schedule',
