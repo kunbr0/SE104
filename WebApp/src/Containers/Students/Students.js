@@ -39,7 +39,8 @@ const Students = (props) => {
             data.forEach(e => {
                 dataWithKey.push({
                     ...e,
-                    key : index
+                    key : index,
+                    gender : e["gender"] === 1 ? "Male" : "Female"
                 })
                 index ++;
             });
