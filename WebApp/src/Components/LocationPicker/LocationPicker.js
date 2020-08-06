@@ -4,7 +4,7 @@ import SelectWithTyping from '../SelectWithTyping/SelectWithTyping';
 import LocationVN from './LocationVN.json';
 
 
-const LocationPicker = () => {
+const LocationPicker = (props) => {
 
     const [areaInSelectedCity, setAreaInSelectedCity] = useState([]);
 
@@ -34,16 +34,28 @@ const LocationPicker = () => {
 
     
 
+
     return(
         <div>
-        <Input placeholder="Details address" style={{width : "40%"}}/>
+        <Input 
+            onChange={(val)=>props.callbackChanges({
+                ...props.address,
+                detailsAddress : val.target.value
+            })}
+         placeholder="Details Address"  style={{width : "40%"}}/>
+        
         
         <SelectWithTyping 
             options={areaInSelectedCity} 
             optionName="name" 
             optionKey="name" 
             placeholder="District"
-            callbackSelection={()=>{}}
+            callbackSelection={(val)=>{
+                props.callbackChanges({
+                    ...props.address,
+                    district : val
+                })
+            }}
             width="30%"
             disabled={(areaInSelectedCity.length===0)}
         />
@@ -52,7 +64,13 @@ const LocationPicker = () => {
             optionName="name" 
             optionKey="name" 
             placeholder="City"
-            callbackSelection={onSelectCity}
+            callbackSelection={(val)=>{
+                onSelectCity(val);
+                props.callbackChanges({
+                    ...props.address,
+                    city : val
+                })
+            }}
             width="30%"
             
         />

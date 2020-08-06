@@ -15,6 +15,7 @@
         "SemesterReport" : "/v1/transcript/show/report/subject"
     },
     "Student" : {
+        "AddStudent" : "/v1/student/add",
         "GetAllStudents" : "/v1/student/show"
     }
 }

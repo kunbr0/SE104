@@ -22,7 +22,7 @@ const Students = (props) => {
         };
     }
 
-    useEffect(()=>{
+    const requestGetAllStudent = () => {
         setIsLoading(true);
         let urlRequest = `${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.Student.GetAllStudents}`;
         sendRequest(urlRequest, "GET")
@@ -57,7 +57,10 @@ const Students = (props) => {
             setStudentData([])
             setIsLoading(false);
         });
+    }
 
+    useEffect(()=>{
+        requestGetAllStudent();
     },[]);
     const columns = [
         {
@@ -134,6 +137,7 @@ const Students = (props) => {
                     classData={props.classData.classData} 
                     style={{marginLeft : "5px", marginRight : "5px", backgroundColor : "#52c41a", borderColor: "#52c41a"}} 
                     optionName="name" optionKey="id" 
+                    callbackSuccess={requestGetAllStudent}
             />
             </Panel>
         </Collapse>
