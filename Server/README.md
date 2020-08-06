@@ -53,6 +53,9 @@ JSON: </br>
 }
 ```
 **Note: This action will update information of student who has student_id = "sampleid"**
+#### Query: Get all students in database ####
+Url: /v1/student/show</br>
+Method: GET
 #### Query: Get student's information ####
 Url: /v1/student/detail/${student_id}</br>
 Method: GET

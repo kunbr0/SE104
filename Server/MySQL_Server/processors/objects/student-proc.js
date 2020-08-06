@@ -52,11 +52,21 @@ function getStudentListWithAvg(dbConnection, req, res, urlData)
     });
 }
 
+function getAllStudent(dbConnection, req, res, urlData)
+{
+    dbConnection.query(storage.Query_GetAllStudent(), (err, data, fields) => 
+    {
+        if (err) { res.status(statusCodes.NotFound).send(err); return; }
+        res.status(statusCodes.OK).json(data);
+    });
+}
+
 module.exports = 
 {
     InsertStudent: insertStudent,
     UpdateStudent: updateStudent,
     GetStudentDetail: getStudentDetail,
     RemoveStudent: removeStudent,
-    GetStudentListWithAvg: getStudentListWithAvg
+    GetStudentListWithAvg: getStudentListWithAvg,
+    GetAllStudent: getAllStudent
 };
