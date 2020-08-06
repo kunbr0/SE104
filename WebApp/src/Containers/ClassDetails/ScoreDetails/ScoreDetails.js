@@ -20,17 +20,7 @@ const columnsOfSubjectDetails = [
     key: 'key',
     width: 8,
     fixed: 'left',
-    filters: [
-      {
-        text: 'Joe',
-        value: 'Joe',
-      },
-      {
-        text: 'John',
-        value: 'John',
-      },
-    ],
-        onFilter: (value, record) => record.name.indexOf(value) === 0,
+    
     },
   
     {

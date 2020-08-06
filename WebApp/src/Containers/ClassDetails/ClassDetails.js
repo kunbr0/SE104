@@ -64,9 +64,8 @@ const ClassDetails = (props) => {
 
     const fetchClassDetailsData = () => {
         setIsFetchingClassDetailsData(true);
-        setSelectedClassDetailsData({
-            
-        });
+        setSelectedClassDetailsData({});
+        setTableEditable(false);
         let urlRequest = "";
         if(selectedSubject === "Student Details"){
             urlRequest = `${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.ClassRoutes.GetListStudentInClass}`;
@@ -193,14 +192,18 @@ const ClassDetails = (props) => {
                 </Col>
                
                 </Row>
-                <SubmitWithLoading isLoading={isFetchingClassDetailsData} onClick={fetchClassDetailsData} maxTimeLoading={1000} />
+                <SubmitWithLoading disabled={!(selectedClass && selectedSubject && semester)} isLoading={isFetchingClassDetailsData} onClick={fetchClassDetailsData} maxTimeLoading={1000} />
                 
                 <StatisticScore 
                     pClassName={selectedClass} 
                     pSubject={selectedSubject}
-                    disabled={!selectedClassDetailsData}
-                    />
-                <Button type="primary" danger={tableEditable} onClick={()=>setTableEditable(!tableEditable)}>
+                    
+                    disabled={!(selectedClass && semester && selectedClassDetailsData.type !== "studentdetails" && selectedClassDetailsData.data)}
+                />
+                <Button type="primary" danger={tableEditable} 
+                    onClick={()=>setTableEditable(!tableEditable)}
+                    disabled={!(selectedClass && semester && selectedClassDetailsData.type !== "studentdetails" && selectedClassDetailsData.data)}
+                >
                     {!tableEditable ? "Edit":"Save"} 
                 </Button>
                 </Panel>
