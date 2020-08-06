@@ -1,30 +1,33 @@
 import React from 'react';
 import './TopBar.css';
+import { useHistory } from 'react-router-dom'
 import { Avatar, Badge, Menu, Dropdown } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 
 
 const TopBar = () => {
 
+    let history = useHistory();
+  
     const logout = () => {
         localStorage.removeItem("userData");
         window.location.reload();
     }
 
     const menu = (
-      <Menu>
-        <Menu.Item key="0" >
-          <a>Profile</a>
-        </Menu.Item>
-        <Menu.Item key="1">
-          <a href="/settings">Settings</a>
-        </Menu.Item>
-        <Menu.Item key="2">
-          <a href="/settings">Activity Log</a>
-        </Menu.Item>
-        <Menu.Divider />
-        <Menu.Item key="3" onClick={logout}>Logout</Menu.Item>
-      </Menu>
+        <Menu>
+            <Menu.Item key="0" >
+                <div onClick={()=>{history.push("/profile")}}>Profile</div>
+            </Menu.Item>
+            <Menu.Item key="1">
+                <div onClick={()=>{history.push("/system")}}>Settings</div>
+            </Menu.Item>
+            <Menu.Item key="2">
+                <div onClick={()=>{history.push("/activitylog")}}>Activity Log</div>
+            </Menu.Item>
+            <Menu.Divider />
+            <Menu.Item key="3" onClick={logout}>Logout</Menu.Item>
+        </Menu>
   );
 
     return(

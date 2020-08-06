@@ -10,74 +10,6 @@ import './StudentDetails.css';
 
 
 
-const columnsOfStudentDetails = [
-    {
-        title: 
-            <div>
-                <TextTranslation textName="ClassInfo-Table-No.1" kClass="pcview"/>
-                <TextTranslation textName="ClassInfo-Table-No.2" kClass="mbview"/>
-            </div>,
-        dataIndex: 'key',
-        key: 'key',
-        width: 8,
-        fixed: 'left',
-        filters: [
-            {
-            text: 'Joe',
-            value: 'Joe',
-            },
-            {
-            text: 'John',
-            value: 'John',
-            },
-        ],
-            onFilter: (value, record) => record.name.indexOf(value) === 0,
-    },
-    
-    {
-        title: 
-            <div>
-                <TextTranslation textName="ClassInfo-Table-Name.1" kClass="pcview"/>
-                <TextTranslation textName="ClassInfo-Table-Name.2" kClass="mbview"/>
-            </div>,
-        dataIndex: 'Name',
-        key: 'Name',
-        width: 35,
-        sorter: (a, b) => a.studentID - b.studentID,
-    },
-    {
-    title: 
-        <div>
-            <TextTranslation textName="ClassInfo-Table-Sex.1" kClass="pcview"/>
-            <TextTranslation textName="ClassInfo-Table-Sex.2" kClass="mbview"/>
-        </div>,
-    dataIndex: 'Gender',
-    key: 'Gender',
-    width: 12,
-    },
-    {
-    title: 
-        <div>
-            <TextTranslation textName="ClassInfo-Table-DOB.1" kClass="pcview"/>
-            <TextTranslation textName="ClassInfo-Table-DOB.2" kClass="mbview"/>
-        </div>,
-    dataIndex: 'DOB',
-    key: 'DOB',
-    width: 12,
-    },
-    {
-    title: 
-        <div>
-            <TextTranslation textName="ClassInfo-Table-Address.1" kClass="pcview"/>
-            <TextTranslation textName="ClassInfo-Table-Address.2" kClass="mbview"/>
-        </div>,
-    dataIndex: 'Address',
-    key: 'Address',
-    width: 12,
-    }    
-      
-];
-
 
 // for (let i = 0; i < 100; i++) {
 //   data.push({
@@ -108,13 +40,21 @@ const calculateFinalScore = (e) => {
 
 const StudentScoresTable = (props) => {
     
-
+    const [sortedInfo, setSortedInfo] = useState({});
+    const [filteredInfo, setFilteredInfo] = useState({});
     const [classDetailsData, setClassDetailsData] = useState([{}]);
     const [tableData, setTableData] = useState([]);
     const [tableEditable, setTableEditable] = useState(false);
     
     const [listOfChangedRows, setListOfChangedRows] = useState({});
 
+
+    const handleChange = (pagination, filters, sorter) => {
+        console.log('Various parameters', pagination, filters, sorter);
+        setFilteredInfo(filters);
+        setSortedInfo(sorter);
+    };
+    
     useEffect(()=>{
         if(props.tableEditable !== tableEditable){
             if(props.tableEditable === false){
@@ -123,6 +63,71 @@ const StudentScoresTable = (props) => {
             setTableEditable(props.tableEditable);
         }
     });
+
+
+    const columnsOfStudentDetails = [
+        {
+            title: 
+                <div>
+                    <TextTranslation textName="ClassInfo-Table-No.1" kClass="pcview"/>
+                    <TextTranslation textName="ClassInfo-Table-No.2" kClass="mbview"/>
+                </div>,
+            dataIndex: 'key',
+            key: 'key',
+            width: 8,
+            fixed: 'left',
+            sorter: (a, b) => a.key - b.key,
+        },
+        
+        {
+            title: 
+                <div>
+                    <TextTranslation textName="ClassInfo-Table-Name.1" kClass="pcview"/>
+                    <TextTranslation textName="ClassInfo-Table-Name.2" kClass="mbview"/>
+                </div>,
+            dataIndex: 'Name',
+            key: 'Name',
+            width: 35,
+            sorter: (a, b) => a.Name.split(' ').slice(-1)[0].localeCompare(b.Name.split(' ').slice(-1)[0]),
+        },
+        {
+        title: 
+            <div>
+                <TextTranslation textName="ClassInfo-Table-Sex.1" kClass="pcview"/>
+                <TextTranslation textName="ClassInfo-Table-Sex.2" kClass="mbview"/>
+            </div>,
+        dataIndex: 'Gender',
+        key: 'Gender',
+        width: 12,
+        filters: [
+            { text: 'Male', value: 'Male' },
+            { text: 'Female', value: 'Female' },
+        ],
+        filteredValue: filteredInfo.Gender || null,
+        onFilter: (value, record) => record.Gender.includes(value),
+        },
+        {
+        title: 
+            <div>
+                <TextTranslation textName="ClassInfo-Table-DOB.1" kClass="pcview"/>
+                <TextTranslation textName="ClassInfo-Table-DOB.2" kClass="mbview"/>
+            </div>,
+        dataIndex: 'DOB',
+        key: 'DOB',
+        width: 12,
+        },
+        {
+        title: 
+            <div>
+                <TextTranslation textName="ClassInfo-Table-Address.1" kClass="pcview"/>
+                <TextTranslation textName="ClassInfo-Table-Address.2" kClass="mbview"/>
+            </div>,
+        dataIndex: 'Address',
+        key: 'Address',
+        width: 12,
+        }    
+        
+    ];
 
 
     const updateListChangedRow = (kRow, key, value) => {
@@ -179,18 +184,7 @@ const StudentScoresTable = (props) => {
                     a["key"] = i;
                 });
                 data.push(a);
-                data.push(a);
-                data.push(a);
-                data.push(a);
-                data.push(a);
-                data.push(a);
-                data.push(a);
-                data.push(a);
-                data.push(a);
-                data.push(a);
-                data.push(a);
-                data.push(a);
-                data.push(a);
+                
                 i++;
             }
         }
@@ -239,6 +233,7 @@ const StudentScoresTable = (props) => {
             size="middle"
             scroll={{ x: 'calc(300px + 50%)', y: 240 }}
             expandable={true}
+            onChange={handleChange}
             onRow={(record, rowIndex) => {
                 return {
                     className : (listOfChangedRows[record.studentID]) ? 'editedRow' : ''

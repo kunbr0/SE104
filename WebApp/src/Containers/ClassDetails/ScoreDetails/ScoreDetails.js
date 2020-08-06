@@ -4,8 +4,9 @@ import TextTranslation from '../../../Components/TextTranslation/TextTranslation
 import ScoreCoefficient from '../SubjectCoefficient.json';
 import './ScoreDetails.css';
 import { useSSR } from 'react-i18next';
-
-
+import SConfig from '../../../config.json';
+import { useHttpClient } from '../../../Hooks/http-hook';
+import { Card, Col, Row, message, Space, Collapse, Button } from 'antd';
 
 
 const columnsOfSubjectDetails = [
@@ -19,17 +20,7 @@ const columnsOfSubjectDetails = [
     key: 'key',
     width: 8,
     fixed: 'left',
-    filters: [
-      {
-        text: 'Joe',
-        value: 'Joe',
-      },
-      {
-        text: 'John',
-        value: 'John',
-      },
-    ],
-        onFilter: (value, record) => record.name.indexOf(value) === 0,
+    
     },
   
     {
@@ -41,7 +32,7 @@ const columnsOfSubjectDetails = [
         dataIndex: 'Name',
         key: 'Name',
         width: 35,
-        sorter: (a, b) => a.studentID - b.studentID,
+        sorter: (a, b) => a.ID - b.ID,
     },
     {
     title: 
@@ -115,9 +106,52 @@ const StudentScoresTable = (props) => {
     
     const [listOfChangedRows, setListOfChangedRows] = useState({});
 
+    const { sendRequest } = useHttpClient();
+    const sleeper = (ms) => {
+        return function(x) {
+          return new Promise(resolve => setTimeout(() => resolve(x), ms));
+        };
+    }
+
+    const updateScore = (payload) => {
+        let urlRequest = `${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.ClassRoutes.UpdateTranscripts}`;
+        sendRequest(urlRequest, "POST", payload,{
+            'Content-Type': 'application/json'
+        })
+        .then((response) => {
+            return response.json();
+        })
+
+        .then(sleeper(500))
+
+        .then((data) => {
+            console.log(data);
+            message.success(`Updated successfully !`);
+        })
+        
+        .catch((error) => {
+            console.log(error);
+            message.error(`Updated Failed !`);
+            
+        });
+    };
+
     useEffect(()=>{
         if(props.tableEditable !== tableEditable){
             if(props.tableEditable === false){
+                if(Object.keys(listOfChangedRows).length > 0){
+                    let arrayToUpdate = [];
+                    Object.keys(listOfChangedRows).forEach(e=>{
+                        arrayToUpdate.push({
+                            ...listOfChangedRows[e],
+                            "student_id": listOfChangedRows[e].ID,
+                            "sem_name": listOfChangedRows[e].Semester,
+                            "subj_name": listOfChangedRows[e].Subject,
+                        });
+                    });
+                    console.log(arrayToUpdate);
+                    updateScore(arrayToUpdate);
+                }
                 setListOfChangedRows({});
             }
             setTableEditable(props.tableEditable);
@@ -128,9 +162,9 @@ const StudentScoresTable = (props) => {
     const updateListChangedRow = (kRow, key, value) => {
         setListOfChangedRows(listOfChangedRows =>({
             ...listOfChangedRows,
-            [kRow.studentID] : (listOfChangedRows[kRow.studentID] !== undefined) ?
+            [kRow.ID] : (listOfChangedRows[kRow.ID] !== undefined) ?
             {
-                ...listOfChangedRows[kRow.studentID],
+                ...listOfChangedRows[kRow.ID],
                 [key] : value
             }:{
                 ...kRow,
@@ -210,7 +244,7 @@ const StudentScoresTable = (props) => {
             expandable={true}
             onRow={(record, rowIndex) => {
                 return {
-                    className : (listOfChangedRows[record.studentID]) ? 'editedRow' : ''
+                    className : (listOfChangedRows[record.ID]) ? 'editedRow' : ''
                 };
             }}
         />

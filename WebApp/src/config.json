@@ -7,6 +7,14 @@
     "ClassRoutes" : {
         "GetAllClass" : "/v1/class/get",
         "GetListStudentInClass" : "/v1/class/get/student",
-        "GetTranscripts" : "/v1/transcript/get"
+        "GetTranscripts" : "/v1/transcript/get",
+        "UpdateTranscripts" : "/v1/transcript/update"
+    },
+    "Report" : {
+        "SubjectReport" : "/v1/transcript/show/report/subject",
+        "SemesterReport" : "/v1/transcript/show/report/subject"
+    },
+    "Student" : {
+        "GetAllStudents" : "/v1/student/show"
     }
 }

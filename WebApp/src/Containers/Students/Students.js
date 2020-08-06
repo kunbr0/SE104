@@ -1,13 +1,113 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {connect} from 'react-redux';
-import { Card, Col, Row, message, Space, Collapse, Button } from 'antd';
+import { Card, Col, Row, message, Space, Collapse, Button, Table } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
-
+import SConfig from '../../config.json';
+import { useHttpClient } from '../../Hooks/http-hook';
 
 import AddNewStudent from '../../Components/AddNewStudent/AddNewStudent';
 
+
+
+
 const Students = (props) => {
     const { Panel } = Collapse;
+    const { sendRequest } = useHttpClient();
+    const [isLoading, setIsLoading] = useState(false);
+    const [studentData, setStudentData] = useState([]);
+
+    const sleeper = (ms) => {
+        return function(x) {
+          return new Promise(resolve => setTimeout(() => resolve(x), ms));
+        };
+    }
+
+    useEffect(()=>{
+        setIsLoading(true);
+        let urlRequest = `${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.Student.GetAllStudents}`;
+        sendRequest(urlRequest, "GET")
+        .then((response) => {
+            return response.json();
+        })
+
+        .then(sleeper(500))
+
+        .then((data) => {
+            
+            let dataWithKey = [];
+            let index = 1110;
+            data.forEach(e => {
+                dataWithKey.push({
+                    ...e,
+                    key : index
+                })
+                index ++;
+            });
+
+            console.log(dataWithKey);
+            setStudentData(dataWithKey);
+            setIsLoading(false);
+            message.success(`Get all students successfully !`);
+
+        })
+        
+        .catch((error) => {
+            console.log(error);
+            message.error(`Cannot get list of students !`);
+            setStudentData([])
+            setIsLoading(false);
+        });
+
+    },[]);
+    const columns = [
+        {
+            title: 'MSSV',
+            width: 100,
+            dataIndex: 'id',
+            key: 'id',
+            fixed: 'left',
+        },
+        {
+            title: 'Name',
+            dataIndex: 'name',
+            key: 'name',
+            width: 150,
+        },
+        {
+            title: 'Gender',
+            dataIndex: 'gender',
+            key: 'gender',
+            width: 150,
+        },
+        {
+            title: 'DOB',
+            dataIndex: 'dob',
+            key: 'dob',
+            width: 150,
+        },
+        {
+            title: 'Email',
+            dataIndex: 'email',
+            key: 'email',
+            width: 150,
+        },
+        {
+            title: 'Address',
+            dataIndex: 'address',
+            key: 'address',
+            width: 150,
+        },
+        
+        {
+            title: 'Action',
+            key: 'operation',
+            fixed: 'right',
+            width: 100,
+            render: () => <a>action</a>,
+        },
+    ];
+
+
     return (
         <>
         <Collapse
@@ -37,6 +137,8 @@ const Students = (props) => {
             />
             </Panel>
         </Collapse>
+
+        <Table loading={isLoading} columns={columns} dataSource={studentData}  scroll={{ x: 50, y: 500 }} />
         </>
     )
 }
