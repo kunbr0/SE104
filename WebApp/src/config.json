@@ -8,5 +8,9 @@
         "GetAllClass" : "/v1/class/get",
         "GetListStudentInClass" : "/v1/class/get/student",
         "GetTranscripts" : "/v1/transcript/get"
+    },
+    "Report" : {
+        "SubjectReport" : "/v1/transcript/show/report/subject",
+        "SemesterReport" : "/v1/transcript/show/report/subject"
     }
 }

@@ -179,18 +179,7 @@ const StudentScoresTable = (props) => {
                     a["key"] = i;
                 });
                 data.push(a);
-                data.push(a);
-                data.push(a);
-                data.push(a);
-                data.push(a);
-                data.push(a);
-                data.push(a);
-                data.push(a);
-                data.push(a);
-                data.push(a);
-                data.push(a);
-                data.push(a);
-                data.push(a);
+                
                 i++;
             }
         }
