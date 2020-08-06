@@ -29,7 +29,6 @@ Method: POST
 JSON: </br>
 ```
 { 
-  "id":"sampleid", 
   "name":"samplename", 
   "gender":"samplegender", 
   "dob":"samplebirthday", 
@@ -37,7 +36,7 @@ JSON: </br>
   "mail":"sampleemail@gmail.com"
 }
 ```
-
+This generates id automatically using current year as prefix, then returns { new_id: <id> }
 #### Modify: Update a student ####
 Url: /v1/student/update</br>
 Method: POST
