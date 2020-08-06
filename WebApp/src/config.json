@@ -12,5 +12,8 @@
     "Report" : {
         "SubjectReport" : "/v1/transcript/show/report/subject",
         "SemesterReport" : "/v1/transcript/show/report/subject"
+    },
+    "Student" : {
+        "GetAllStudents" : "/v1/student/show"
     }
 }

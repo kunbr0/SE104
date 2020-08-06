@@ -5,14 +5,14 @@ export const useHttpClient = () => {
   const activeHttpRequests = useRef([]);
 
   const sendRequest = useCallback(
-    async (url, method = 'GET', body = null, headers = {}) => {
+    async (url, method = "GET", body = null, headers = {}) => {
 
     const httpAbortCtrl = new AbortController();
     activeHttpRequests.current.push(httpAbortCtrl);
 
     return fetch(url, {
             method,
-            body : JSON.stringify(body),
+            body : (method !== "GET" && method !== "HEAD") ? JSON.stringify(body) : null,
             headers : headers,
             signal: httpAbortCtrl.signal
         });    
