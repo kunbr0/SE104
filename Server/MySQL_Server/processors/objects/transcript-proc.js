@@ -13,7 +13,7 @@ function getTranscriptOfSubject(dbConnection, req, res, urlData)
 function adjustTranscript(dbConnection, req, res, urlData)
 {
     let error = false;
-    let result = [];
+    let result = [{status: 0}];
 
     urlData.forEach(request =>
         {
@@ -25,7 +25,9 @@ function adjustTranscript(dbConnection, req, res, urlData)
                 request.subj_name, request.sem_name, request.student_id
             ], (err, data, fields) =>
             {
-                if (err) { res.send(err); error = true; return; }
+                if (err) { error = true; }
+                else 
+                {
                 result.push(
                     { 
                         afftected_on: request.student_id,  
@@ -33,6 +35,7 @@ function adjustTranscript(dbConnection, req, res, urlData)
                         semester: request.sem_name,
                         new_mark: [request.exam_1, request.exam_2]
                     });
+                }
                 // console.log(data);
                 // console.log("Affected: " + request.student_id);
                 // res.status(statusCodes.OK).json({ affected: request.student_id });
@@ -42,8 +45,13 @@ function adjustTranscript(dbConnection, req, res, urlData)
 
                     if (!error) 
                     {
+                        result[0].status = 1;
                         console.log(result);
                         res.status(statusCodes.OK).json(result);
+                    }
+                    else 
+                    {
+                        res.status(statusCodes.OK).json([{ status: 0 }]);
                     }
                 }
             });

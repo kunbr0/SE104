@@ -29,7 +29,6 @@ Method: POST
 JSON: </br>
 ```
 { 
-  "id":"sampleid", 
   "name":"samplename", 
   "gender":"samplegender", 
   "dob":"samplebirthday", 
@@ -37,7 +36,8 @@ JSON: </br>
   "mail":"sampleemail@gmail.com"
 }
 ```
-
+This generates id automatically using current year as prefix, then returns { status: 0/1, new_id: id }</br>
+status: 0 (fail), 1 (success)
 #### Modify: Update a student ####
 Url: /v1/student/update</br>
 Method: POST
@@ -52,7 +52,9 @@ JSON: </br>
   "mail":"sampleemail@gmail.com"
 }
 ```
-**Note: This action will update information of student who has student_id = "sampleid"**
+**Note: This action will update information of student who has student_id = "sampleid"</br>**
+Return { status: 0/1 }</br>
+status: 0 (fail), 1 (success)
 #### Query: Get all students in database ####
 Url: /v1/student/show</br>
 Method: GET
@@ -181,7 +183,18 @@ JSON:
   }
 ]
 ```
-This returns back the request JSON on success of query
+This returns back the request JSON on success of query (the first object states result status of query)</br>
+```
+[
+  { status: 1 },
+  {
+    afftected_on: '18520001',
+    subject: 'Lý',
+    semester: 'HỌC KÌ 1',
+    new_mark: [ 7, 8 ]
+  }
+]
+  ```
 
 ### FORM 5 - Report ###
 #### Query: Get subject report (5.1) ####
