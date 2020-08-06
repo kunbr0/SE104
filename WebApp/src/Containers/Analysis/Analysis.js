@@ -8,7 +8,7 @@ import SConfig from '../../config.json';
 import './Analysis.css';
 
 
-import { Card, Col, Row, message, Space, Collapse, Button } from 'antd';
+import { Card } from 'antd';
 
 import SemesterAna from './Semester/SemesterAna';
 import SubjectAna from './Subject/SubjectAna';

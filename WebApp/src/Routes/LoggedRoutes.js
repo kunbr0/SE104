@@ -1,4 +1,4 @@
-import React, {lazy} from 'react';
+import React from 'react';
 //import SLogin from './../Sites/Login/Login';
 import SHomepage from '../Containers/Pages/Homepage/Homepage';
 // import SNotFound from './../Sites/NotFound_404/NotFound_404';

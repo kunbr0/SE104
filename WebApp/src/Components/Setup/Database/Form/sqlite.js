@@ -15,7 +15,7 @@ export default function (props) {
                 tb_prefix: prefix
             });
         }
-    }, [db, pass, prefix])
+    }, [db, pass, prefix, props])
 
     return (
         <>

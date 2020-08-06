@@ -11,7 +11,7 @@ const Statistic = (props) => {
         if(props !== statisticData){ 
             setStatisticData(props);
         }
-    },[props]);
+    },[props, statisticData]);
 
     const onOpenModal = (value) => {
         setModalVisible(value);

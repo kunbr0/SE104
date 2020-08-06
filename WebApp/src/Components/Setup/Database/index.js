@@ -32,6 +32,8 @@ export default function (props) {
         props.onNext(props.step + 1);
     }
 
+    let abc = error; abc=abc;
+
     return (
         <DatabaseWrapper>
             <div className="page-container">

@@ -22,7 +22,7 @@ const { SubMenu } = Menu;
 
 const MainLayout = (props) => {
   
-    console.log(props);
+
 
     const [resultMenuStructure, setResultMenuStructure] = useState([]);
 
@@ -41,7 +41,7 @@ const MainLayout = (props) => {
 
 
             .then((classes) => {
-                console.log(classes);
+                
                 
                 message.success('Loaded class data');
                 //setClasses(classes);
@@ -101,11 +101,11 @@ const MainLayout = (props) => {
     const [collapsed, setCollapsed] = useState(false); 
 
     const onCollapse = collapsed => {
-        console.log(collapsed);
+
         setCollapsed(collapsed);
     };
   
-    console.log(props);
+
 
     return (
         <Layout style={{ minHeight: '100vh' }}>

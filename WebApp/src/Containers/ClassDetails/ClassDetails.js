@@ -7,7 +7,7 @@ import StatisticScore from '../../Components/Statistic/Statistic';
 
 import SConfig from '../../config.json';
 
-import { Card, Col, Row, message, Space, Collapse, Button } from 'antd';
+import { Card, Col, Row, message, Collapse, Button } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
 
 import Subjectslist from './SubjectsList.json';
@@ -16,7 +16,7 @@ import ScoreDetails from './ScoreDetails/ScoreDetails';
 import StudentDetails from './StudentDetails/StudentDetails'
 
 import { useHttpClient } from '../../Hooks/http-hook';
-import {useHistory} from 'react-router-dom';
+
 
 const ClassDetails = (props) => {
     console.log(props.match.params.classCode);
@@ -39,7 +39,7 @@ const ClassDetails = (props) => {
     const [tableEditable, setTableEditable] = useState(false);
 
     // Redirect 
-    const rHistory = useHistory();
+    
 
     const onSelectClass = (kClass) => {
         console.log("kClass" + kClass);
