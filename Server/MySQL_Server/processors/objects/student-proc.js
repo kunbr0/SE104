@@ -54,9 +54,63 @@ function removeStudent(dbConnection, req, res, urlData) {
 }
 
 function getStudentListWithAvg(dbConnection, req, res, urlData) {
-    dbConnection.query(storage.Query_GetAvgScore(), [urlData.sem_name, urlData.yearid], (err, data, fields) => {
-        if (err) { res.status(statusCodes.NotFound).send(err); return; }
-        res.status(statusCodes.OK).json(data);
+    let sem1 = 'HỌC KÌ 1';
+    let sem2 = 'HỌC KÌ 2';
+    let rawResult = { 
+        Avg1: null,
+        Avg2: null
+    }
+    let finalResult = [{ status: 0 }];
+
+    dbConnection.query(storage.Query_GetAvgScore(), [sem1, urlData.yearid, urlData.student_name], (err, data, fields) => {
+        if (err) { res.status(statusCodes.OK).json([{ status: 0 }]); return; }
+        rawResult.Avg1 = data;
+        
+        for (var i = 0; i < data.length; ++i)
+        {
+            let item = data[i];
+            finalResult.push(
+                {
+                    StudentID: item.StudentID,
+                    StudentName: item.StudentName,
+                    ClassID: null,
+                    ClassName: null,
+                    Avg1: item.TBHK,
+                    Avg2: null
+                }
+            );
+        }
+
+        // Query AVG2
+        dbConnection.query(storage.Query_GetAvgScore(), [sem2, urlData.yearid, urlData.student_name], (err, data, fields) => 
+        {
+            if (err) { res.status(statusCodes.OK).json([{ status: 0 }]); return; }
+            rawResult.Avg2 = data;
+
+            for (var i = 0; i < data.length; ++i)
+            {
+                let item = data[i];
+                finalResult[i + 1].Avg2 = item.TBHK;
+
+                // Query for respective class
+                dbConnection.query(storage.Query_GetAvgRespectiveClass(), [finalResult[i].StudentID, urlData.yearid], (err, data, fields) => 
+                {
+                    if (err) { res.status(statusCodes.OK).json([{ status: 0 }]); return; }
+                    for (var i = 0; i < data.length; ++i)
+                    {
+                        let item = data[i];
+                        finalResult[i + 1].ClassID = item.id;
+                        finalResult[i + 1].ClassName = item.name;
+                    }
+                    
+                    // Query successfully
+                    finalResult[0].status = 1;
+                    console.log(finalResult);
+                    res.status(statusCodes.OK).json(finalResult);
+                });
+            }
+
+        })
     });
 }
 

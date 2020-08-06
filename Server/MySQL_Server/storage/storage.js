@@ -162,5 +162,6 @@ module.exports =
     Query_SubjectReport             : () => queryJSON.SUBJECT_PASS_REPORT,
     Query_NoStudents                : () => queryJSON.NO_STUDENT,
     Query_SemesterReport            : () => queryJSON.SEMESTER_REPORT,
-    Query_GetAllStudent             : () => queryJSON.GET_ALL_STUDENT
+    Query_GetAllStudent             : () => queryJSON.GET_ALL_STUDENT,
+    Query_GetAvgRespectiveClass     : () => queryJSON.AVG_RESPECTIVE_CLASS
 }
