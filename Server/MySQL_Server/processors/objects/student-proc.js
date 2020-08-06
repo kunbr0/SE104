@@ -60,7 +60,7 @@ function getStudentListWithAvg(dbConnection, req, res, urlData) {
         Avg1: null,
         Avg2: null
     }
-    let finalResult = [{ status: 0 }];
+    let finalResult = [];
 
     dbConnection.query(storage.Query_GetAvgScore(), [sem1, urlData.yearid, urlData.student_name], (err, data, fields) => {
         if (err) { res.status(statusCodes.OK).json([{ status: 0 }]); return; }
@@ -90,7 +90,7 @@ function getStudentListWithAvg(dbConnection, req, res, urlData) {
             for (var i = 0; i < data.length; ++i)
             {
                 let item = data[i];
-                finalResult[i + 1].Avg2 = item.TBHK;
+                finalResult[i].Avg2 = item.TBHK;
 
                 // Query for respective class
                 dbConnection.query(storage.Query_GetAvgRespectiveClass(), [finalResult[i].StudentID, urlData.yearid], (err, data, fields) => 
@@ -99,12 +99,13 @@ function getStudentListWithAvg(dbConnection, req, res, urlData) {
                     for (var i = 0; i < data.length; ++i)
                     {
                         let item = data[i];
-                        finalResult[i + 1].ClassID = item.id;
-                        finalResult[i + 1].ClassName = item.name;
+                        finalResult[i].ClassID = item.id;
+                        finalResult[i].ClassName = item.name;
                     }
                     
                     // Query successfully
-                    finalResult[0].status = 1;
+                    // finalResult[0].status = 1;
+                    finalResult.splice(0, 0, {status: 1});
                     console.log(finalResult);
                     res.status(statusCodes.OK).json(finalResult);
                 });
