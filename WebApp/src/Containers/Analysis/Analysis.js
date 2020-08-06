@@ -60,6 +60,16 @@ const Analysis = (props) => {
             children: mappedSemesterList,
         },
     ];
+
+    const findSthInArrayOfObject = (array, name, key, resultValueOfKey, defaultResult) => {
+        
+        for(let i=0; i < array.length; i++){
+            if(array[i][name] === key){
+                return array[i][resultValueOfKey];
+            } 
+        }
+        return defaultResult;
+    }
         
     function onChange(value) {
         setIsLoading(true);
@@ -82,13 +92,55 @@ const Analysis = (props) => {
                 console.log(data);
                 setIsLoading(false);
                 let resultData = [];
-                for(let i=0; i<data.Pass.length; i++){
+                for(let i=0; i<data.NoStudent.length; i++){
+                    let kSLDat = findSthInArrayOfObject(data.Pass, "name", data.NoStudent[i].name, "SoLuongDat", 0);
                     resultData.push({
-                        id : data.Pass[i].id,
-                        name : data.Pass[i].name,
+                        id : data.NoStudent[i].id,
+                        name : data.NoStudent[i].name,
                         siso : data.NoStudent[i].SiSo,
-                        sldat: data.Pass[i].SoLuongDat,
-                        tyle : (data.Pass[i].SoLuongDat / data.NoStudent[i].SiSo)*100
+                        sldat: kSLDat,
+                        tyle : (kSLDat / data.NoStudent[i].SiSo)*100
+                    })  
+                }
+                console.log(resultData);
+                setReportData({
+                    type : 1,
+                    data: resultData
+                });
+            })
+            
+            .catch((error) => {
+                console.log(error);
+                setIsLoading(false);
+            });
+        }
+
+        if(value.length === 2){
+            let urlRequest = `${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.Report.SubjectReport}`;
+            sendRequest(urlRequest, "POST", {
+                sem_name : value[1],
+                yearid : props.yearData.yearid
+            },{
+                'Content-Type': 'application/json'
+            })
+            .then((response) => {
+                return response.json();
+            })
+
+            .then(sleeper(1000))
+
+            .then((data) => {
+                console.log(data);
+                setIsLoading(false);
+                let resultData = [];
+                for(let i=0; i<data.NoStudent.length; i++){
+                    let kSLDat = findSthInArrayOfObject(data.Pass, "name", data.NoStudent[i].name, "SoLuongDat", 0);
+                    resultData.push({
+                        id : data.NoStudent[i].id,
+                        name : data.NoStudent[i].name,
+                        siso : data.NoStudent[i].SiSo,
+                        sldat: kSLDat,
+                        tyle : (kSLDat / data.NoStudent[i].SiSo)*100
                     })  
                 }
                 console.log(resultData);
