@@ -143,11 +143,30 @@ Url: /v1/student/get</br>
 Method: POST
 JSON: </br>
 ```
-{ 
-  "sem_name": "HỌC KÌ 1",
+{
+  "student_name": "Nguyễn Lê Bách",
   "yearid": 1
 }
 ```
+*This automatically gets both First and Second Semester average and class name and returns as below:*
+```
+[
+  { status: 1 },
+  {
+    StudentID: '18520001',
+    StudentName: 'Nguyễn Lê Bách',
+    ClassID: null,
+    ClassName: null,
+    Avg1: 7.726666683620877,
+    Avg2: 8.666666666666666
+  },
+  {
+    ...other result...
+  }
+]
+```
+*The first item of the array list is status of query (success 1 or fail 0)*</br>
+
 ### FORM 4 - Transcripts ###
 #### Query: Get transcript (mark) of a class in a semester ####
 Url: /v1/transcript/get</br>
