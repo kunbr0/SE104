@@ -26,8 +26,10 @@ const MainLayout = (props) => {
 
     const [resultMenuStructure, setResultMenuStructure] = useState([]);
 
-    const [classes, setClasses] = useState([]);
-
+    const [classes, //setClasses
+    ]
+     = useState([]);
+    
     useEffect(()=>{
         setResultMenuStructure(renderLAMenuStructure(MenuStructure, false));
     },[classes]);

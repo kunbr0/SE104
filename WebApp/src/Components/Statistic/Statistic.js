@@ -17,13 +17,13 @@ const Statistic = (props) => {
         setModalVisible(value);
     }
 
-    const styleOfProgress = (colorCode) => {
-        console.log(colorCode);
-        return {
-            '0%': colorCode,
-            '100%': colorCode
-        }
-    }
+    // const styleOfProgress = (colorCode) => {
+    //     console.log(colorCode);
+    //     return {
+    //         '0%': colorCode,
+    //         '100%': colorCode
+    //     }
+    // }
         
 
     return (

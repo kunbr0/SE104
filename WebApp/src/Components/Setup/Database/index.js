@@ -14,7 +14,7 @@ const sqls = {
 
 export default function (props) {
     const [sql, setSQL] = useState("MYSQL");
-    const [error, setError] = useState(0);
+    const [/*error,*/, setError] = useState(0);
     const [data, setData] = useState();
 
     const SqlForm = sqls[sql];
@@ -32,7 +32,6 @@ export default function (props) {
         props.onNext(props.step + 1);
     }
 
-    let abc = error; abc=abc;
 
     return (
         <DatabaseWrapper>

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Table, InputNumber, Card, Row, Col } from 'antd';
+import { Table } from 'antd';
 import TextTranslation from '../../../Components/TextTranslation/TextTranslation';
 
 

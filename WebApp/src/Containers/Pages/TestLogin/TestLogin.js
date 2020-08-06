@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {Button} from 'antd'
 import './TestLogin.css';
-import { useHttpClient } from '../../../Hooks/http-hook';
+
 import agent from "../../../Utilities/agent";
 import ThemeSwitcher from '../../../Components/ThemeSwitcher';
 
@@ -12,7 +12,7 @@ export default function TestLogin() {
     const [password, setPassword] = useState();
 
     const [pwClass, setPwClass] = useState('');
-    const { sendRequest } = useHttpClient();
+   
 
     const login = (e) => {
         if(e) e.preventDefault();
@@ -31,33 +31,7 @@ export default function TestLogin() {
         window.location.reload();
     }
 
-    const sendLoginRequest = (user, pass) =>{
-        sendRequest(
-            "https://api.kunbr0.com/se104/login/index.php",
-            "POST",
-            JSON.stringify({
-                email : user,
-                password: pass
-            }),
-            {
-                'Content-Type' : 'application/json'
-            }
-        )
-        .then((response) => {
-            if(response.ok){
-                console.log("ss");
-                loginSuccessfully(response.json())
-            }else{
-                document.getElementById("login-notification").append("Authentication Failed !!");
-            }
-            //return response.json();
-        })
-        .catch((error) => {
-            console.log(error);
-
-        });
-    }
-
+    
     
     const onFocus = () => {
         setPwClass("password");

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {connect} from 'react-redux';
-import { Card, Col, Row, message, Space, Collapse, Button, Table } from 'antd';
+import { Col, Row, message, Collapse, Button, Table } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
 import SConfig from '../../config.json';
 import { useHttpClient } from '../../Hooks/http-hook';

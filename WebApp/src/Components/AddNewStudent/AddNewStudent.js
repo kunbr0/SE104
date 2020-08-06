@@ -20,18 +20,18 @@ const AddNewStudent = (props) => {
         setVisible(false);
     };
 
-    const renderOptions = () => {
-        const classes = props.classData;
-        console.log(props.classData);
-        if(classes.length){
-            return classes.map((e,i)=>{
-                return <Option key={`${e[props.optionName]}${e[props.optionKey]}`} value={e[props.optionName]}>{e[props.optionName]}</Option>
-            });
-        }
-        return null;
-    }
+    // const renderOptions = () => {
+    //     const classes = props.classData;
+    //     console.log(props.classData);
+    //     if(classes.length){
+    //         return classes.map((e,i)=>{
+    //             return <Option key={`${e[props.optionName]}${e[props.optionKey]}`} value={e[props.optionName]}>{e[props.optionName]}</Option>
+    //         });
+    //     }
+    //     return null;
+    // }
 
-    let optionClassElms = renderOptions();
+    //let optionClassElms = renderOptions();
 
     return (
       <>

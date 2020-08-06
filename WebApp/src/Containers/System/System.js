@@ -1,6 +1,4 @@
 import React from 'react';
-import { Menu, Dropdown , message } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
 import "./System.css"
 import {useTranslation} from 'react-i18next';
 import SelectWithTyping from '../../Components/SelectWithTyping/SelectWithTyping';
