@@ -22,8 +22,8 @@ function insertStudent(dbConnection, req, res, urlData) {
         dbConnection.query(storage.Query_InsertStudent(
             id, urlData.name, urlData.gender, urlData.dob, urlData.addr, urlData.mail
         ), (err, data, fields) => {
-            if (err) { res.send(err); return; }
-            res.status(statusCodes.OK).json({ new_id: id });
+            if (err) { res.status(statusCodes.OK).json({ status: 0 }); return; }
+            res.status(statusCodes.OK).json({ status: 1, new_id: id });
         });
     });
 }
@@ -32,8 +32,8 @@ function updateStudent(dbConnection, req, res, urlData) {
     dbConnection.query(storage.Query_UpdateStudent(
         urlData.id, urlData.name, urlData.gender, urlData.dob, urlData.addr, urlData.mail
     ), (err, data, fields) => {
-        if (err) { res.status(statusCodes.NotFound).send(err); return; }
-        res.status(statusCodes.OK).json(data);
+        if (err) { res.status(statusCodes.OK).json({ status: 0 }); return; }
+        res.status(statusCodes.OK).json({status: 1});
     });
 }
 
@@ -49,7 +49,7 @@ function removeStudent(dbConnection, req, res, urlData) {
     console.log(req.params);
     dbConnection.query(storage.Query_RemoveStudent(req.params.id), (err, data, fields) => {
         if (err) { res.status(statusCodes.NotFound).send(err); return; }
-        res.status(statusCodes.OK).json(data);
+        res.status(statusCodes.OK).json({status: 1});
     });
 }
 
