@@ -130,7 +130,7 @@ const StudentScoresTable = (props) => {
                 let a = {};
                 a = {...e}
                 a["key"] = i;
-                a["tyle"] = `${a["tyle"]} %`
+                a["tyle"] = `${Math.floor(a["tyle"]*100)/100} %`
                 i++;
                 data.push(a);
                 

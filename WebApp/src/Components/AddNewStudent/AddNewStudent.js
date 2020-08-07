@@ -60,6 +60,72 @@ const AddNewStudent = (props) => {
 
     const { sendRequest } = useHttpClient();
 
+    console.log(fClass);
+
+    const requestCreateStudent = () => {
+        let urlRequest = `${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.Student.AddStudent}`;
+                        
+        let formatedDate = fDOB;
+        formatedDate = formatedDate.getFullYear()+'/' + (formatedDate.getMonth()+1) + '/'+formatedDate.getDate();
+        sendRequest(urlRequest, "POST", {
+            "name": fName, 
+            "gender": fGender === "male" ? 1 : 0, 
+            "dob": formatedDate, 
+            "addr": `${fAddress.detailsAddress} ${fAddress.district} ${fAddress.city}`, 
+            "mail": fEmail
+        },{
+            'Content-Type': 'application/json'
+        })
+        .then((response) => {
+            return response.json();
+        })
+
+        .then(sleeper(500))
+
+        .then((data) => {
+            console.log(data);
+            addStudentToClass(data.new_id)
+            message.success(`Add student successfully !`);
+        })
+        
+        .catch((error) => {
+            console.log(error);
+            message.error(`Something wrong !`);
+            
+        });
+        onClose();
+    }
+
+    const addStudentToClass = (newStudentId) => {
+        let urlRequest = `${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.ClassRoutes.AddStudents}`;
+                        
+        sendRequest(urlRequest, "POST", [
+                {
+                "class": fClass,
+                "student_id": newStudentId
+                }
+            ],{
+            'Content-Type': 'application/json'
+        })
+        .then((response) => {
+            return response.json();
+        })
+
+        .then(sleeper(500))
+
+        .then((data) => {
+            props.callbackSuccess();
+            console.log(data)
+            message.success(`Add student to ${fClass} successfully !`);
+        })
+        
+        .catch((error) => {
+            console.log(error);
+            message.error(`Something wrong with adding student to ${fClass} !`);
+            
+        });
+        onClose();
+    }
 
 
     return (
@@ -84,39 +150,7 @@ const AddNewStudent = (props) => {
               </Button>
               <Button 
                 disabled={!(fName)} 
-                onClick={()=>{
-                        let urlRequest = `${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.Student.AddStudent}`;
-                        
-                        let formatedDate = fDOB;
-                        formatedDate = formatedDate.getFullYear()+'/' + (formatedDate.getMonth()+1) + '/'+formatedDate.getDate();
-                        sendRequest(urlRequest, "POST", {
-                            "name": fName, 
-                            "gender": fGender === "male" ? 1 : 0, 
-                            "dob": formatedDate, 
-                            "addr": `${fAddress.detailsAddress} ${fAddress.district} ${fAddress.city}`, 
-                            "mail": fEmail
-                        },{
-                            'Content-Type': 'application/json'
-                        })
-                        .then((response) => {
-                            return response.json();
-                        })
-
-                        .then(sleeper(500))
-
-                        .then((data) => {
-                            props.callbackSuccess();
-                            console.log(data)
-                            message.success(`Add student successfully !`);
-                        })
-                        
-                        .catch((error) => {
-                            console.log(error);
-                            message.error(`Something wrong !`);
-                            
-                        });
-                    onClose();
-                }} 
+                onClick={requestCreateStudent} 
                 type="primary"
             >
                 Submit
@@ -182,7 +216,8 @@ const AddNewStudent = (props) => {
                     >
                         <SelectWithTyping 
                             options={props.classData} 
-                            optionName="name" 
+                            optionName="name"
+                            optionValue="id"  
                             optionKey="id" 
                             placeholder="Please choose the class"
                             callbackSelection={setFClass}
