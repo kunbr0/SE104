@@ -16,7 +16,7 @@ const ButtonWithLoading = (props) => {
 
     return (
         <Button style={{marginRight: '7px'}} disabled={props.disabled || false} type="primary" loading={props.isLoading || false} onClick={props.onClick}>
-            Lookup
+            {props.label || `Submit`}
         </Button>
     );
 }

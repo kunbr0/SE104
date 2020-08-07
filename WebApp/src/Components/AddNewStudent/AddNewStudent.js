@@ -116,12 +116,12 @@ const AddNewStudent = (props) => {
         .then((data) => {
             props.callbackSuccess();
             console.log(data)
-            message.success(`Add student to ${fClass} successfully !`);
+            message.success(`Add student to class successfully !`);
         })
         
         .catch((error) => {
             console.log(error);
-            message.error(`Something wrong with adding student to ${fClass} !`);
+            message.error(`Something wrong with adding student to class !`);
             
         });
         onClose();
@@ -149,7 +149,7 @@ const AddNewStudent = (props) => {
                 Cancel
               </Button>
               <Button 
-                disabled={!(fName)} 
+                disabled={!(fName && fClass && fDOB && fEmail && fAddress.detailsAddress && fAddress.district && fAddress.city)} 
                 onClick={requestCreateStudent} 
                 type="primary"
             >

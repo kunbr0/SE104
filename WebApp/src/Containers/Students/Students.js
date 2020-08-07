@@ -6,7 +6,7 @@ import SConfig from '../../config.json';
 import { useHttpClient } from '../../Hooks/http-hook';
 
 import AddNewStudent from '../../Components/AddNewStudent/AddNewStudent';
-
+import ButtonWithLoading from '../../Components/ButtonWithLoading/ButtonWithLoading'
 
 
 
@@ -130,9 +130,8 @@ const Students = (props) => {
             
             </Row>
             
-            <Button type="primary" danger >
-                Edit
-            </Button>
+            <ButtonWithLoading label="Reload" isLoading={isLoading} onClick={requestGetAllStudent} maxTimeLoading={10000} />
+                
             <AddNewStudent 
                     //disabled={isFetchingClassDetailsData} 
                     classData={props.classData.classData} 
