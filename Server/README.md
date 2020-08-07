@@ -138,9 +138,9 @@ JSON:
 ```
 "class" is class_id (int)
 ### FORM 3 - Student List ###
-#### Query: Get student list and average of a semester ####
+#### Query: Get student list and average  ####
 Url: /v1/student/get</br>
-Method: POST
+Method: POST </br>
 JSON: </br>
 ```
 {
@@ -155,8 +155,8 @@ JSON: </br>
   {
     StudentID: '18520001',
     StudentName: 'Nguyễn Lê Bách',
-    ClassID: null,
-    ClassName: null,
+    ClassID: 1,
+    ClassName: '10A1',
     Avg1: 7.726666683620877,
     Avg2: 8.666666666666666
   },
@@ -243,7 +243,7 @@ This returns 2 tables as below
 Pass percentages can be implicated from Pass and NoStudent: (Pass/NoStudent)*100
 
 #### Query: Get Semester report (5.2) ####
-Url: /v1/transcript/show/report/subject</br>
+Url: /v1/transcript/show/report/semester</br>
 Method: POST </br>
 ```
 JSON:
