@@ -243,7 +243,7 @@ This returns 2 tables as below
 Pass percentages can be implicated from Pass and NoStudent: (Pass/NoStudent)*100
 
 #### Query: Get Semester report (5.2) ####
-Url: /v1/transcript/show/report/subject</br>
+Url: /v1/transcript/show/report/semester</br>
 Method: POST </br>
 ```
 JSON:
