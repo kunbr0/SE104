@@ -256,8 +256,8 @@ This returns 2 tables as below
 ```
 {
   Pass: [
-    RowDataPacket { ID: 1, Name: '10A1', SoLuongDat: 2 },
-    RowDataPacket { ID: 2, Name: '10A2', SoLuongDat: 3 }
+    RowDataPacket { id: 1, name: '10A1', SoLuongDat: 2 },
+    RowDataPacket { id: 2, name: '10A2', SoLuongDat: 3 }
   ],
   NoStudent: [
     RowDataPacket { id: 1, name: '10A1', SiSo: 3 },
