@@ -64,10 +64,10 @@ function addStudent(dbConnection, req, res, urlData) {
                             queryQueue.push(i);
 
                             let subject = subjects[i].id;
-                            let initQ = "INSERT INTO sm_transcript(student_code ,semester ,  _subject ,exam_1 ,exam_2)VALUES(?,?,?,?,?)";
+                            let initQ = "INSERT INTO sm_transcript(student_code ,semester ,  _subject)VALUES(?,?,?)";
 
                             // Query for first semester
-                            dbConnection.query(initQ, [student[k], 1, subject, -1, -1], (err, data, fields) => {
+                            dbConnection.query(initQ, [student[k], 1, subject], (err, data, fields) => {
                                 if (err) { console.log(err); res.status(statusCodes.OK).json({ status: 0 }); success = false; return; }
 
                                 queryQueue.pop();
@@ -78,7 +78,7 @@ function addStudent(dbConnection, req, res, urlData) {
                             });
 
                             // Query for second semester
-                            dbConnection.query(initQ, [student[k], 2, subject, -1, -1], (err, data, fields) => {
+                            dbConnection.query(initQ, [student[k], 2, subject], (err, data, fields) => {
                                 if (err) { console.log(err); res.status(statusCodes.OK).json({ status: 0 }); success = false; return; }
 
                                 queryQueue.pop();
