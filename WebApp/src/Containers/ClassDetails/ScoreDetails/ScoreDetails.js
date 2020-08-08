@@ -202,9 +202,9 @@ const StudentScoresTable = (props) => {
                     a[key] = (key === 'exam_1' || key === 'exam_2' || key === 'final' ) ? 
                     <InputNumber
                             style={{width: "100%"}}
-                            min={1} max={10}
+                            min={0} max={10}
                             disabled={(key==="final")?true:!tableEditable}
-                            defaultValue={e[key] || 0}
+                            defaultValue={e[key] || ""}
                             onChange={(value)=> updateListChangedRow(e, key, value)}
                             step={0.5}
                         /> : e[key]
