@@ -40,7 +40,7 @@ const routes = [
         main : ({match}) => <ClassDetails match={match} />
     },
     {
-        path : '/analysis/',
+        path : '/report/',
         exact : false,
         main : ({match}) => <Analysis match={match} />
     },

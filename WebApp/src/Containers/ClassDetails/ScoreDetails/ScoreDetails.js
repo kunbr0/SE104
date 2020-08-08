@@ -9,13 +9,14 @@ import { useHttpClient } from '../../../Hooks/http-hook';
 import { Card, Col, Row, message, Space, Collapse, Button } from 'antd';
 
 
+
 const columnsOfSubjectDetails = [
   {
     title: 
-        <div>
+        <>
             <TextTranslation textName="ClassInfo-Table-No.1" kClass="pcview"/>
             <TextTranslation textName="ClassInfo-Table-No.2" kClass="mbview"/>
-        </div>,
+        </>,
     dataIndex: 'key',
     key: 'key',
     width: 8,
@@ -25,10 +26,10 @@ const columnsOfSubjectDetails = [
   
     {
         title: 
-            <div>
+            <>
                 <TextTranslation textName="ClassInfo-Table-Name.1" kClass="pcview"/>
                 <TextTranslation textName="ClassInfo-Table-Name.2" kClass="mbview"/>
-            </div>,
+            </>,
         dataIndex: 'Name',
         key: 'Name',
         width: 35,
@@ -36,30 +37,30 @@ const columnsOfSubjectDetails = [
     },
     {
     title: 
-        <div>
+        <>
             <TextTranslation textName="ClassInfo-Table-15mins.1" kClass="pcview"/>
             <TextTranslation textName="ClassInfo-Table-15mins.2" kClass="mbview"/>
-        </div>,
+        </>,
     dataIndex: 'exam_1',
     key: 'exam_1',
     width: 12,
     },
     {
     title: 
-        <div>
+        <>
             <TextTranslation textName="ClassInfo-Table-45mins.1" kClass="pcview"/>
             <TextTranslation textName="ClassInfo-Table-45mins.2" kClass="mbview"/>
-        </div>,
+        </>,
     dataIndex: 'exam_2',
     key: 'exam_2',
     width: 12,
     },
     {
         title: 
-            <div>
+            <>
                 <TextTranslation textName="ClassInfo-Table-final.1" kClass="pcview"/>
                 <TextTranslation textName="ClassInfo-Table-final.2" kClass="mbview"/>
-            </div>,
+            </>,
         dataIndex: 'final',
         key: 'final',
         width: 12,
@@ -127,6 +128,7 @@ const StudentScoresTable = (props) => {
         .then((data) => {
             console.log(data);
             message.success(`Updated successfully !`);
+            props.callbackUpdateSuccess();
         })
         
         .catch((error) => {

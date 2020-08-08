@@ -74,23 +74,23 @@ const MenuStructure =
     },
     {
         "key" : "school",
-        "displayName" : "School",
+        "displayName" : <TextTranslation textName="LMenu-School.1"/>,
         "icon" : <FolderOutlined/>,
         "children" : [
             {
                 "key" : "students",
-                "displayName" : "Students",
+                "displayName" : <TextTranslation textName="LMenu-Students.1"/>,
                 "to" : "/students"
             },
             {
                 "key" : "class",
-                "displayName" : "Class Details",
+                "displayName" : <TextTranslation textName="LMenu-ClassAndSubject.1"/>,
                 "to" : "/class"
             },
             {
-                "key" : "analysis",
-                "displayName" : "Analysis",
-                "to" : "/analysis"
+                "key" : "report",
+                "displayName" : <TextTranslation textName="LMenu-Report.1"/>,
+                "to" : "/report"
             },
         ]
     },

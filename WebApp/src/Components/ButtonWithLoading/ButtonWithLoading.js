@@ -1,5 +1,5 @@
 import React from 'react';
-
+import TextTranslation from '../../Components/TextTranslation/TextTranslation';
 import { Button } from 'antd';
 
 const ButtonWithLoading = (props) => {
@@ -16,7 +16,7 @@ const ButtonWithLoading = (props) => {
 
     return (
         <Button style={{marginRight: '7px'}} disabled={props.disabled || false} type="primary" loading={props.isLoading || false} onClick={props.onClick}>
-            {props.label || `Submit`}
+            <TextTranslation textName={`ClassInfo-Table-${props.label}.1`} kClass="pcview"/>
         </Button>
     );
 }

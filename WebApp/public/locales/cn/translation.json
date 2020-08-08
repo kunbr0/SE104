@@ -39,7 +39,19 @@
     },
 
     "LMenu-Classes" : {
-        "1" : "班級"
+        "1" : "Classes"
+    },
+    "LMenu-School" : {
+        "1" : "学校"
+    },
+    "LMenu-Students" : {
+        "1" : "学生管理"
+    },
+    "LMenu-ClassAndSubject" : {
+        "1" : "班级和科目"
+    },
+    "LMenu-Report" : {
+        "1" : "报告"
     },
 
 
@@ -112,5 +124,14 @@
     },
     "ClassInfo-Table-Edit" : {
         "1" : "編輯"
+    },
+    "ClassInfo-Table-Reload" : {
+        "1" : "重装"
+    },
+    "ClassInfo-Table-NewStudent" : {
+        "1" : "创建一个新学生"
+    },
+    "ClassInfo-Table-Description" : {
+        "1" : "描述"
     }
 }

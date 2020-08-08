@@ -7,7 +7,7 @@ import { useHttpClient } from '../../Hooks/http-hook';
 
 import AddNewStudent from '../../Components/AddNewStudent/AddNewStudent';
 import ButtonWithLoading from '../../Components/ButtonWithLoading/ButtonWithLoading'
-
+import TextTranslation from '../../Components/TextTranslation/TextTranslation';
 import './Students.css';
 import moment from 'moment';
 
@@ -45,7 +45,8 @@ const Students = (props) => {
                 dataWithKey.push({
                     ...e,
                     key : index,
-                    gender : e["gender"] === 1 ? "Male" : "Female"
+                    gender : e["gender"] === 1 ? "Male" : "Female",
+                    dob : moment(e["dob"]).format("DD/MM/YYYY")
                 })
                 index ++;
             });
@@ -68,57 +69,84 @@ const Students = (props) => {
     useEffect(()=>{
         requestGetAllStudent();
     },[]);
+
+    // Begin Structure of Table
     const columns = [
         {
-            title: 'MSSV',
+            title:  <>
+                        <TextTranslation textName="ClassInfo-Table-No.1" kClass="pcview"/>
+                        <TextTranslation textName="ClassInfo-Table-No.2" kClass="mbview"/>
+                    </>,
             width: 100,
             dataIndex: 'id',
             key: 'id',
             fixed: 'left',
         },
         {
-            title: 'Name',
+            title:  <>
+                        <TextTranslation textName="ClassInfo-Table-Name.1" kClass="pcview"/>
+                        <TextTranslation textName="ClassInfo-Table-Name.2" kClass="mbview"/>
+                    </>,
             dataIndex: 'name',
             key: 'name',
             width: 150,
         },
         {
-            title: 'Gender',
+            title:  <>
+                        <TextTranslation textName="ClassInfo-Table-Sex.1" kClass="pcview"/>
+                        <TextTranslation textName="ClassInfo-Table-Sex.2" kClass="mbview"/>
+                    </>,
             dataIndex: 'gender',
             key: 'gender',
             width: 150,
         },
         {
-            title: 'DOB',
+            title:  <>
+                        <TextTranslation textName="ClassInfo-Table-DOB.1" kClass="pcview"/>
+                        <TextTranslation textName="ClassInfo-Table-DOB.2" kClass="mbview"/>
+                    </>,
             dataIndex: 'dob',
             key: 'dob',
             width: 150,
         },
         {
-            title: 'Email',
+            title:  <>
+                        <TextTranslation textName="ClassInfo-Table-Email.1" kClass="pcview"/>
+                        <TextTranslation textName="ClassInfo-Table-Email.2" kClass="mbview"/>
+                    </>,
             dataIndex: 'email',
             key: 'email',
             width: 150,
         },
         {
-            title: 'Address',
+            title:  <>
+                        <TextTranslation textName="ClassInfo-Table-Address.1" kClass="pcview"/>
+                        <TextTranslation textName="ClassInfo-Table-Address.2" kClass="mbview"/>
+                    </>,
             dataIndex: 'address',
             key: 'address',
             width: 150,
         },
         
         {
-            title: 'Action',
+            title:  <>
+                        <TextTranslation textName="ClassInfo-Table-Action.1" kClass="pcview"/>
+                        <TextTranslation textName="ClassInfo-Table-Action.2" kClass="mbview"/>
+                    </>,
             key: 'operation',
             fixed: 'right',
             width: 100,
-            render: (val) => <a onClick={()=>showModal(val)}>action</a>,
+            render: (val) => <a onClick={()=>showModal(val)}>
+                <TextTranslation textName="ClassInfo-Table-Edit.1" kClass="pcview"/>
+                <TextTranslation textName="ClassInfo-Table-Edit.2" kClass="mbview"/>
+            </a>,
         },
     ];
+    // End Structure of Table
+
 
 
     // Begin Update Student Modal 
-
     const [modalVisible, setModalVisible] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
     const [selectedStudentToUpdate, setSelectedStudentToUpdate] = useState({});
@@ -200,8 +228,8 @@ const Students = (props) => {
         sendRequest(urlRequest, "POST",{
             id: selectedStudentToUpdate.id, 
             name: form.getFieldValue("name"), 
-            gender: form.getFieldValue("gender"), 
-            dob: moment(form.getFieldValue("dob")).format('YYYY/MM/DD'), 
+            gender: form.getFieldValue("gender") === "male" ? 1 : 0, 
+            dob: moment(form.getFieldValue("dob")).format('YYYY/MM/DD 12:11:11'), 
             addr: form.getFieldValue("address"), 
             mail: form.getFieldValue("email")
         },{
@@ -211,7 +239,7 @@ const Students = (props) => {
             return response.json();
         })
 
-        .then(sleeper(500))
+        .then(sleeper(1000))
 
         .then((data) => {
             console.log(data); // kIMPORTANT: data is Array, contains Objects
@@ -219,6 +247,7 @@ const Students = (props) => {
             if(data.status === 1){
                 message.success(`Update student ${selectedStudentToUpdate.id} successfully !`);
                 setModalVisible(false);
+                requestGetAllStudent();
                 
             }else{
                 throw new Error("Something wrong !!");
@@ -233,7 +262,6 @@ const Students = (props) => {
             message.error(`Cannot update ${selectedStudentToUpdate.id} details !`);
         });
     }
-
     // End Update Student Modal
 
     return (
@@ -258,7 +286,7 @@ const Students = (props) => {
                 
   
             <Modal
-            title="Title"
+            title="Update student"
             visible={modalVisible}
             onOk={handleOk}
             confirmLoading={confirmLoading}
@@ -307,7 +335,7 @@ const Students = (props) => {
                         rules={[{ required: true, message: 'Please select Date of Birth!' }]}
                     >
                         <DatePicker
-                            //format={dateFormat}
+                            format="DD/MM/YYYY"
                         />
                     </Form.Item>
 

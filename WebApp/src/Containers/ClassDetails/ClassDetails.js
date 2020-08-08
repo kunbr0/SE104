@@ -210,9 +210,10 @@ const ClassDetails = (props) => {
             </Collapse>
             
             {
+                !selectedClassDetailsData.type ? <div>Please select options above</div> :
                 selectedClassDetailsData.type === "studentdetails" ?
                 <StudentDetails tableEditable={tableEditable} selectedClass={selectedClass} classDetailsData={selectedClassDetailsData.data}  isLoading={isFetchingClassDetailsData} /> :
-                <ScoreDetails tableEditable={tableEditable} classDetailsData={selectedClassDetailsData.data}  isLoading={isFetchingClassDetailsData} />
+                <ScoreDetails tableEditable={tableEditable} callbackUpdateSuccess={fetchClassDetailsData} classDetailsData={selectedClassDetailsData.data}  isLoading={isFetchingClassDetailsData} />
             }
             
         </div>
