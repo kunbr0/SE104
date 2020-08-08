@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {connect} from 'react-redux';
-import { Col, Row, message, Collapse, Button, Table, Modal } from 'antd';
+import { Col, Row, message, Collapse, Button, Table, Modal, Card, Form, Input, Checkbox, Select, DatePicker } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
 import SConfig from '../../config.json';
 import { useHttpClient } from '../../Hooks/http-hook';
@@ -8,6 +8,8 @@ import { useHttpClient } from '../../Hooks/http-hook';
 import AddNewStudent from '../../Components/AddNewStudent/AddNewStudent';
 import ButtonWithLoading from '../../Components/ButtonWithLoading/ButtonWithLoading'
 
+import './Students.css';
+import moment from 'moment';
 
 
 const Students = (props) => {
@@ -110,7 +112,7 @@ const Students = (props) => {
             key: 'operation',
             fixed: 'right',
             width: 100,
-            render: (val) => <a onClick={()=>console.log(val)}>action</a>,
+            render: (val) => <a onClick={()=>showModal(val)}>action</a>,
         },
     ];
 
@@ -119,14 +121,35 @@ const Students = (props) => {
 
     const [modalVisible, setModalVisible] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
-    const [modalText, setModalText] = useState(false);
+    const [selectedStudentToUpdate, setSelectedStudentToUpdate] = useState({});
+    const dateFormat = 'DD/MM/YYYY';
 
-    const showModal = () => {
+
+    const [form] = Form.useForm();
+
+    const layout = {
+        labelCol: { span: 6 },
+        wrapperCol: { span: 16 },
+    };
+    const tailLayout = {
+        wrapperCol: { offset: 5, span: 16 },
+    };
+
+    const onFinish = values => {
+        console.log('Success:', values);
+    };
+    
+    const onFinishFailed = errorInfo => {
+        console.log('Failed:', errorInfo);
+    };
+
+    const showModal = (student) => {
+        requestGetStudentDetails(student.id);
+        setSelectedStudentToUpdate(student);
         setModalVisible(true);
     };
     
     const handleOk = () => {
-        setModalText('The modal will be closed after two seconds');
         setConfirmLoading(true);
 
         setTimeout(() => {
@@ -139,6 +162,46 @@ const Students = (props) => {
         console.log('Clicked cancel button');
         setModalVisible(false);
     };
+
+
+    const [fDate, setFDate] = useState("2000-05-02T17:00:00.000Z");
+    const requestGetStudentDetails = (studentId) => {
+        setIsLoading(true);
+        let urlRequest = `${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.Student.GetStudentDetails}${studentId}`;
+        sendRequest(urlRequest, "GET")
+        .then((response) => {
+            return response.json();
+        })
+
+        .then(sleeper(500))
+
+        .then((data) => {
+            console.log(data); // kIMPORTANT: data is Array, contains Objects
+            setIsLoading(false);
+            message.success(`Get student details successfully !`);
+            form.setFieldsValue(
+                {
+                    name: data[0].name,
+                    email: data[0].email,
+                    gender: data[0].gender === 1 ? "male" : "female",
+                    address: data[0].address,
+                }
+            );
+            setFDate(data[0].dob);
+        })
+        
+        .catch((error) => {
+            console.log(error);
+            message.error(`Cannot get student details !`);
+            setIsLoading(false);
+        });
+    }
+
+
+    const requestUpdateStudent = () => {
+        
+    }
+
     // End Update Student Modal
 
     return (
@@ -161,9 +224,7 @@ const Students = (props) => {
             
             <ButtonWithLoading label="Reload" isLoading={isLoading} onClick={requestGetAllStudent} maxTimeLoading={10000} />
                 
-            <Button type="primary" onClick={showModal}>
-                Open Modal with async logic
-            </Button>
+  
             <Modal
             title="Title"
             visible={modalVisible}
@@ -171,7 +232,75 @@ const Students = (props) => {
             confirmLoading={confirmLoading}
             onCancel={handleCancel}
             >
-                <p>{modalText}</p>
+            <Card id="formUpdateStudent" title={`MSSV: ${selectedStudentToUpdate.id}`} loading={isLoading}>
+                <Form
+                    form={form}
+                    {...layout}
+                    name="basic"
+                    initialValues={{ remember: true }}
+                    onFinish={onFinish}
+                    onFinishFailed={onFinishFailed}
+                >
+                    <Form.Item
+                        label="Name"
+                        name="name"
+                        rules={[{ required: true, message: 'Please input student name!' }]}
+                    >
+                        <Input />
+                    </Form.Item>
+
+                    <Form.Item name="gender" label="Gender" rules={[{ required: true }]}>
+                        <Select
+                            placeholder="Select a option and change input text above"
+                            allowClear
+                        >
+                            <Select.Option value="male">Male</Select.Option>
+                            <Select.Option value="female">Female</Select.Option>
+                            <Select.Option value="other">Other</Select.Option>
+                        </Select>
+                    </Form.Item>
+
+                    <Form.Item
+                        label="Email"
+                        name="email"
+                        rules={[{ required: true, message: 'Please input student email!' }]}
+                    >
+                        <Input />
+                    </Form.Item>
+
+                    <Form.Item
+                        label="DoB"
+                        name="dob"
+                        rules={[{ message: 'Please input student Date of Birth!' }]}
+                    >
+                        <DatePicker
+                            initialValues={moment(fDate)} 
+                            defaultValue={moment(fDate)}
+                            value={moment(fDate)}
+                            format={dateFormat}
+                        />
+                    </Form.Item>
+
+                    <Form.Item
+                        label="Address"
+                        name="address"
+                        rules={[{ required: true, message: 'Please input student address!' }]}
+                    >
+                        <Input />
+                    </Form.Item>
+
+
+                    <Form.Item {...tailLayout} name="remember" valuePropName="checked">
+                        <Checkbox>Remember me</Checkbox>
+                    </Form.Item>
+
+                    <Form.Item {...tailLayout}>
+                        <Button type="primary" htmlType="submit" onClick={requestUpdateStudent}>
+                            Submit
+                        </Button>
+                    </Form.Item>
+                </Form>
+            </Card>
             </Modal>
             <AddNewStudent 
                     //disabled={isFetchingClassDetailsData} 

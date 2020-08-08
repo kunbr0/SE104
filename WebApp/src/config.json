@@ -17,6 +17,7 @@
     },
     "Student" : {
         "AddStudent" : "/v1/student/add",
+        "GetStudentDetails" : "/v1/student/detail/",
         "GetAllStudents" : "/v1/student/show"
     }
 }
