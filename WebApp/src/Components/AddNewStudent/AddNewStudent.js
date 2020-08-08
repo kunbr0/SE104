@@ -85,6 +85,7 @@ const AddNewStudent = (props) => {
         .then((data) => {
             console.log(data);
             addStudentToClass(data.new_id)
+            document.getElementById("fName").value = "";
             message.success(`Add student successfully !`);
         })
         
@@ -164,9 +165,9 @@ const AddNewStudent = (props) => {
                 <Form.Item
                     name="name"
                     label="Name"
-                    rules={[{ required: true, message: 'Please enter user name' }]}
+                    rules={[{ required: true, message: 'Please enter student name' }]}
                 >
-                    <Input onChange={(e)=>setFName(e.target.value)} placeholder="Enter student's name" />
+                    <Input id="fName" onChange={(e)=>setFName(e.target.value)} placeholder="Enter student's name" />
                 </Form.Item>
                 </Col>
                 <Col span={6}>

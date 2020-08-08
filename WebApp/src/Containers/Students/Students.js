@@ -107,7 +107,7 @@ const Students = (props) => {
             key: 'operation',
             fixed: 'right',
             width: 100,
-            render: () => <a>action</a>,
+            render: (val) => <a onClick={()=>console.log(val)}>action</a>,
         },
     ];
 
@@ -138,11 +138,13 @@ const Students = (props) => {
                     style={{marginLeft : "5px", marginRight : "5px", backgroundColor : "#52c41a", borderColor: "#52c41a"}} 
                     optionName="name" optionKey="id" 
                     callbackSuccess={requestGetAllStudent}
+                    
             />
             </Panel>
         </Collapse>
 
-        <Table loading={isLoading} columns={columns} dataSource={studentData}  scroll={{ x: 50, y: 500 }} />
+        <Table bordered loading={isLoading} 
+            columns={columns} dataSource={studentData}  scroll={{ x: 50, y: 500 }} />
         </>
     )
 }
