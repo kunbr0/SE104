@@ -155,24 +155,64 @@ const Analysis = (props) => {
                 setIsLoading(false);
             });
         }
+
+        if (value.length === 1) {
+            let urlRequest = `${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.Report.SemesterReport}`;
+            sendRequest(urlRequest, "POST", {
+                sem_name : value[1],
+                yearid : props.yearData.yearid
+            },{
+                'Content-Type': 'application/json'
+            })
+                .then((response) => {
+                    return response.json();
+                })
+
+                .then(sleeper(1000))
+
+                .then((data) => {
+                    console.log(data);
+                    setIsLoading(false);
+                    // let resultData = [];
+                    // for(let i=0; i<data.NoStudent.length; i++){
+                    //     let kSLDat = findSthInArrayOfObject(data.Pass, "name", data.NoStudent[i].name, "SoLuongDat", 0);
+                    //     resultData.push({
+                    //         id : data.NoStudent[i].id,
+                    //         name : data.NoStudent[i].name,
+                    //         siso : data.NoStudent[i].SiSo,
+                    //         sldat: kSLDat,
+                    //         tyle : (kSLDat / data.NoStudent[i].SiSo)*100
+                    //     })
+                    // }
+                    // console.log(resultData);
+                    setReportData({
+                        type : 2,
+                        data: null
+                    });
+                })
+
+                .catch((error) => {
+                    console.log(error);
+                    setIsLoading(false);
+                });
+        }
     }
 
     const noticeDiv = <Card loading={isLoading}>Please select options</Card>;
 
+    const renderReport = (type) => {
+        switch (type) {
+            case -1: return noticeDiv;
+            case  1: return (<SubjectAna isLoading={isLoading} classDetailsData={reportData.data} />);
+            case  2: return (null);
+            default: return (<SemesterAna isLoading={isLoading} />);
+        }
+    }
+
     return (
         <div>
             <Cascader size="large" options={options} onChange={onChange} style={{width : "100%"}}/>
-            
-            {
-                (reportData.type === -1) ?  noticeDiv: 
-                (reportData.type === 1) ? 
-                    <SubjectAna isLoading={isLoading} 
-                        classDetailsData={reportData.data}
-                    /> : 
-                    <SemesterAna isLoading={isLoading}
-                    
-                    />
-            }
+            {renderReport(reportData.type)}
         </div>
     )
 }
