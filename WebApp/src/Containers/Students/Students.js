@@ -7,7 +7,7 @@ import { useHttpClient } from '../../Hooks/http-hook';
 
 import AddNewStudent from '../../Components/AddNewStudent/AddNewStudent';
 import ButtonWithLoading from '../../Components/ButtonWithLoading/ButtonWithLoading'
-
+import TextTranslation from '../../Components/TextTranslation/TextTranslation';
 import './Students.css';
 import moment from 'moment';
 
@@ -45,7 +45,8 @@ const Students = (props) => {
                 dataWithKey.push({
                     ...e,
                     key : index,
-                    gender : e["gender"] === 1 ? "Male" : "Female"
+                    gender : e["gender"] === 1 ? "Male" : "Female",
+                    dob : moment(e["dob"]).format("DD/MM/YYYY")
                 })
                 index ++;
             });
@@ -72,49 +73,73 @@ const Students = (props) => {
     // Begin Structure of Table
     const columns = [
         {
-            title: 'MSSV',
+            title:  <>
+                        <TextTranslation textName="ClassInfo-Table-No.1" kClass="pcview"/>
+                        <TextTranslation textName="ClassInfo-Table-No.2" kClass="mbview"/>
+                    </>,
             width: 100,
             dataIndex: 'id',
             key: 'id',
             fixed: 'left',
         },
         {
-            title: 'Name',
+            title:  <>
+                        <TextTranslation textName="ClassInfo-Table-Name.1" kClass="pcview"/>
+                        <TextTranslation textName="ClassInfo-Table-Name.2" kClass="mbview"/>
+                    </>,
             dataIndex: 'name',
             key: 'name',
             width: 150,
         },
         {
-            title: 'Gender',
+            title:  <>
+                        <TextTranslation textName="ClassInfo-Table-Sex.1" kClass="pcview"/>
+                        <TextTranslation textName="ClassInfo-Table-Sex.2" kClass="mbview"/>
+                    </>,
             dataIndex: 'gender',
             key: 'gender',
             width: 150,
         },
         {
-            title: 'DOB',
+            title:  <>
+                        <TextTranslation textName="ClassInfo-Table-DOB.1" kClass="pcview"/>
+                        <TextTranslation textName="ClassInfo-Table-DOB.2" kClass="mbview"/>
+                    </>,
             dataIndex: 'dob',
             key: 'dob',
             width: 150,
         },
         {
-            title: 'Email',
+            title:  <>
+                        <TextTranslation textName="ClassInfo-Table-Email.1" kClass="pcview"/>
+                        <TextTranslation textName="ClassInfo-Table-Email.2" kClass="mbview"/>
+                    </>,
             dataIndex: 'email',
             key: 'email',
             width: 150,
         },
         {
-            title: 'Address',
+            title:  <>
+                        <TextTranslation textName="ClassInfo-Table-Address.1" kClass="pcview"/>
+                        <TextTranslation textName="ClassInfo-Table-Address.2" kClass="mbview"/>
+                    </>,
             dataIndex: 'address',
             key: 'address',
             width: 150,
         },
         
         {
-            title: 'Action',
+            title:  <>
+                        <TextTranslation textName="ClassInfo-Table-Action.1" kClass="pcview"/>
+                        <TextTranslation textName="ClassInfo-Table-Action.2" kClass="mbview"/>
+                    </>,
             key: 'operation',
             fixed: 'right',
             width: 100,
-            render: (val) => <a onClick={()=>showModal(val)}>Update</a>,
+            render: (val) => <a onClick={()=>showModal(val)}>
+                <TextTranslation textName="ClassInfo-Table-Edit.1" kClass="pcview"/>
+                <TextTranslation textName="ClassInfo-Table-Edit.2" kClass="mbview"/>
+            </a>,
         },
     ];
     // End Structure of Table
@@ -204,7 +229,7 @@ const Students = (props) => {
             id: selectedStudentToUpdate.id, 
             name: form.getFieldValue("name"), 
             gender: form.getFieldValue("gender") === "male" ? 1 : 0, 
-            dob: moment(form.getFieldValue("dob")).format('YYYY/MM/DD'), 
+            dob: moment(form.getFieldValue("dob")).format('YYYY/MM/DD 12:11:11'), 
             addr: form.getFieldValue("address"), 
             mail: form.getFieldValue("email")
         },{
@@ -310,7 +335,7 @@ const Students = (props) => {
                         rules={[{ required: true, message: 'Please select Date of Birth!' }]}
                     >
                         <DatePicker
-                            //format={dateFormat}
+                            format="DD/MM/YYYY"
                         />
                     </Form.Item>
 

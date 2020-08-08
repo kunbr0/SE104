@@ -6,7 +6,7 @@ import LocationPicker from '../LocationPicker/LocationPicker';
 import InputEmail from '../Input-Email/InputEmail';
 import { useHttpClient } from '../../Hooks/http-hook';
 import SConfig from '../../config.json';
-
+import TextTranslation from '../TextTranslation/TextTranslation';
 const { Option } = Select;
 
 const AddNewStudent = (props) => {
@@ -132,10 +132,10 @@ const AddNewStudent = (props) => {
     return (
       <>
         <Button type="primary" onClick={showDrawer} style={props.style} disabled={props.disabled} >
-          <PlusOutlined /> New student
+          <PlusOutlined /> <TextTranslation textName="ClassInfo-Table-NewStudent.1"/>
         </Button>
         <Drawer
-          title="Create a new student"
+          title={<TextTranslation textName="ClassInfo-Table-NewStudent.1"/>}
           width={720}
           onClose={onClose}
           visible={visible}
@@ -164,7 +164,7 @@ const AddNewStudent = (props) => {
                 <Col span={10}>
                 <Form.Item
                     name="name"
-                    label="Name"
+                    label={<TextTranslation textName="ClassInfo-Table-Name.1"/>}
                     rules={[{ required: true, message: 'Please enter student name' }]}
                 >
                     <Input id="fName" onChange={(e)=>setFName(e.target.value)} placeholder="Enter student's name" />
@@ -173,7 +173,7 @@ const AddNewStudent = (props) => {
                 <Col span={6}>
                 <Form.Item
                     name="gender"
-                    label="Gender"
+                    label={<TextTranslation textName="ClassInfo-Table-Sex.1"/>}
                     rules={[{ required: true, message: 'Please select an owner' }]}
                     >
                     <Select onChange={(val)=>setFGender(val)} placeholder="Select gender" style={{width: "100%"}}>
@@ -186,7 +186,7 @@ const AddNewStudent = (props) => {
                 <Col span={8}>
                     <Form.Item
                     name="dob"
-                    label="Date of Birth"
+                    label={<TextTranslation textName="ClassInfo-Table-DOB.1"/>}
                     rules={[{ required: true, message: 'Select birthday' }]}
                     >
                     <DatePicker
@@ -202,7 +202,7 @@ const AddNewStudent = (props) => {
                 <Col span={12}>
                     <Form.Item
                         name="email"
-                        label="Email"
+                        label={<TextTranslation textName="ClassInfo-Table-Email.1"/>}
                         rules={[{ type: "email", required: true }]}
                     >
                         <Input onChange={(val)=>setFEmail(val.target.value)} placeholder="Enter email address"/>
@@ -212,7 +212,7 @@ const AddNewStudent = (props) => {
                 <Col span={12}>
                     <Form.Item
                     name="class"
-                    label="Class"
+                    label={<TextTranslation textName="ClassInfo-TopBar-Class.1"/>}
                     rules={[{ required: true }]}
                     >
                         <SelectWithTyping 
@@ -230,7 +230,7 @@ const AddNewStudent = (props) => {
                 <Col span={24}>
                     <Form.Item
                     name="address"
-                    label="Address"
+                    label={<TextTranslation textName="ClassInfo-Table-Address.1"/>}
                     rules={[{ required: true}]}
                     >
                     
@@ -242,7 +242,7 @@ const AddNewStudent = (props) => {
               <Col span={24}>
                 <Form.Item
                   name="description"
-                  label="Description"
+                  label={<TextTranslation textName="ClassInfo-Table-Description.1"/>}
                   rules={[
                     {
                       required: true,
