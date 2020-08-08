@@ -109,6 +109,8 @@ const MainLayout = (props) => {
   
 
 
+    console.log(props.match);
+
     return (
         <Layout style={{ minHeight: '100vh' }}>
         <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
