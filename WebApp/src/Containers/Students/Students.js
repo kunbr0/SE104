@@ -68,6 +68,8 @@ const Students = (props) => {
     useEffect(()=>{
         requestGetAllStudent();
     },[]);
+
+    // Begin Structure of Table
     const columns = [
         {
             title: 'MSSV',
@@ -112,13 +114,14 @@ const Students = (props) => {
             key: 'operation',
             fixed: 'right',
             width: 100,
-            render: (val) => <a onClick={()=>showModal(val)}>action</a>,
+            render: (val) => <a onClick={()=>showModal(val)}>Update</a>,
         },
     ];
+    // End Structure of Table
+
 
 
     // Begin Update Student Modal 
-
     const [modalVisible, setModalVisible] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
     const [selectedStudentToUpdate, setSelectedStudentToUpdate] = useState({});
@@ -200,7 +203,7 @@ const Students = (props) => {
         sendRequest(urlRequest, "POST",{
             id: selectedStudentToUpdate.id, 
             name: form.getFieldValue("name"), 
-            gender: form.getFieldValue("gender"), 
+            gender: form.getFieldValue("gender") === "male" ? 1 : 0, 
             dob: moment(form.getFieldValue("dob")).format('YYYY/MM/DD'), 
             addr: form.getFieldValue("address"), 
             mail: form.getFieldValue("email")
@@ -233,7 +236,6 @@ const Students = (props) => {
             message.error(`Cannot update ${selectedStudentToUpdate.id} details !`);
         });
     }
-
     // End Update Student Modal
 
     return (
@@ -258,7 +260,7 @@ const Students = (props) => {
                 
   
             <Modal
-            title="Title"
+            title="Update student"
             visible={modalVisible}
             onOk={handleOk}
             confirmLoading={confirmLoading}
