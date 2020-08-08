@@ -214,7 +214,7 @@ const Students = (props) => {
             return response.json();
         })
 
-        .then(sleeper(500))
+        .then(sleeper(1000))
 
         .then((data) => {
             console.log(data); // kIMPORTANT: data is Array, contains Objects
@@ -222,6 +222,7 @@ const Students = (props) => {
             if(data.status === 1){
                 message.success(`Update student ${selectedStudentToUpdate.id} successfully !`);
                 setModalVisible(false);
+                requestGetAllStudent();
                 
             }else{
                 throw new Error("Something wrong !!");

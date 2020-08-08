@@ -127,6 +127,7 @@ const StudentScoresTable = (props) => {
         .then((data) => {
             console.log(data);
             message.success(`Updated successfully !`);
+            props.callbackUpdateSuccess();
         })
         
         .catch((error) => {

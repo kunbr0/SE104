@@ -212,7 +212,7 @@ const ClassDetails = (props) => {
             {
                 selectedClassDetailsData.type === "studentdetails" ?
                 <StudentDetails tableEditable={tableEditable} selectedClass={selectedClass} classDetailsData={selectedClassDetailsData.data}  isLoading={isFetchingClassDetailsData} /> :
-                <ScoreDetails tableEditable={tableEditable} classDetailsData={selectedClassDetailsData.data}  isLoading={isFetchingClassDetailsData} />
+                <ScoreDetails tableEditable={tableEditable} callbackUpdateSuccess={fetchClassDetailsData} classDetailsData={selectedClassDetailsData.data}  isLoading={isFetchingClassDetailsData} />
             }
             
         </div>
