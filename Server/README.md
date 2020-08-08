@@ -144,7 +144,6 @@ Method: POST </br>
 JSON: </br>
 ```
 {
-  "student_name": "Nguyễn Lê Bách",
   "yearid": 1
 }
 ```
