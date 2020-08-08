@@ -62,7 +62,7 @@ function getStudentListWithAvg(dbConnection, req, res, urlData) {
     }
     let finalResult = [];
 
-    dbConnection.query(storage.Query_GetAvgScore(), [sem1, urlData.yearid, urlData.student_name], (err, data, fields) => {
+    dbConnection.query(storage.Query_GetAvgScore(), [sem1, urlData.yearid], (err, data, fields) => {
         if (err) { res.status(statusCodes.OK).json([{ status: 0 }]); return; }
         rawResult.Avg1 = data;
         
@@ -82,7 +82,7 @@ function getStudentListWithAvg(dbConnection, req, res, urlData) {
         }
 
         // Query AVG2
-        dbConnection.query(storage.Query_GetAvgScore(), [sem2, urlData.yearid, urlData.student_name], (err, data, fields) => 
+        dbConnection.query(storage.Query_GetAvgScore(), [sem2, urlData.yearid], (err, data, fields) => 
         {
             if (err) { res.status(statusCodes.OK).json([{ status: 0 }]); return; }
             rawResult.Avg2 = data;
@@ -96,18 +96,45 @@ function getStudentListWithAvg(dbConnection, req, res, urlData) {
                 dbConnection.query(storage.Query_GetAvgRespectiveClass(), [finalResult[i].StudentID, urlData.yearid], (err, data, fields) => 
                 {
                     if (err) { res.status(statusCodes.OK).json([{ status: 0 }]); return; }
-                    for (var i = 0; i < data.length; ++i)
-                    {
-                        let item = data[i];
-                        finalResult[i].ClassID = item.id;
-                        finalResult[i].ClassName = item.name;
-                    }
+                    // {
+                    //     let item = data;
+                    //     finalResult[i].ClassID = item.id;
+                    //     finalResult[i].ClassName = item.name;
+                    // }
                     
                     // Query successfully
-                    // finalResult[0].status = 1;
-                    finalResult.splice(0, 0, {status: 1});
-                    console.log(finalResult);
-                    res.status(statusCodes.OK).json(finalResult);
+
+                    console.log(data[0]);
+                    let ind = -1;
+                    for (var i = 0; i < finalResult.length; ++i)
+                    {
+                        if (finalResult[i].StudentID.localeCompare(data[0].student) == 0)
+                        {
+                            ind = i;
+                            finalResult[i].ClassID = data[0].id;
+                            finalResult[i].ClassName = data[0].name;
+                        }
+                    }
+                    console.log(ind);
+                    // finalResult[ind].ClassID = data[0].id;
+                    // finalResult[ind].ClassName = data[0].name;
+
+                    let done = true;
+                    for (var i = 0; i < finalResult.length; ++i)
+                    {
+                        if (finalResult[i].ClassID == null || finalResult[i].ClassName == null)
+                        {
+                            done = false;
+                            break;
+                        }
+                    }
+
+                    if (done)
+                    {
+                        finalResult.splice(0, 0, {status: 1});
+                        console.log(finalResult);
+                        res.status(statusCodes.OK).json(finalResult);
+                    }
                 });
             }
 
