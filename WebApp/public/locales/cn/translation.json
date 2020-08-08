@@ -133,5 +133,32 @@
     },
     "ClassInfo-Table-Description" : {
         "1" : "描述"
+    },
+    "ClassInfo-Table-SelectClass" : {
+        "1" : "选择班级"
+    },
+    "ClassInfo-Table-SelectSemester" : {
+        "1" : "选择学期"
+    },
+    "ClassInfo-Table-SelectDetails" : {
+        "1" : "选择详细资料"
+    },
+    "ClassInfo-Table-Lookup" : {
+        "1" : "抬头"
+    },
+    "ClassInfo-Table-EnrolledStudents" : {
+        "1" : "在校学生ố"
+    },
+    "ClassInfo-Table-NumOfPass" : {
+        "1" : "达到数量"
+    },
+    "ClassInfo-Table-Percentage" : {
+        "1" : "百分比"
+    },
+    "ClassInfo-Table-Avg1" : {
+        "1" : "平均1个学期"
+    },
+    "ClassInfo-Table-Avg2" : {
+        "1" : "平均1个学期"
     }
 }

@@ -21,52 +21,30 @@ const columnsOfStudentDetails = [
         key: 'key',
         width: 8,
         fixed: 'left',
-        filters: [
-            {
-            text: 'Joe',
-            value: 'Joe',
-            },
-            {
-            text: 'John',
-            value: 'John',
-            },
-        ],
-            onFilter: (value, record) => record.name.indexOf(value) === 0,
+        sorter: (a, b) => a.key - b.key,
     },
     
     {
-        title: 
-            <div>
-                Lớp
-            </div>,
+        title: <TextTranslation textName="ClassInfo-TopBar-Class.1" kClass="pcview"/>,
         dataIndex: 'name',
         key: 'name',
         width: 25,
-        sorter: (a, b) => a.studentID - b.studentID,
+        sorter: (a, b) => a.name.split(' ').slice(-1)[0].localeCompare(b.name.split(' ').slice(-1)[0])
     },
     {
-    title: 
-        <div>
-            Sĩ Số
-        </div>,
+    title: <TextTranslation textName="ClassInfo-Table-EnrolledStudents.1" kClass="pcview"/>,
     dataIndex: 'siso',
     key: 'siso',
     width: 12,
     },
     {
-    title: 
-        <div>
-            Số Lượng Đạt
-        </div>,
+    title: <TextTranslation textName="ClassInfo-Table-NumOfPass.1" kClass="pcview"/>,
     dataIndex: 'sldat',
     key: 'sldat',
     width: 12,
     },
     {
-    title: 
-        <div>
-            Tỷ Lệ
-        </div>,
+    title: <TextTranslation textName="ClassInfo-Table-Percentage.1" kClass="pcview"/>,
     dataIndex: 'tyle',
     key: 'tyle',
     width: 12,

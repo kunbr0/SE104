@@ -15,6 +15,7 @@ import SemesterList from './SemesterList.json';
 import ScoreDetails from './ScoreDetails/ScoreDetails';
 import StudentDetails from './StudentDetails/StudentDetails'
 
+import TextTranslation from '../../Components/TextTranslation/TextTranslation';
 import { useHttpClient } from '../../Hooks/http-hook';
 
 
@@ -64,7 +65,7 @@ const ClassDetails = (props) => {
 
     const fetchClassDetailsData = () => {
         setIsFetchingClassDetailsData(true);
-        setSelectedClassDetailsData({});
+        setSelectedClassDetailsData({type : -1});
         setTableEditable(false);
         let urlRequest = "";
         if(selectedSubject === "Student Details"){
@@ -150,7 +151,7 @@ const ClassDetails = (props) => {
                 <Panel header="Class data selection" key="1" className="site-collapse-custom-panel">
                 <Row gutter={16}>
                 <Col span={8}>
-                    <Card loading={props.classData.classData.length > 0 ? false : true} size={300} title="Classes" bordered={false}>
+                    <Card loading={props.classData.classData.length > 0 ? false : true} size={300} title={<TextTranslation textName="ClassInfo-Table-SelectClass.1"/>} bordered={false}>
                         <SelectWithTyping 
                             value={props.match.params.classCode} 
                             callbackSelection={setSelectedClass} 
@@ -162,7 +163,7 @@ const ClassDetails = (props) => {
                     </Card>
                 </Col>
                 <Col span={8}>
-                    <Card loading={props.classData.classData.length > 0 ? false : true} title="Subjects" bordered={false}>
+                    <Card loading={props.classData.classData.length > 0 ? false : true} title={<TextTranslation textName="ClassInfo-Table-SelectSemester.1"/>} bordered={false}>
                         <SelectWithTyping 
                                 callbackSelection={setSemester} 
                                 options={SemesterList} 
@@ -174,7 +175,7 @@ const ClassDetails = (props) => {
                     </Card>
                 </Col>
                 <Col span={8}>
-                    <Card loading={props.classData.classData.length > 0 ? false : true} title="Classinfo" bordered={false}>
+                    <Card loading={props.classData.classData.length > 0 ? false : true} title={<TextTranslation textName="ClassInfo-Table-SelectDetails.1"/>} bordered={false}>
                         <SelectWithTyping 
                                 callbackSelection={setSelectedSubject} 
                                 options={

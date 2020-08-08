@@ -141,6 +141,31 @@
     "ClassInfo-Table-Description" : {
         "1" : "Mô tả"
     },
+    "ClassInfo-Table-SelectClass" : {
+        "1" : "Chọn lớp"
+    },
+    "ClassInfo-Table-SelectSemester" : {
+        "1" : "Chọn học kỳ"
+    },
+    "ClassInfo-Table-SelectDetails" : {
+        "1" : "Chọn chi tiết"
+    },
+    "ClassInfo-Table-EnrolledStudents" : {
+        "1" : "Sĩ số"
+    },
+    "ClassInfo-Table-NumOfPass" : {
+        "1" : "Số lượng đạt"
+    },
+    "ClassInfo-Table-Percentage" : {
+        "1" : "Tra cứu"
+    },
+    "ClassInfo-Table-Avg1" : {
+        "1" : "TB HK1"
+    },
+    "ClassInfo-Table-Avg2" : {
+        "1" : "TB HK2"
+    },
+
 
 
     "ClassInfo-Table-process" : {

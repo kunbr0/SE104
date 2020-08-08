@@ -86,40 +86,28 @@ const columnsOfStudentDetails = [
         fixed: 'left'
     },
     {
-        title:
-            <div>
-                Tên
-            </div>,
+        title: <TextTranslation textName="ClassInfo-Table-Name.1" kClass="pcview"/>,
         dataIndex: 'StudentName',
         key: 'StudentName',
         width: 25,
         sorter: (a, b) => NameParser.getFirstName(a.StudentName).localeCompare(NameParser.getFirstName(b.StudentName)),
     },
     {
-        title:
-            <div>
-                Lớp
-            </div>,
+            title:  <TextTranslation textName="ClassInfo-TopBar-Class.1" kClass="pcview"/>,
         dataIndex: 'ClassName',
         key: 'ClassID',
         width: 12,
         sorter: (a, b) => a.ClassName.localeCompare(b.ClassName),
     },
     {
-        title:
-            <div>
-                Trung bình HK I
-            </div>,
+        title: <TextTranslation textName="ClassInfo-Table-Avg1.1" kClass="pcview"/>,
         dataIndex: 'Avg1',
         key: 'Avg1',
         width: 12,
         sorter: (a, b) => a.Avg1 - b.Avg1,
     },
     {
-        title:
-            <div>
-                Trung bình HK II
-            </div>,
+        title: <TextTranslation textName="ClassInfo-Table-Avg2.1" kClass="pcview"/>,
         dataIndex: 'Avg2',
         key: 'Avg2',
         width: 12,

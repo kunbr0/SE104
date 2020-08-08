@@ -25,6 +25,7 @@
     "LMenu-Schedule" : {
         "1" : "Schedule"
     },
+    
 
 
     "LMenu-Usage" : {
@@ -141,6 +142,33 @@
     },
     "ClassInfo-Table-Description" : {
         "1" : "Description"
+    },
+    "ClassInfo-Table-SelectClass" : {
+        "1" : "Select class"
+    },
+    "ClassInfo-Table-SelectSemester" : {
+        "1" : "Select semester"
+    },
+    "ClassInfo-Table-SelectDetails" : {
+        "1" : "Select details"
+    },
+    "ClassInfo-Table-Lookup" : {
+        "1" : "Lookup"
+    },
+    "ClassInfo-Table-EnrolledStudents" : {
+        "1" : "Enrolled Students"
+    },
+    "ClassInfo-Table-NumOfPass" : {
+        "1" : "Num of Pass"
+    },
+    "ClassInfo-Table-Percentage" : {
+        "1" : "Percentage"
+    },
+    "ClassInfo-Table-Avg1" : {
+        "1" : "Average Sem 1"
+    },
+    "ClassInfo-Table-Avg2" : {
+        "1" : "Average Sem 2"
     },
 
 
