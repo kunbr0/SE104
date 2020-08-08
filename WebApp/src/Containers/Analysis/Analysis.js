@@ -12,6 +12,7 @@ import { Card } from 'antd';
 
 import SemesterAna from './Semester/SemesterAna';
 import SubjectAna from './Subject/SubjectAna';
+import StudentAna from './Student';
 
 
 const mappedSubjectList = SubjectList.map((s)=>{
@@ -59,6 +60,10 @@ const Analysis = (props) => {
             label: 'Final Semester Report',
             children: mappedSemesterList,
         },
+        {
+            value: 'student_report',
+            label: 'Students Report',
+        },
     ];
 
     const findSthInArrayOfObject = (array, name, key, resultValueOfKey, defaultResult) => {
@@ -73,7 +78,7 @@ const Analysis = (props) => {
         
     function onChange(value) {
         setIsLoading(true);
-        if(value.length === 3){
+        if(value[0] === options[0].value){
             let urlRequest = `${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.Report.SubjectReport}`;
             sendRequest(urlRequest, "POST", {
                 sem_name : value[1],
@@ -100,7 +105,7 @@ const Analysis = (props) => {
                         siso : data.NoStudent[i].SiSo,
                         sldat: kSLDat,
                         tyle : (kSLDat / data.NoStudent[i].SiSo)*100
-                    })  
+                    })
                 }
                 console.log(resultData);
                 setReportData({
@@ -115,7 +120,7 @@ const Analysis = (props) => {
             });
         }
 
-        if(value.length === 2){
+        if(value[0] === options[1].value){
             let urlRequest = `${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.Report.SemesterReport}`;
             sendRequest(urlRequest, "POST", {
                 sem_name : value[1],
@@ -156,38 +161,31 @@ const Analysis = (props) => {
             });
         }
 
-        if (value.length === 1) {
-            let urlRequest = `${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.Report.SemesterReport}`;
+        if (value[0] === options[2].value) {
+            let urlRequest = `${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.Report.StudentReport}`;
             sendRequest(urlRequest, "POST", {
-                sem_name : value[1],
-                yearid : props.yearData.yearid
+                "student_name": "*",
+                "yearid": 1
             },{
                 'Content-Type': 'application/json'
             })
                 .then((response) => {
                     return response.json();
                 })
-
                 .then(sleeper(1000))
-
                 .then((data) => {
-                    console.log(data);
+                    if (data.status !== 1) return;
                     setIsLoading(false);
-                    // let resultData = [];
-                    // for(let i=0; i<data.NoStudent.length; i++){
-                    //     let kSLDat = findSthInArrayOfObject(data.Pass, "name", data.NoStudent[i].name, "SoLuongDat", 0);
-                    //     resultData.push({
-                    //         id : data.NoStudent[i].id,
-                    //         name : data.NoStudent[i].name,
-                    //         siso : data.NoStudent[i].SiSo,
-                    //         sldat: kSLDat,
-                    //         tyle : (kSLDat / data.NoStudent[i].SiSo)*100
-                    //     })
-                    // }
-                    // console.log(resultData);
+                    let resultData = [];
+                    data.data.map((student, index) => resultData.push({
+                        ...student,
+                        Avg1: Number((student.Avg1).toFixed(2)),
+                        Avg2: Number((student.Avg2).toFixed(2)),
+                    }));
+                    console.log(resultData);
                     setReportData({
                         type : 2,
-                        data: null
+                        data: resultData
                     });
                 })
 
@@ -204,7 +202,7 @@ const Analysis = (props) => {
         switch (type) {
             case -1: return noticeDiv;
             case  1: return (<SubjectAna isLoading={isLoading} classDetailsData={reportData.data} />);
-            case  2: return (null);
+            case  2: return (<StudentAna isLoading={isLoading} data={reportData.data} />);
             default: return (<SemesterAna isLoading={isLoading} />);
         }
     }
