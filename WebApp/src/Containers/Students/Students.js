@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react'
 import {connect} from 'react-redux';
-import { Col, Row, message, Collapse, Button, Table } from 'antd';
+import { Col, Row, message, Collapse, Button, Table, Modal } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
 import SConfig from '../../config.json';
 import { useHttpClient } from '../../Hooks/http-hook';
 
 import AddNewStudent from '../../Components/AddNewStudent/AddNewStudent';
-
+import ButtonWithLoading from '../../Components/ButtonWithLoading/ButtonWithLoading'
 
 
 
@@ -15,6 +15,9 @@ const Students = (props) => {
     const { sendRequest } = useHttpClient();
     const [isLoading, setIsLoading] = useState(false);
     const [studentData, setStudentData] = useState([]);
+
+
+    
 
     const sleeper = (ms) => {
         return function(x) {
@@ -107,10 +110,36 @@ const Students = (props) => {
             key: 'operation',
             fixed: 'right',
             width: 100,
-            render: () => <a>action</a>,
+            render: (val) => <a onClick={()=>console.log(val)}>action</a>,
         },
     ];
 
+
+    // Begin Update Student Modal 
+
+    const [modalVisible, setModalVisible] = useState(false);
+    const [confirmLoading, setConfirmLoading] = useState(false);
+    const [modalText, setModalText] = useState(false);
+
+    const showModal = () => {
+        setModalVisible(true);
+    };
+    
+    const handleOk = () => {
+        setModalText('The modal will be closed after two seconds');
+        setConfirmLoading(true);
+
+        setTimeout(() => {
+            setModalVisible(false);
+            setConfirmLoading(false);
+        }, 2000);
+    };
+
+    const handleCancel = () => {
+        console.log('Clicked cancel button');
+        setModalVisible(false);
+    };
+    // End Update Student Modal
 
     return (
         <>
@@ -130,20 +159,33 @@ const Students = (props) => {
             
             </Row>
             
-            <Button type="primary" danger >
-                Edit
+            <ButtonWithLoading label="Reload" isLoading={isLoading} onClick={requestGetAllStudent} maxTimeLoading={10000} />
+                
+            <Button type="primary" onClick={showModal}>
+                Open Modal with async logic
             </Button>
+            <Modal
+            title="Title"
+            visible={modalVisible}
+            onOk={handleOk}
+            confirmLoading={confirmLoading}
+            onCancel={handleCancel}
+            >
+                <p>{modalText}</p>
+            </Modal>
             <AddNewStudent 
                     //disabled={isFetchingClassDetailsData} 
                     classData={props.classData.classData} 
                     style={{marginLeft : "5px", marginRight : "5px", backgroundColor : "#52c41a", borderColor: "#52c41a"}} 
                     optionName="name" optionKey="id" 
                     callbackSuccess={requestGetAllStudent}
+                    
             />
             </Panel>
         </Collapse>
 
-        <Table loading={isLoading} columns={columns} dataSource={studentData}  scroll={{ x: 50, y: 500 }} />
+        <Table bordered loading={isLoading} 
+            columns={columns} dataSource={studentData}  scroll={{ x: 50, y: 500 }} />
         </>
     )
 }

@@ -192,7 +192,7 @@ const ClassDetails = (props) => {
                 </Col>
                
                 </Row>
-                <SubmitWithLoading disabled={!(selectedClass && selectedSubject && semester)} isLoading={isFetchingClassDetailsData} onClick={fetchClassDetailsData} maxTimeLoading={1000} />
+                <SubmitWithLoading label="Lookup" disabled={!(selectedClass && selectedSubject && semester)} isLoading={isFetchingClassDetailsData} onClick={fetchClassDetailsData} maxTimeLoading={1000} />
                 
                 <StatisticScore 
                     pClassName={selectedClass} 

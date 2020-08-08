@@ -116,7 +116,7 @@ const Analysis = (props) => {
         }
 
         if(value.length === 2){
-            let urlRequest = `${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.Report.SubjectReport}`;
+            let urlRequest = `${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.Report.SemesterReport}`;
             sendRequest(urlRequest, "POST", {
                 sem_name : value[1],
                 yearid : props.yearData.yearid
