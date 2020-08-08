@@ -152,10 +152,8 @@ const Students = (props) => {
     const handleOk = () => {
         setConfirmLoading(true);
 
-        setTimeout(() => {
-            setModalVisible(false);
-            setConfirmLoading(false);
-        }, 2000);
+        requestUpdateStudent();
+
     };
 
     const handleCancel = () => {
@@ -164,7 +162,6 @@ const Students = (props) => {
     };
 
 
-    const [fDate, setFDate] = useState("2000-05-02T17:00:00.000Z");
     const requestGetStudentDetails = (studentId) => {
         setIsLoading(true);
         let urlRequest = `${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.Student.GetStudentDetails}${studentId}`;
@@ -184,10 +181,10 @@ const Students = (props) => {
                     name: data[0].name,
                     email: data[0].email,
                     gender: data[0].gender === 1 ? "male" : "female",
+                    dob: moment(data[0].dob, "YYYY/MM/DD"),
                     address: data[0].address,
                 }
             );
-            setFDate(data[0].dob);
         })
         
         .catch((error) => {
@@ -199,7 +196,42 @@ const Students = (props) => {
 
 
     const requestUpdateStudent = () => {
+        let urlRequest = `${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.Student.UpdateStudent}`;
+        sendRequest(urlRequest, "POST",{
+            id: selectedStudentToUpdate.id, 
+            name: form.getFieldValue("name"), 
+            gender: form.getFieldValue("gender"), 
+            dob: moment(form.getFieldValue("dob")).format('YYYY/MM/DD'), 
+            addr: form.getFieldValue("address"), 
+            mail: form.getFieldValue("email")
+        },{
+            'Content-Type': 'application/json'
+        })
+        .then((response) => {
+            return response.json();
+        })
+
+        .then(sleeper(500))
+
+        .then((data) => {
+            console.log(data); // kIMPORTANT: data is Array, contains Objects
+            setConfirmLoading(false);
+            if(data.status === 1){
+                message.success(`Update student ${selectedStudentToUpdate.id} successfully !`);
+                setModalVisible(false);
+                
+            }else{
+                throw new Error("Something wrong !!");
+
+            }
+           
+        })
         
+        .catch((error) => {
+            setConfirmLoading(false);
+            console.log(error);
+            message.error(`Cannot update ${selectedStudentToUpdate.id} details !`);
+        });
     }
 
     // End Update Student Modal
@@ -231,6 +263,7 @@ const Students = (props) => {
             onOk={handleOk}
             confirmLoading={confirmLoading}
             onCancel={handleCancel}
+            okText="Update"
             >
             <Card id="formUpdateStudent" title={`MSSV: ${selectedStudentToUpdate.id}`} loading={isLoading}>
                 <Form
@@ -271,13 +304,10 @@ const Students = (props) => {
                     <Form.Item
                         label="DoB"
                         name="dob"
-                        rules={[{ message: 'Please input student Date of Birth!' }]}
+                        rules={[{ required: true, message: 'Please select Date of Birth!' }]}
                     >
                         <DatePicker
-                            initialValues={moment(fDate)} 
-                            defaultValue={moment(fDate)}
-                            value={moment(fDate)}
-                            format={dateFormat}
+                            //format={dateFormat}
                         />
                     </Form.Item>
 
@@ -289,16 +319,6 @@ const Students = (props) => {
                         <Input />
                     </Form.Item>
 
-
-                    <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-                        <Checkbox>Remember me</Checkbox>
-                    </Form.Item>
-
-                    <Form.Item {...tailLayout}>
-                        <Button type="primary" htmlType="submit" onClick={requestUpdateStudent}>
-                            Submit
-                        </Button>
-                    </Form.Item>
                 </Form>
             </Card>
             </Modal>
