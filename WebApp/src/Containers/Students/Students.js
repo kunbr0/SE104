@@ -1,13 +1,15 @@
 import React, {useEffect, useState} from 'react'
 import {connect} from 'react-redux';
-import { Col, Row, message, Collapse, Button, Table } from 'antd';
+import { Col, Row, message, Collapse, Button, Table, Modal, Card, Form, Input, Checkbox, Select, DatePicker } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
 import SConfig from '../../config.json';
 import { useHttpClient } from '../../Hooks/http-hook';
 
 import AddNewStudent from '../../Components/AddNewStudent/AddNewStudent';
+import ButtonWithLoading from '../../Components/ButtonWithLoading/ButtonWithLoading'
 
-
+import './Students.css';
+import moment from 'moment';
 
 
 const Students = (props) => {
@@ -15,6 +17,9 @@ const Students = (props) => {
     const { sendRequest } = useHttpClient();
     const [isLoading, setIsLoading] = useState(false);
     const [studentData, setStudentData] = useState([]);
+
+
+    
 
     const sleeper = (ms) => {
         return function(x) {
@@ -107,10 +112,129 @@ const Students = (props) => {
             key: 'operation',
             fixed: 'right',
             width: 100,
-            render: () => <a>action</a>,
+            render: (val) => <a onClick={()=>showModal(val)}>action</a>,
         },
     ];
 
+
+    // Begin Update Student Modal 
+
+    const [modalVisible, setModalVisible] = useState(false);
+    const [confirmLoading, setConfirmLoading] = useState(false);
+    const [selectedStudentToUpdate, setSelectedStudentToUpdate] = useState({});
+    const dateFormat = 'DD/MM/YYYY';
+
+
+    const [form] = Form.useForm();
+
+    const layout = {
+        labelCol: { span: 6 },
+        wrapperCol: { span: 16 },
+    };
+    const tailLayout = {
+        wrapperCol: { offset: 5, span: 16 },
+    };
+
+    const onFinish = values => {
+        console.log('Success:', values);
+    };
+    
+    const onFinishFailed = errorInfo => {
+        console.log('Failed:', errorInfo);
+    };
+
+    const showModal = (student) => {
+        requestGetStudentDetails(student.id);
+        setSelectedStudentToUpdate(student);
+        setModalVisible(true);
+    };
+    
+    const handleOk = () => {
+        setConfirmLoading(true);
+
+        requestUpdateStudent();
+
+    };
+
+    const handleCancel = () => {
+        console.log('Clicked cancel button');
+        setModalVisible(false);
+    };
+
+
+    const requestGetStudentDetails = (studentId) => {
+        setIsLoading(true);
+        let urlRequest = `${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.Student.GetStudentDetails}${studentId}`;
+        sendRequest(urlRequest, "GET")
+        .then((response) => {
+            return response.json();
+        })
+
+        .then(sleeper(500))
+
+        .then((data) => {
+            console.log(data); // kIMPORTANT: data is Array, contains Objects
+            setIsLoading(false);
+            message.success(`Get student details successfully !`);
+            form.setFieldsValue(
+                {
+                    name: data[0].name,
+                    email: data[0].email,
+                    gender: data[0].gender === 1 ? "male" : "female",
+                    dob: moment(data[0].dob, "YYYY/MM/DD"),
+                    address: data[0].address,
+                }
+            );
+        })
+        
+        .catch((error) => {
+            console.log(error);
+            message.error(`Cannot get student details !`);
+            setIsLoading(false);
+        });
+    }
+
+
+    const requestUpdateStudent = () => {
+        let urlRequest = `${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.Student.UpdateStudent}`;
+        sendRequest(urlRequest, "POST",{
+            id: selectedStudentToUpdate.id, 
+            name: form.getFieldValue("name"), 
+            gender: form.getFieldValue("gender"), 
+            dob: moment(form.getFieldValue("dob")).format('YYYY/MM/DD'), 
+            addr: form.getFieldValue("address"), 
+            mail: form.getFieldValue("email")
+        },{
+            'Content-Type': 'application/json'
+        })
+        .then((response) => {
+            return response.json();
+        })
+
+        .then(sleeper(500))
+
+        .then((data) => {
+            console.log(data); // kIMPORTANT: data is Array, contains Objects
+            setConfirmLoading(false);
+            if(data.status === 1){
+                message.success(`Update student ${selectedStudentToUpdate.id} successfully !`);
+                setModalVisible(false);
+                
+            }else{
+                throw new Error("Something wrong !!");
+
+            }
+           
+        })
+        
+        .catch((error) => {
+            setConfirmLoading(false);
+            console.log(error);
+            message.error(`Cannot update ${selectedStudentToUpdate.id} details !`);
+        });
+    }
+
+    // End Update Student Modal
 
     return (
         <>
@@ -130,20 +254,87 @@ const Students = (props) => {
             
             </Row>
             
-            <Button type="primary" danger >
-                Edit
-            </Button>
+            <ButtonWithLoading label="Reload" isLoading={isLoading} onClick={requestGetAllStudent} maxTimeLoading={10000} />
+                
+  
+            <Modal
+            title="Title"
+            visible={modalVisible}
+            onOk={handleOk}
+            confirmLoading={confirmLoading}
+            onCancel={handleCancel}
+            okText="Update"
+            >
+            <Card id="formUpdateStudent" title={`MSSV: ${selectedStudentToUpdate.id}`} loading={isLoading}>
+                <Form
+                    form={form}
+                    {...layout}
+                    name="basic"
+                    initialValues={{ remember: true }}
+                    onFinish={onFinish}
+                    onFinishFailed={onFinishFailed}
+                >
+                    <Form.Item
+                        label="Name"
+                        name="name"
+                        rules={[{ required: true, message: 'Please input student name!' }]}
+                    >
+                        <Input />
+                    </Form.Item>
+
+                    <Form.Item name="gender" label="Gender" rules={[{ required: true }]}>
+                        <Select
+                            placeholder="Select a option and change input text above"
+                            allowClear
+                        >
+                            <Select.Option value="male">Male</Select.Option>
+                            <Select.Option value="female">Female</Select.Option>
+                            <Select.Option value="other">Other</Select.Option>
+                        </Select>
+                    </Form.Item>
+
+                    <Form.Item
+                        label="Email"
+                        name="email"
+                        rules={[{ required: true, message: 'Please input student email!' }]}
+                    >
+                        <Input />
+                    </Form.Item>
+
+                    <Form.Item
+                        label="DoB"
+                        name="dob"
+                        rules={[{ required: true, message: 'Please select Date of Birth!' }]}
+                    >
+                        <DatePicker
+                            //format={dateFormat}
+                        />
+                    </Form.Item>
+
+                    <Form.Item
+                        label="Address"
+                        name="address"
+                        rules={[{ required: true, message: 'Please input student address!' }]}
+                    >
+                        <Input />
+                    </Form.Item>
+
+                </Form>
+            </Card>
+            </Modal>
             <AddNewStudent 
                     //disabled={isFetchingClassDetailsData} 
                     classData={props.classData.classData} 
                     style={{marginLeft : "5px", marginRight : "5px", backgroundColor : "#52c41a", borderColor: "#52c41a"}} 
                     optionName="name" optionKey="id" 
                     callbackSuccess={requestGetAllStudent}
+                    
             />
             </Panel>
         </Collapse>
 
-        <Table loading={isLoading} columns={columns} dataSource={studentData}  scroll={{ x: 50, y: 500 }} />
+        <Table bordered loading={isLoading} 
+            columns={columns} dataSource={studentData}  scroll={{ x: 50, y: 500 }} />
         </>
     )
 }

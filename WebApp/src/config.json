@@ -13,10 +13,13 @@
     },
     "Report" : {
         "SubjectReport" : "/v1/transcript/show/report/subject",
-        "SemesterReport" : "/v1/transcript/show/report/subject"
+        "SemesterReport" : "/v1/transcript/show/report/semester"
     },
     "Student" : {
         "AddStudent" : "/v1/student/add",
+        "UpdateStudent" : "/v1/student/update",
+        "GetStudentDetails" : "/v1/student/detail/",
         "GetAllStudents" : "/v1/student/show"
+        
     }
 }
