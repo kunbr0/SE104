@@ -12,7 +12,7 @@
     },
     "Report" : {
         "SubjectReport" : "/v1/transcript/show/report/subject",
-        "SemesterReport" : "/v1/transcript/show/report/subject"
+        "SemesterReport" : "/v1/transcript/show/report/semester"
     },
     "Student" : {
         "AddStudent" : "/v1/student/add",
