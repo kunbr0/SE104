@@ -60,16 +60,19 @@ function getStudentListWithAvg(dbConnection, req, res, urlData) {
         Avg1: null,
         Avg2: null
     }
-    let finalResult = [];
+    let finalResult = {
+        status: 0,
+        data: []
+    };
 
     dbConnection.query(storage.Query_GetAvgScore(), [sem1, urlData.yearid], (err, data, fields) => {
-        if (err) { res.status(statusCodes.OK).json([{ status: 0 }]); return; }
+        if (err) { res.status(statusCodes.OK).json(finalResult); return; }
         rawResult.Avg1 = data;
         
         for (var i = 0; i < data.length; ++i)
         {
             let item = data[i];
-            finalResult.push(
+            finalResult.data.push(
                 {
                     StudentID: item.StudentID,
                     StudentName: item.StudentName,
@@ -90,10 +93,10 @@ function getStudentListWithAvg(dbConnection, req, res, urlData) {
             for (var i = 0; i < data.length; ++i)
             {
                 let item = data[i];
-                finalResult[i].Avg2 = item.TBHK;
+                finalResult.data[i].Avg2 = item.TBHK;
 
                 // Query for respective class
-                dbConnection.query(storage.Query_GetAvgRespectiveClass(), [finalResult[i].StudentID, urlData.yearid], (err, data, fields) => 
+                dbConnection.query(storage.Query_GetAvgRespectiveClass(), [finalResult.data[i].StudentID, urlData.yearid], (err, data, fields) =>
                 {
                     if (err) { res.status(statusCodes.OK).json([{ status: 0 }]); return; }
                     // {
@@ -106,13 +109,13 @@ function getStudentListWithAvg(dbConnection, req, res, urlData) {
 
                     console.log(data[0]);
                     let ind = -1;
-                    for (var i = 0; i < finalResult.length; ++i)
+                    for (var i = 0; i < finalResult.data.length; ++i)
                     {
-                        if (finalResult[i].StudentID.localeCompare(data[0].student) == 0)
+                        if (finalResult.data[i].StudentID.localeCompare(data[0].student) == 0)
                         {
                             ind = i;
-                            finalResult[i].ClassID = data[0].id;
-                            finalResult[i].ClassName = data[0].name;
+                            finalResult.data[i].ClassID = data[0].id;
+                            finalResult.data[i].ClassName = data[0].name;
                         }
                     }
                     console.log(ind);
@@ -120,9 +123,9 @@ function getStudentListWithAvg(dbConnection, req, res, urlData) {
                     // finalResult[ind].ClassName = data[0].name;
 
                     let done = true;
-                    for (var i = 0; i < finalResult.length; ++i)
+                    for (var i = 0; i < finalResult.data.length; ++i)
                     {
-                        if (finalResult[i].ClassID == null || finalResult[i].ClassName == null)
+                        if (finalResult.data[i].ClassID == null || finalResult.data[i].ClassName == null)
                         {
                             done = false;
                             break;
@@ -131,8 +134,8 @@ function getStudentListWithAvg(dbConnection, req, res, urlData) {
 
                     if (done)
                     {
-                        finalResult.splice(0, 0, {status: 1});
-                        console.log(finalResult);
+                        finalResult.status = 1;
+                        console.log(finalResult.data);
                         res.status(statusCodes.OK).json(finalResult);
                     }
                 });
