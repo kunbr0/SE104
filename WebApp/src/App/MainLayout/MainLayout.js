@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Redirect, Route, Switch} from 'react-router-dom';
 import { Layout, Menu, Breadcrumb, message } from 'antd';
 import SConfig from '../../config.json';
+import { useHistory } from 'react-router-dom'
 
 import './MainLayout.css';
 
@@ -22,6 +23,7 @@ const { SubMenu } = Menu;
 
 const MainLayout = (props) => {
   
+    let history = useHistory()
 
 
     const [resultMenuStructure, setResultMenuStructure] = useState([]);
@@ -109,7 +111,41 @@ const MainLayout = (props) => {
   
 
 
-    console.log(props.match);
+    
+
+    const createPathFromIndexOfBreadCrumb = (index) => {
+        let path = '/';
+        for(let i=1; i<index+1; i++){
+            path += (history.location.pathname.split('/')[i] + '/');
+        }
+        return path;
+    }
+
+
+    const breadCrumbItemsMenuTranscript = {
+        'profile' : 'Profile',
+        'schedule' : 'Schedule',
+        'inbox' : 'Inbox',
+        'sent' : 'Sent',
+        'archive' : 'archive',
+        'system' : 'System',
+        'users' : 'Users',
+        'visitation' : 'Visitation',
+        'students' : 'Student Management',
+        'class' : 'Classes and Subjects',
+        'report' : 'Report'
+    }
+    const breadCrumbItems = history.location.pathname.split('/').map((e, index)=>{
+        if(e){
+            return (
+                <Breadcrumb.Item
+                    key={`breadCrumb${index}`}
+                    onClick={()=>history.push(createPathFromIndexOfBreadCrumb(index))}
+                >
+                    {breadCrumbItemsMenuTranscript[e] || e}
+                </Breadcrumb.Item>);
+        }
+    });
 
     return (
         <Layout style={{ minHeight: '100vh' }}>
@@ -129,8 +165,8 @@ const MainLayout = (props) => {
             </Header>
             <Content style={{ margin: '0 16px' }}>
             <Breadcrumb style={{ margin: '16px 0' }}>
-                <Breadcrumb.Item>QLHS</Breadcrumb.Item>
-                <Breadcrumb.Item>Homepage</Breadcrumb.Item>
+                <Breadcrumb.Item onClick={()=>history.push('/')}>Homepage</Breadcrumb.Item>
+                {breadCrumbItems}
             </Breadcrumb>
             
             <Switch>
