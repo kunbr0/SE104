@@ -149,22 +149,24 @@ JSON: </br>
 ```
 *This automatically gets both First and Second Semester average and class name and returns as below:*
 ```
-[
-  { status: 1 },
-  {
-    StudentID: '18520001',
-    StudentName: 'Nguyễn Lê Bách',
-    ClassID: 1,
-    ClassName: '10A1',
-    Avg1: 7.726666683620877,
-    Avg2: 8.666666666666666
-  },
-  {
-    ...other result...
-  }
-]
+{
+  status: 1,
+  data: [
+          {
+            StudentID: '18520001',
+            StudentName: 'Nguyễn Lê Bách',
+            ClassID: 1,
+            ClassName: '10A1',
+            Avg1: 7.726666683620877,
+            Avg2: 8.666666666666666
+          },
+          {
+            ...other result...
+          }
+        ]
+}
 ```
-*The first item of the array list is status of query (success 1 or fail 0)*</br>
+*The status in response is status of query (success 1 or fail 0)*</br>
 
 ### FORM 4 - Transcripts ###
 #### Query: Get transcript (mark) of a class in a semester ####
