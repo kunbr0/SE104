@@ -121,6 +121,9 @@
   "ClassInfo-Table-Edit": {
     "1": "編輯"
   },
+  "ClassInfo-Table-Statistic": {
+    "1": "统计"
+  },
   "ClassInfo-Table-Reload": {
     "1": "重装"
   },
@@ -156,5 +159,21 @@
   },
   "ClassInfo-Table-Avg2": {
     "1": "平均2个学期"
+  },
+
+  "ClassInfo-Noti-PleaseSelectOptionsAbove": {
+    "1": "请选择上面的选项"
+  },
+  "ClassInfo-Noti-PleaseSelect": {
+    "1": "请选择"
+  },
+  "ClassInfo-Noti-SubjectReport": {
+    "1": "主题报告"
+  },
+  "ClassInfo-Noti-FinalSemesterReport": {
+    "1": "期末报告"
+  },
+  "ClassInfo-Noti-StudentsReport": {
+    "1": "学生报告"
   }
 }

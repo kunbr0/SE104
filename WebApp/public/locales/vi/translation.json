@@ -126,6 +126,9 @@
   "ClassInfo-Table-Edit": {
     "1": "Sửa"
   },
+  "ClassInfo-Table-Statistic": {
+    "1": "Thống kê"
+  },
   "ClassInfo-Table-Reload": {
     "1": "Tải lại"
   },
@@ -143,6 +146,9 @@
   },
   "ClassInfo-Table-SelectDetails": {
     "1": "Chọn chi tiết"
+  },
+  "ClassInfo-Table-Lookup": {
+    "1": "Tra cứu"
   },
   "ClassInfo-Table-EnrolledStudents": {
     "1": "Sĩ số"
@@ -177,5 +183,21 @@
   },
   "ClassInfo-Table-final": {
     "1": "Tổng kết"
+  },
+
+  "ClassInfo-Noti-PleaseSelectOptionsAbove": {
+    "1": "Vui lòng chọn những lựa chọn ở trên"
+  },
+  "ClassInfo-Noti-PleaseSelect": {
+    "1": "Vui lòng chọn"
+  },
+  "ClassInfo-Noti-SubjectReport": {
+    "1": "Báo cáo môn học"
+  },
+  "ClassInfo-Noti-FinalSemesterReport": {
+    "1": "Báo cáo tổng kết học kỳ"
+  },
+  "ClassInfo-Noti-StudentsReport": {
+    "1": "Báo cáo học sinh"
   }
 }

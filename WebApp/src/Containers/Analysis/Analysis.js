@@ -13,6 +13,8 @@ import SemesterAna from "./Semester/SemesterAna";
 import SubjectAna from "./Subject/SubjectAna";
 import StudentAna from "./Student";
 
+import TextTranslation from "../../Components/TextTranslation/TextTranslation";
+
 const mappedSubjectList = SubjectList.map((s) => {
   return {
     value: s.subjectValue,
@@ -228,7 +230,11 @@ const Analysis = (props) => {
     }
   }
 
-  const noticeDiv = <Card loading={isLoading}>Please select options</Card>;
+  const noticeDiv = (
+    <Card loading={isLoading}>
+      <TextTranslation textName="ClassInfo-Noti-PleaseSelectOptionsAbove.1" />
+    </Card>
+  );
 
   const renderReport = (type) => {
     console.log(reportData);
