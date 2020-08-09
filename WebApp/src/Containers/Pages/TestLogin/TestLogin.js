@@ -76,9 +76,6 @@ export default function TestLogin() {
                         <a href="#">Terms & Conditions</a> and
                         <a href="#"> Privacy Policy</a>
                     </p>
-                    <ThemeSwitcher>
-
-                    </ThemeSwitcher>
                 </div>
             </div>
         </div>
