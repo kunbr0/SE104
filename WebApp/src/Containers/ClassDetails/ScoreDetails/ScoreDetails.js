@@ -101,7 +101,7 @@ const StudentScoresTable = (props) => {
   };
 
   const updateScore = (payload) => {
-    let urlRequest = `${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.ClassRoutes.UpdateTranscripts}`;
+    let urlRequest = `${SConfig.SERVER_URL}${SConfig.SERVER_PORT}${SConfig.ClassRoutes.UpdateTranscripts}`;
     sendRequest(urlRequest, "POST", payload, {
       "Content-Type": "application/json",
     })

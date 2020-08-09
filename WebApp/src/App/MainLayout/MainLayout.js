@@ -33,7 +33,7 @@ const MainLayout = (props) => {
 
   useEffect(() => {
     fetch(
-      `${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.ClassRoutes.GetAllClass}/${props.yearData.yearid}`
+      `${SConfig.SERVER_URL}${SConfig.SERVER_PORT}${SConfig.ClassRoutes.GetAllClass}/${props.yearData.yearid}`
     )
       .then((response) => {
         return response.json();

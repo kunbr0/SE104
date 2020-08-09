@@ -65,7 +65,7 @@ const ClassDetails = (props) => {
     setTableEditable(false);
     let urlRequest = "";
     if (selectedSubject === "Student Details") {
-      urlRequest = `${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.ClassRoutes.GetListStudentInClass}`;
+      urlRequest = `${SConfig.SERVER_URL}${SConfig.SERVER_PORT}${SConfig.ClassRoutes.GetListStudentInClass}`;
       sendRequest(
         urlRequest,
         "POST",
@@ -103,7 +103,7 @@ const ClassDetails = (props) => {
           setIsFetchingClassDetailsData(false);
         });
     } else {
-      urlRequest = `${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.ClassRoutes.GetTranscripts}`;
+      urlRequest = `${SConfig.SERVER_URL}${SConfig.SERVER_PORT}${SConfig.ClassRoutes.GetTranscripts}`;
       sendRequest(
         urlRequest,
         "POST",

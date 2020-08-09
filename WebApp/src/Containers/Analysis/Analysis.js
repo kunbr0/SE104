@@ -84,7 +84,7 @@ const Analysis = (props) => {
   function onChange(value) {
     setIsLoading(true);
     if (value[0] === options[0].value) {
-      let urlRequest = `${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.Report.SubjectReport}`;
+      let urlRequest = `${SConfig.SERVER_URL}${SConfig.SERVER_PORT}${SConfig.Report.SubjectReport}`;
       sendRequest(
         urlRequest,
         "POST",
@@ -137,7 +137,7 @@ const Analysis = (props) => {
     }
 
     if (value[0] === options[1].value) {
-      let urlRequest = `${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.Report.SemesterReport}`;
+      let urlRequest = `${SConfig.SERVER_URL}${SConfig.SERVER_PORT}${SConfig.Report.SemesterReport}`;
       sendRequest(
         urlRequest,
         "POST",
@@ -189,7 +189,7 @@ const Analysis = (props) => {
     }
 
     if (value[0] === options[2].value) {
-      let urlRequest = `${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.Report.StudentReport}`;
+      let urlRequest = `${SConfig.SERVER_URL}${SConfig.SERVER_PORT}${SConfig.Report.StudentReport}`;
       sendRequest(
         urlRequest,
         "POST",

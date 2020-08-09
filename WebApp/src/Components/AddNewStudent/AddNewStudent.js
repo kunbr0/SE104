@@ -73,7 +73,7 @@ const AddNewStudent = (props) => {
   console.log(fClass);
 
   const requestCreateStudent = () => {
-    let urlRequest = `${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.Student.AddStudent}`;
+    let urlRequest = `${SConfig.SERVER_URL}${SConfig.SERVER_PORT}${SConfig.Student.AddStudent}`;
 
     let formatedDate = fDOB;
     formatedDate =
@@ -117,7 +117,7 @@ const AddNewStudent = (props) => {
   };
 
   const addStudentToClass = (newStudentId) => {
-    let urlRequest = `${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.ClassRoutes.AddStudents}`;
+    let urlRequest = `${SConfig.SERVER_URL}${SConfig.SERVER_PORT}${SConfig.ClassRoutes.AddStudents}`;
 
     sendRequest(
       urlRequest,

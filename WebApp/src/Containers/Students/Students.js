@@ -39,7 +39,7 @@ const Students = (props) => {
 
   const requestGetAllStudent = () => {
     setIsLoading(true);
-    let urlRequest = `${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.Student.GetAllStudents}`;
+    let urlRequest = `${SConfig.SERVER_URL}${SConfig.SERVER_PORT}${SConfig.Student.GetAllStudents}`;
     sendRequest(urlRequest, "GET")
       .then((response) => {
         return response.json();
@@ -209,7 +209,7 @@ const Students = (props) => {
 
   const requestGetStudentDetails = (studentId) => {
     setIsLoading(true);
-    let urlRequest = `${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.Student.GetStudentDetails}${studentId}`;
+    let urlRequest = `${SConfig.SERVER_URL}${SConfig.SERVER_PORT}${SConfig.Student.GetStudentDetails}${studentId}`;
     sendRequest(urlRequest, "GET")
       .then((response) => {
         return response.json();
@@ -238,7 +238,7 @@ const Students = (props) => {
   };
 
   const requestUpdateStudent = () => {
-    let urlRequest = `${SConfig.SERVER_URL}:${SConfig.SERVER_PORT}${SConfig.Student.UpdateStudent}`;
+    let urlRequest = `${SConfig.SERVER_URL}${SConfig.SERVER_PORT}${SConfig.Student.UpdateStudent}`;
     sendRequest(
       urlRequest,
       "POST",
