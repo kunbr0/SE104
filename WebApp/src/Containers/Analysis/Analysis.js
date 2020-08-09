@@ -210,8 +210,8 @@ const Analysis = (props) => {
           data.data.map((student, index) =>
             resultData.push({
               ...student,
-              Avg1: Number(student.Avg1.toFixed(2)),
-              Avg2: Number(student.Avg2.toFixed(2)),
+              Avg1: student.Avg1 ? Number(student.Avg1.toFixed(2)) : 0,
+              Avg2: student.Avg2 ? Number(student.Avg2.toFixed(2)) : 0,
             })
           );
           console.log(resultData);
