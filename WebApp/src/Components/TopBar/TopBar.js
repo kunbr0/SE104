@@ -3,6 +3,7 @@ import "./TopBar.css";
 import { useHistory } from "react-router-dom";
 import { Avatar, Badge, Menu, Dropdown } from "antd";
 import { UserOutlined } from "@ant-design/icons";
+import TextTranslation from "../TextTranslation/TextTranslation";
 
 const TopBar = () => {
   let history = useHistory();
@@ -50,7 +51,9 @@ const TopBar = () => {
 
   return (
     <div id="topbar-wrapper">
-      <div id="topbar-title">Quản Lý Học Sinh</div>
+      <div id="topbar-title">
+        <TextTranslation textName="ClassInfo-Noti-StudentManagement.1" />
+      </div>
       <Dropdown overlay={menu} trigger={["click"]}>
         <span className="avatar-item" id="topbar-avatar">
           <Badge count={1}>

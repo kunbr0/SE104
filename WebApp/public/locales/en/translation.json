@@ -110,6 +110,27 @@
     "1": "Name",
     "2": "Name"
   },
+  "ClassInfo-Table-UserID": {
+    "1": "UserID"
+  },
+  "ClassInfo-Table-Status": {
+    "1": "Status"
+  },
+  "ClassInfo-Table-Faculty": {
+    "1": "Faculty"
+  },
+  "ClassInfo-Table-NationalID": {
+    "1": "National ID"
+  },
+  "ClassInfo-Table-DateOfBirth": {
+    "1": "Date of Birth"
+  },
+  "ClassInfo-Table-Classes": {
+    "1": "Classes"
+  },
+  "ClassInfo-Table-Working": {
+    "1": "Working"
+  },
   "ClassInfo-Table-Sex": {
     "1": "Sex"
   },
@@ -206,5 +227,8 @@
   },
   "ClassInfo-Noti-StudentsReport": {
     "1": "Students Report"
+  },
+  "ClassInfo-Noti-StudentManagement": {
+    "1": "Student Management"
   }
 }

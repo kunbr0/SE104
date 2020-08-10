@@ -231,7 +231,7 @@ const AddNewStudent = (props) => {
                 >
                   <Option value="male">Male</Option>
                   <Option value="female">Female</Option>
-                  <Option value="undefied">Undefied</Option>
+                  <Option value="undefied">Other</Option>
                 </Select>
               </Form.Item>
             </Col>

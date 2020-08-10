@@ -106,6 +106,27 @@
   "ClassInfo-Table-Name": {
     "1": "名稱"
   },
+  "ClassInfo-Table-UserID": {
+    "1": "用户身份"
+  },
+  "ClassInfo-Table-Status": {
+    "1": "状态"
+  },
+  "ClassInfo-Table-Faculty": {
+    "1": "学院"
+  },
+  "ClassInfo-Table-NationalID": {
+    "1": "国家身份证"
+  },
+  "ClassInfo-Table-DateOfBirth": {
+    "1": "出生日期"
+  },
+  "ClassInfo-Table-Classes": {
+    "1": "班级"
+  },
+  "ClassInfo-Table-Working": {
+    "1": "加工"
+  },
   "ClassInfo-Table-Sex": {
     "1": "性別"
   },
@@ -175,5 +196,8 @@
   },
   "ClassInfo-Noti-StudentsReport": {
     "1": "学生报告"
+  },
+  "ClassInfo-Noti-StudentManagement": {
+    "1": "学生管理"
   }
 }

@@ -108,6 +108,27 @@
   "ClassInfo-Table-Name": {
     "1": "Tên"
   },
+  "ClassInfo-Table-UserID": {
+    "1": "Tài Khoản"
+  },
+  "ClassInfo-Table-Status": {
+    "1": "Trạng Thái"
+  },
+  "ClassInfo-Table-Faculty": {
+    "1": "Khoa"
+  },
+  "ClassInfo-Table-NationalID": {
+    "1": "CMND"
+  },
+  "ClassInfo-Table-DateOfBirth": {
+    "1": "Ngày sinh"
+  },
+  "ClassInfo-Table-Classes": {
+    "1": "Lớp đang dạy"
+  },
+  "ClassInfo-Table-Working": {
+    "1": "Đang dạy"
+  },
   "ClassInfo-Table-Sex": {
     "1": "Giới tính"
   },
@@ -199,5 +220,8 @@
   },
   "ClassInfo-Noti-StudentsReport": {
     "1": "Báo cáo học sinh"
+  },
+  "ClassInfo-Noti-StudentManagement": {
+    "1": "Quản Lý Học Sinh"
   }
 }
